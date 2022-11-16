@@ -24,6 +24,7 @@ services:
     volumes:
       - ./FastAPI_service:/app
     environment:
+      SIGNING_KEY: ${DJWTO_SIGNING_KEY}
       DATABASE_URL: mongodb://root:password@mongo
       DATABASE_NAME: mongo-data
       WAIT_HOSTS: mongo:27017

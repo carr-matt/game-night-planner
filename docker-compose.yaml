@@ -1,9 +1,7 @@
 # volumes:
-
 volumes:
     mongo-data:
         external: true
-
 
 services:
   mongo:
@@ -13,7 +11,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
-
 
   fastapi:
     build:
@@ -28,10 +25,9 @@ services:
       DATABASE_NAME: mongo-data
       WAIT_HOSTS: mongo:27017
 
-
   ghi:
     image: node:lts-bullseye
-    command: /bin/bash run.sh
+    command: bash -c "npm install && npm start"
     working_dir: /app
     volumes:
       - ./ghi:/app

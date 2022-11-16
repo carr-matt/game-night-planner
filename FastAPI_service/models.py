@@ -18,11 +18,6 @@ class PydanticObjectId(ObjectId):
         return value
 
 
-class SessionOut(BaseModel):
-    jti: str
-    account_id: str
-
-
 class AccountIn(BaseModel):
     email: str
     password: str

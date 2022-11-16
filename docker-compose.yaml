@@ -1,13 +1,47 @@
 # volumes:
+
+volumes:
+    mongo-data:
+        external: true
+    pg-admin:
+      external: true
+
 services:
+  mongo:
+    image: mongo:5
+    volumes:
+        - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+
+  pg-admin:
+    image: dpage/pgadmin4
+    volumes:
+      - pg-admin:/var/lib/pgadmin
+    ports:
+      - 8082:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: gamenight_123@yahoo.com
+      PGADMIN_DEFAULT_PASSWORD: BartJayTerra2022
+      PGADMIN_DISABLE_POSTFIX: 1
+    #  http://localhost:8082
+
+
   fastapi:
     build:
-      context: sample_service
+      context: FastAPI_service
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./sample_service:/app
+      - ./FastAPI_service:/app
+    environment:
+      DATABASE_URL: mongodb://root:password@mongo
+      DATABASE_NAME: mongo-data
+      WAIT_HOSTS: mongo:27017
+
       
   ghi:
     image: node:lts-bullseye
@@ -22,5 +56,5 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
+      REACT_APP_FastAPI_SERVICE_API_HOST: http://localhost:8000
             

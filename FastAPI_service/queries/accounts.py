@@ -22,4 +22,3 @@ class AccountQueries(Queries):
     def get(self, email: str) -> AccountOutWithPassword:
 
     def get(self, info: AccountIn, hashed_pasword: str) -> AccountOutWithPassword:
-

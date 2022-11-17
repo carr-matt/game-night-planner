@@ -5,12 +5,26 @@ volumes:
 
 services:
   mongo:
-    image: mongo:5
+    image: mongo:6
     volumes:
-      - mongo-data:/data/db
+        - ./setup/mongodb:/docker-entrypoint-initdb.d
+        - mongo-data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
+  mongo-express:
+    build:
+      context: setup/mongo-express
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      WAIT_HOSTS: mongo:27017
+      WAIT_BEFORE: 5
+      WAIT_TIMEOUT: 60
 
   fastapi:
     build:
@@ -21,6 +35,7 @@ services:
     volumes:
       - ./FastAPI_service:/app
     environment:
+      SIGNING_KEY: ${DJWTO_SIGNING_KEY}
       DATABASE_URL: mongodb://root:password@mongo
       DATABASE_NAME: mongo-data
       WAIT_HOSTS: mongo:27017

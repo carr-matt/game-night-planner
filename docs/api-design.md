@@ -196,6 +196,9 @@
         "category": [
 
         ],
+      }
+    ]
+  }
 
 ### Get a list of Categories
 

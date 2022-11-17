@@ -26,45 +26,55 @@ class AccountIn(BaseModel):
 
 class Account(AccountIn):
     id: PydanticObjectId
-    roles: List[str]
+    # roles: List[str]
 
 
 class AccountOut(BaseModel):
     id: str
     email: str
     full_name: str
-    roles: List[str]
+    # roles: List[str]
 
 
-class LoanIn(BaseModel):
-    account_id: str
-    book_id: str
+# class LoanIn(BaseModel):
+#     account_id: str
+#     book_id: str
 
 
-class Loan(LoanIn):
-    id: PydanticObjectId
+# class Loan(LoanIn):
+#     id: PydanticObjectId
 
 
-class LoanOut(LoanIn):
-    id: str
+# class LoanOut(LoanIn):
+#     id: str
 
 
-class BookIn(BaseModel):
-    author: str
-    title: str
-    quantity: int
-    synopsis: str
-    cover: str | None
+class Game(BaseModel):
+    name: str
+    price: str
+    min_players: int
+    max_players: int
+    min_age: int
+    min_playtime: int
+    max_playtime: int
+    description: str
+    image_url: str
+    mechanics: List[str]
+    category: List[str]
+
+class GameOut(BaseModel):
+    name: str
+    image_url: str
+    description: str
+
+# class Book(BookIn):
+#     id: PydanticObjectId
 
 
-class Book(BookIn):
-    id: PydanticObjectId
+# class BookOut(BookIn):
+#     id: str
+#     loans: List[str]
 
 
-class BookOut(BookIn):
-    id: str
-    loans: List[str]
-
-
-class BookList(BaseModel):
-    books: List[BookOut]
+# class BookList(BaseModel):
+#     books: List[BookOut]

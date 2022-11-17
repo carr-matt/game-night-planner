@@ -197,10 +197,50 @@
 
         ],
 
-      }
+### Get a list of Categories
+
+* Endpoint path: game/categories
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: A list of all game categories
+* Response shape:
+    ```json
+    {
+	"categories": [
+		{
+			"id": string,
+			"name": string,
+			"url": string,
+		},
     ]
-  }
-  ```
+    }
+    ```
+
+
+### Get a list of Mechanics
+
+* Endpoint path: game/mechanics
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: A list of all game mechanic types
+* Response shape:
+    ```json
+    {
+	"mechanics": [
+		{
+			"id": string,
+			"name": string,
+			"url": string,
+		},
+    ]
+    }
+    ```
 
 ### «Human-readable description of the endpoint»
 

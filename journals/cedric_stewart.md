@@ -13,4 +13,5 @@ views are necessary.
 
 ## 11/17/22
 
-Working on the back-end with Matt and Josh.
+Working on the back-end with Matt and Josh. Did some planning but we feel as if we really dont understand Fast Api. Going to take some
+time to do some extra research.

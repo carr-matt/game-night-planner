@@ -3,8 +3,7 @@
 volumes:
     mongo-data:
         external: true
-    # pg-admin:
-    #   external: true
+
 
 services:
   mongo:
@@ -16,19 +15,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
 
 
-  # pg-admin:
-  #   image: dpage/pgadmin4
-  #   volumes:
-  #     - pg-admin:/var/lib/pgadmin
-  #   ports:
-  #     - 8082:80
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: gamenight_123@yahoo.com
-  #     PGADMIN_DEFAULT_PASSWORD: BartJayTerra2022
-  #     PGADMIN_DISABLE_POSTFIX: 1
-  #   #  http://localhost:8082
-
-
   fastapi:
     build:
       context: FastAPI_service
@@ -38,6 +24,7 @@ services:
     volumes:
       - ./FastAPI_service:/app
     environment:
+      SIGNING_KEY: ${DJWTO_SIGNING_KEY}
       DATABASE_URL: mongodb://root:password@mongo
       DATABASE_NAME: mongo-data
       WAIT_HOSTS: mongo:27017
@@ -45,7 +32,7 @@ services:
 
   ghi:
     image: node:lts-bullseye
-    command: /bin/bash run.sh
+    command: bash -c "npm install && npm start"
     working_dir: /app
     volumes:
       - ./ghi:/app

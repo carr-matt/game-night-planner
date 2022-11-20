@@ -21,7 +21,7 @@ class PydanticObjectId(ObjectId):
 class AccountIn(BaseModel):
     email: str
     password: str
-    full_name: str
+    # full_name: str
 
 
 class Account(AccountIn):
@@ -32,7 +32,7 @@ class Account(AccountIn):
 class AccountOut(BaseModel):
     id: str
     email: str
-    full_name: str
+    # full_name: str
     # roles: List[str]
 
 

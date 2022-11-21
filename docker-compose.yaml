@@ -1,11 +1,7 @@
 # volumes:
-
 volumes:
-    node-modules:
-      external: true
-    mongo-data:
-        external: true
-
+  mongo-data:
+    external: true
 
 services:
   mongo:
@@ -30,7 +26,6 @@ services:
       WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60
 
-
   fastapi:
     build:
       context: FastAPI_service
@@ -45,7 +40,6 @@ services:
       DATABASE_URL: mongodb://root:password@mongo
       DATABASE_NAME: mongo-data
       WAIT_HOSTS: mongo:27017
-
 
   ghi:
     image: node:lts-bullseye

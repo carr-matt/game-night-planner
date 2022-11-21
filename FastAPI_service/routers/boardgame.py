@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Depends
 import requests, json
 import os
-from typing import Union
-
 
 BGA_ID = os.environ["BGA_ID"]
 
@@ -20,7 +18,7 @@ def get_random_game():
     params = {
         "random": "true",
         "pretty": "true",
-        "fields": "name,url,image_url,url,description",
+        "fields": "name,id,url,image_url,description",
         "client_id": BGA_ID,
     }
     url = "https://api.boardgameatlas.com/api/search"
@@ -56,6 +54,21 @@ async def name_search(name: str, bga_api: BgaApi = Depends()):
         "pretty": "true",
         "fuzzy_match": "true",
         "order_by": "rank",
+        "fields": "name,price,min_players,max_players,min_age,image_url,description",
+        "client_id": BGA_ID,
+    }
+    response = await bga_api.call_bga_api(params)
+    bga_json = response.json()
+    try:
+        return bga_json
+    except IndexError:
+        return "Invalid Parameters"
+
+@router.get("/api/game_detail")
+async def game_details(ids: str, bga_api: BgaApi = Depends()):
+    params = {
+        "ids": ids,
+        "pretty": "true",
         "fields": "name,price,min_players,max_players,min_age,image_url,description",
         "client_id": BGA_ID,
     }

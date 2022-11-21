@@ -18,4 +18,4 @@ time to do some extra research.
 
 ## 11/21/22
 
-Worked with Josh and Matt on setting up the filtered search with the api.
+Worked with Josh and Matt on set up API endpoints for random game, our filtered search, game details, etc.

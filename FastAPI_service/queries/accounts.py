@@ -1,25 +1,15 @@
-from pydantic import BaseModel
+from .client import Queries
+from models import Account, AccountIn
+from pymongo.errors import DuplicateKeyError
+
 
 class DuplicateAccountError(ValueError):
     pass
 
-class AccountIn(BaseModel):
-    email: str
-    password: str
-    full_name: str
-
-class AccountOut(BaseModel):
-    id: str
-    email: str
-    full_name: str
-
-class AccountOutWithPassword(AccountOut):
-    hashed_password: str
-
-
 
 class AccountQueries(Queries):
-    def get(self, email: str) -> AccountOutWithPassword:
+    DB_NAME = "mongo-data"
+    COLLECTION = "fastapi"
 
     def get(self, email: str) -> Account:
         props = self.collection.find_one({"email": email})

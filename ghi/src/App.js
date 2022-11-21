@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import Construct from './Construct.js'
-import ErrorNotification from './ErrorNotification';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import MainPage from './MainDetailComponents/MainPage';
+import Login from './SignUpComponents/Login';
+import Signup from './SignUpComponents/Signup';
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);  
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getData() {
@@ -28,10 +30,15 @@ function App() {
 
 
   return (
+  <BrowserRouter>
     <div>
-      <ErrorNotification error={error} />
-      <Construct info={launch_info} />
+      <Routes>
+        <Route path="mainpage/" element={<MainPage />} />
+        <Route path="login/" element={<Login />} />
+        <Route path="signup/" element={<Signup />} />
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 

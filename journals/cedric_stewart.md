@@ -15,3 +15,7 @@ views are necessary.
 
 Working on the back-end with Matt and Josh. Did some planning but we feel as if we really dont understand Fast Api. Going to take some
 time to do some extra research.
+
+## 11/21/22
+
+Worked with Josh and Matt on setting up the filtered search with the api.

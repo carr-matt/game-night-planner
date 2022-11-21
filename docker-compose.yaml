@@ -1,9 +1,7 @@
 # volumes:
 volumes:
-    node-modules:
-      external: true
-    mongo-data:
-        external: true
+  mongo-data:
+    external: true
 
 services:
   mongo:
@@ -38,6 +36,7 @@ services:
       - ./FastAPI_service:/app
     environment:
       SIGNING_KEY: ${DJWTO_SIGNING_KEY}
+      BGA_ID: ${BGA_ID}
       DATABASE_URL: mongodb://root:password@mongo
       DATABASE_NAME: mongo-data
       WAIT_HOSTS: mongo:27017

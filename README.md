@@ -1,32 +1,39 @@
-# Module3 Project Gamma
+# Game Night Planner
 
-## Getting started
+- Cedric "Jazz" Stewart
+- Joe Monaghan
+- Joshua Clay
+- Matt Carr
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
+Game Night Planner – choose your next board game adventure!
 
-## Install Extensions
+## Design
 
-* Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
-* Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
+- [API design](docs/api-design.md)
+- [Integrations](docs/integrations.md)
 
-## Deliverables
+## Intended market
 
-* [ ] Wire-frame diagrams
-* [ ] API documentation
-* [ ] Project is deployed to Render.com/GitLab-pages
-* [ ] GitLab issue board is setup and in use
-* [ ] Journals
+We seek to help board game enthusiasts find the perfect game for their next game night.
 
-## Project layout
+## Functionality
 
-The layout of the project is just like all of the projects
-you did with `docker-compose` in module #2. You will create
-a directory in the root of the repository for each service
-that you add to your project just like those previous
-projects were setup.
+
+
+## Project Initialization
+
+Follow these steps to run this application on your local machine:
+
+1. Clone the repository down to your local machine
+2. CD into the new project directory
+3. Run `docker volume create mongo-data`
+4. Run `docker compose build`
+5. Run `docker compose up`
+6. Visit [localhost:3000](localhost:3000/) in your browser. Happy gaming, friends!
+
+
+
+
 
 ### Directories
 
@@ -96,7 +103,7 @@ deployment, but it just consists of these steps:
 * make sure this project is in a group. If it isn't, stop
   now and move it to a GitLab group
 * remove the fork relationship: In GitLab go to:
-  
+
   Settings -> General -> Advanced -> Remove fork relationship
 
 * add these GitLab CI/CD variables:

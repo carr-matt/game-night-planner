@@ -3,29 +3,29 @@
 function Login() {
     return (
 
-<form action="action_page.php" method="post">
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar" />
-  </div>
+<div className="row">
+            <div className="offset-3 col-6">
+              <div className="shadow p-4 mt-4">
+                <h1 className="header-title">Login</h1>
+                <form id="login-form">
+                  <div className="textstyle">
+                  <div className="form-floating mb-3">
+                    <label htmlFor="name">Email Address</label>
+                    <br/>
+                    <input placeholder="Email Address" required type="text" name="email" id="email" className="form-control"/>
+                  </div>
+                  <div className="form-floating mb-3">
+                    <label htmlFor="employee_id">Password</label>
+                    <br />
+                    <input placeholder="Password" required type="text" name="password" id="password" className="form-control"/>
+                    </div>
+                  </div>
+                  <button className="btn btn-secondary">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>
 
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required />
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required />
-
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me</input>
-    </label>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
 
     )
 }

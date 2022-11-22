@@ -18,8 +18,15 @@ code {
 
 h1{
 text-align: center;
+color: antiquewhite;
 }
 
 h2{
 text-align: center;
+color: antiquewhite;
+}
+
+.textstyle {
+text-align: center;
+color: antiquewhite;
 }

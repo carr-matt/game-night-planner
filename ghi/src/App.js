@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 // import Construct from './Construct.js'
 import ErrorNotification from './ErrorNotification';
 import './App.css';
+import MainPage from './MainDetailComponents/MainPage';
+import Login from './SignUpComponents/Login';
+import Signup from './SignUpComponents/Signup';
 import UserDashboard from './DashBoardComponents/UserDashboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './Nav';
@@ -10,7 +13,7 @@ import SearchForm from './MainDetailComponents/SearchForm';
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);  
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getData() {
@@ -43,6 +46,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/UserDashboard/" element={<UserDashboard />} />
         <Route path="/SearhForm/" element={<SearchForm />} />
+        <Route path="login/" element={<Login />} />
+        <Route path="signup/" element={<Signup />} />
       </Routes>
     </div>
     </BrowserRouter>

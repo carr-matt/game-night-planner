@@ -34,17 +34,6 @@ def get_random_game():
     return content
 
 
-def get_reviews():
-    params = {
-        "pretty": "true",
-        "client_id": BGA_ID,
-    }
-    url = "https://api.boardgameatlas.com/api/reviews"
-    response = requests.get(url, params=params)
-    content = json.loads(response.content)
-    return content
-
-
 def get_game_mechanics():
     params = {
         "pretty": "true",

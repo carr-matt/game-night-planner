@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Depends
 import requests, json
 import os
-from typing import Union
-
 
 BGA_ID = os.environ["BGA_ID"]
 
@@ -16,17 +14,25 @@ class BgaApi:
             params=params,
         )
 
+    async def call_reviews(self, params):
+        return requests.get(
+            "https://api.boardgameatlas.com/api/reviews",
+            params=params,
+        )
+
+
 def get_random_game():
     params = {
         "random": "true",
         "pretty": "true",
-        "fields": "name,url,image_url,url,description",
+        "fields": "name,id,url,image_url,description",
         "client_id": BGA_ID,
     }
     url = "https://api.boardgameatlas.com/api/search"
     response = requests.get(url, params=params)
     content = json.loads(response.content)
     return content
+
 
 def get_game_mechanics():
     params = {
@@ -38,6 +44,7 @@ def get_game_mechanics():
     content = json.loads(response.content)
     return content
 
+
 def get_game_categories():
     params = {
         "pretty": "true",
@@ -47,6 +54,7 @@ def get_game_categories():
     response = requests.get(url, params=params)
     content = json.loads(response.content)
     return content
+
 
 @router.get("/api/get_games_by_name")
 async def name_search(name: str, bga_api: BgaApi = Depends()):
@@ -66,20 +74,55 @@ async def name_search(name: str, bga_api: BgaApi = Depends()):
     except IndexError:
         return "Invalid Parameters"
 
+
+@router.get("/api/get_reviews")
+async def game_reviews(game_id: str, bga_api: BgaApi = Depends()):
+    params = {
+        "game_id": game_id,
+        "pretty": "true",
+        "client_id": BGA_ID,
+    }
+    response = await bga_api.call_reviews(params)
+    bga_json = response.json()
+    try:
+        return bga_json
+    except IndexError:
+        return "Invalid Parameters"
+
+
+@router.get("/api/game_detail")
+async def game_details(ids: str, bga_api: BgaApi = Depends()):
+    params = {
+        "ids": ids,
+        "pretty": "true",
+        "fields": "name,price,min_players,max_players,min_age,image_url,description",
+        "client_id": BGA_ID,
+    }
+    response = await bga_api.call_bga_api(params)
+    bga_json = response.json()
+    try:
+        return bga_json
+    except IndexError:
+        return "Invalid Parameters"
+
+
 @router.get("/api/random_game")
 def random_game():
     data = get_random_game()
     return data
+
 
 @router.get("/api/game_mechanics_list")
 def game_mechanics():
     data = get_game_mechanics()
     return data
 
+
 @router.get("/api/game_categories_list")
 def game_categories():
     data = get_game_categories()
     return data
+
 
 @router.get("/api/money_maker")
 async def money_maker(
@@ -90,8 +133,8 @@ async def money_maker(
     max_playtime: int | None = None,
     mechanics: str | None = None,
     categories: str | None = None,
-    bga_api: BgaApi = Depends()
-    ):
+    bga_api: BgaApi = Depends(),
+):
     params = {
         "min_players": min_players,
         "max_players": max_players,

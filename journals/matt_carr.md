@@ -1,6 +1,14 @@
+## November 21, 2022
+
+* Very productive day! Momentum on api work carried on throughout the afternoon. Through a live share session, Josh, Jazz, and I together knocked out nearly all of our external api endpoints. Also consolidated them all in a boardgame.py file.
+
+## November 20, 2022
+
+* Stayed up too late working on external api GET requests for our app but finally got 2 requests working.
+
 ## November 17, 2022
 
-* Group worked together this morning get Mongo Express added & working. Afternoon, Jazz, Josh, and I did a live coding session to kick off our backend work. Some code clean-up was done, but we all feel we need to do more research about how to properly structure things within our FastAPI service before going much further. Riley gave us some good advice for next steps.
+* Group worked together this morning to get Mongo Express added & working. Afternoon, Jazz, Josh, and I did a live share coding session to kick off our backend work. Some code clean-up was done, but we all feel we need to do more research about how to properly structure things within our FastAPI service before going much further. Riley gave us some good advice for next steps.
 * Updated project documentation.
 * Spending the remainder of my night learning more about FastAPI.
 

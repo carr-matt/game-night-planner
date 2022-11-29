@@ -9,7 +9,7 @@ class DuplicateAccountError(ValueError):
 
 class AccountQueries(Queries):
     DB_NAME = "mongo-data"
-    COLLECTION = "fastapi"
+    COLLECTION = "accounts"
 
     def get(self, email: str) -> Account:
         props = self.collection.find_one({"email": email})

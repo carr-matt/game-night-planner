@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -8,27 +7,67 @@ import './comp.css';
 // import Item from '@material-ui/core/Item';
 
 function UserDashboard() {
+  const blankForm = {
+    ownedGame: "",
+    likedGame: "",
+  }
 
+  const [ownedGames, setOwnedGames] = useState([]);
+  const [likedGames, setLikedGames] = useState([]);
     // const [playedGames, setPlayedGames] = useState([]) //Destructor = declare multiple variables on one line. State is a function which exporsts multiple variables
     // setPlayedGames('newPlayedGames', playedGames) // setPlayed games is a function and now it replaces playedGames as Risk. 
     // playedGames // ['catan']
 
-    const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+  async function getOwnedGames() {
+    let ownedUrl = "http://localhost:8080/games/ownedGames/"
+    try {
+      const response = await fetch(ownedUrl);
+      const listOfOwnedGames = await response.json();
+      setOwnedGames(listOfOwnedGames)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(
+    () => {
+      getOwnedGames();
+    }, []
+  )
+
+  async function getLikedGames() {
+    let likedUrl = "http://localhost:8080/games/likedGames/"
+    try {
+      const response = await fetch(likedUrl);
+      const listOfLikedGames = await response.json();
+      setLikedGames(listOfLikedGames)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(
+    () => {
+      getLikedGames();
+    }, []
+  )
+  
+
+    
+  const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
   }));
 
 
     return ( 
     <div className="app-list">
       <h1 className="Header">User Dashboard </h1>
-        <div className="app-container">
-        <div className="app-container">
         <Box sx={{ flexGrow: 1 }}>
-         <Grid container spacing={3}> {/* space between Items in grid */}
+         <Grid container spacing={5}> {/* space between Items in grid */}
           <Grid item={true} xs={6} md={3}> {/* xs = the height and md = the column space it takes up out of 12 */}
             <Item> Your Reviews </Item>
           </Grid>
@@ -37,59 +76,25 @@ function UserDashboard() {
           </Grid>
           <Grid item xs={6} md={3}>
             <Item> Owned Games </Item>
+            <Item> <select id="owned-form1" className="form-control" onChange={e => setOwnedGames({ownedGame: e.target.value})}> {ownedGames.map(ownedGame => {
+                    return(
+                    <option id="owned-form1" key={ownedGame.id}>{ownedGame.name} </option>
+                    )
+                  })} </select> </Item>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Item> Liked Games </Item>
+            <Item> Liked Games <select id="owned-form1" className="form-control" onChange={e => setLikedGames({likedGame: e.target.value})}> {likedGames.map(likedGame => {
+                    return(
+                    <option id="owned-form1" key={likedGame.id}>{likedGame.name} </option>
+                    )
+                  })} </select> </Item>
           </Grid>
         </Grid>
         </Box>
          </div>
-         </div>
-        </div>
 
     )
 
 }
 
 export default UserDashboard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, {useState, useRef, useEffect} from 'react'
-// import moment from 'moment';
-
-// function UserDashboard() {
-//   const blankForm = {
-    
-//     reviews: "",
-//     playedGames: "",
-//     ownedGames: "",
-//     likedGames: "",
-//   }
-
-// const [playedGames, setPlayedGames] = useState([]);
-// const [playedGames, setPlayedGames] = useState([]);
-// const [playedGames, setPlayedGames] = useState([]);
-// const [playedGames, setPlayedGames] = useState([]);
-
-// async function getPlayedGames() {
-//     let listUrl = ""
-//     try {
-//       const response = await fetch(listUrl);
-//       const listOfPlayedGames = await response.json();
-//       setPlayedGames(listOfPlayedGames)
-//     } catch (e) {
-//       console.error(e);
-//     }
-//   }

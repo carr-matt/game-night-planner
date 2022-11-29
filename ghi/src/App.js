@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-// import Construct from './Construct.js'
-import ErrorNotification from './ErrorNotification';
+// import ErrorNotification from './ErrorNotification';
 import './App.css';
-import MainPage from './MainDetailComponents/MainPage';
 import Login from './SignUpComponents/Login';
 import Signup from './SignUpComponents/Signup';
 import UserDashboard from './DashBoardComponents/UserDashboard';
@@ -40,14 +38,15 @@ function App() {
     <BrowserRouter>
     <Nav />
     <div>
-      <ErrorNotification error={error} />
+      {/* <ErrorNotification error={error} /> */}
       {/* <Construct info={launch_info} /> */}
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/MainPage/" element={<MainPage />} />
         <Route path="/UserDashboard/" element={<UserDashboard />} />
-        <Route path="/SearhForm/" element={<SearchForm />} />
-        <Route path="login/" element={<Login />} />
-        <Route path="signup/" element={<Signup />} />
+        <Route path="/SearchForm/" element={<SearchForm />} />
+        <Route path="/login/" element={<Login />} />
+        <Route path="/signup/" element={<Signup />} />
       </Routes>
     </div>
     </BrowserRouter>

@@ -1,9 +1,9 @@
 import React from 'react';
-import './comp.css';
+import './compy.css';
 
 function SearchForm() {
     return (
-        <h1 className="Header"> Search Form </h1>
+        <h1 className="Headerr"> Search Form </h1>
     )
 }
 

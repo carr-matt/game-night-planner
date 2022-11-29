@@ -24,7 +24,7 @@
 
   .nav-item {
     text-decoration: none;
-    color: black;
+    color: #03f658;
     font-family: "Merienda"; 
     font-size: 22px;
     font-weight: bold;
@@ -33,11 +33,15 @@
   .bg-success{
     background-color: #282828;
     background: #282828;
+    padding-left:30px;
+    padding-right:30px;
   }
 
   #navbar{
     background-color: #282828!important;
     border: solid 2px #282828;
+    padding-left:300px;
+    padding-right:300px;
   }
 
 

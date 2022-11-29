@@ -14,3 +14,8 @@ Finally got the react compenants to the localhost:3000. Work on some JSX/HTML to
 11/22/2022
 
 Was able to set up setState in sign up and login pages. Worked on charting the course of my next steps. Made more visible jsx. Communicated with the backend team for ubiquitous language.
+
+
+11/28/2022
+
+Created several files for the utilization of react redux. Created Login modal.

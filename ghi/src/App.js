@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // import ErrorNotification from './ErrorNotification';
 import './App.css';
-import Login from './SignUpComponents/Login';
+import LogInModal from './SignUpComponents/LogInModal';
 import Signup from './SignUpComponents/Signup';
 import UserDashboard from './DashBoardComponents/UserDashboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -34,7 +34,7 @@ function App() {
 
 
   return (
-    
+
     <BrowserRouter>
     <Nav />
     <div>
@@ -45,7 +45,7 @@ function App() {
         <Route path="/MainPage/" element={<MainPage />} />
         <Route path="/UserDashboard/" element={<UserDashboard />} />
         <Route path="/SearchForm/" element={<SearchForm />} />
-        <Route path="/login/" element={<Login />} />
+        <Route path="/login/" element={<LogInModal />} />
         <Route path="/signup/" element={<Signup />} />
       </Routes>
     </div>

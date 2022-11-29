@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import './comp.css';
+import { useGetMyGameQuery } from "../app/gameApi"; 
 // import Item from '@material-ui/core/Item';
 
 function UserDashboard() {

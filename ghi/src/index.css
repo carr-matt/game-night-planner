@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://i.postimg.cc/VLYS4sn3/DALL-E-2022-11-17-18-49-20-a-mystical-messy-board-game-on-a-table-digital-art.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1{
+text-align: center;
+color: antiquewhite;
+}
+
+h2{
+text-align: center;
+color: antiquewhite;
+}
+
+.textstyle {
+text-align: center;
+color: antiquewhite;
 }

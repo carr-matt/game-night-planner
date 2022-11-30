@@ -139,3 +139,56 @@
 //       console.error(e);
 //     }
 //   }
+
+
+
+
+
+
+// All my previous Dashboard Code
+
+// function UserDashboard() {
+//   const blankForm = {
+//     ownedGame: "",
+//     likedGame: "",
+//   }
+
+// const [ownedGames, setOwnedGames] = useState([]);
+//   const [likedGames, setLikedGames] = useState([]);
+//     // const [playedGames, setPlayedGames] = useState([]) //Destructor = declare multiple variables on one line. State is a function which exporsts multiple variables
+//     // setPlayedGames('newPlayedGames', playedGames) // setPlayed games is a function and now it replaces playedGames as Risk. 
+//     // playedGames // ['catan']
+
+//   async function getOwnedGames() {
+//     let ownedUrl = "http://localhost:8080/games/ownedGames/"
+//     try {
+//       const response = await fetch(ownedUrl);
+//       const listOfOwnedGames = await response.json();
+//       setOwnedGames(listOfOwnedGames)
+//     } catch (e) {
+//       console.error(e);
+//     }
+//   }
+
+//   useEffect(
+//     () => {
+//       getOwnedGames();
+//     }, []
+//   )
+
+//   async function getLikedGames() {
+//     let likedUrl = "http://localhost:8080/games/likedGames/"
+//     try {
+//       const response = await fetch(likedUrl);
+//       const listOfLikedGames = await response.json();
+//       setLikedGames(listOfLikedGames)
+//     } catch (e) {
+//       console.error(e);
+//     }
+//   }
+
+//   useEffect(
+//     () => {
+//       getLikedGames();
+//     }, []
+//   )

@@ -9,3 +9,13 @@ We worked together to connect our Mongo Express and got all of our containers ru
 11/21/2022
 
 Finally got the react compenants to the localhost:3000. Work on some JSX/HTML to set up an outline for my components. Studied React Hooks and Redux.
+
+
+11/22/2022
+
+Was able to set up setState in sign up and login pages. Worked on charting the course of my next steps. Made more visible jsx. Communicated with the backend team for ubiquitous language.
+
+
+11/28/2022
+
+Created several files for the utilization of react redux. Created Login modal.

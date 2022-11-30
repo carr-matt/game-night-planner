@@ -24,7 +24,7 @@ export const apiSlice = createApi({
         const data = entries.reduce((acc, [key, value]) => {acc[key] = Number.parseInt(value) || value; return acc;}, {});
         return {
           method: 'post',
-          url: '/fastapi/money_maker',
+          url: '/api/money_maker',
           credentials: 'include',
           body: data,
         }
@@ -32,7 +32,7 @@ export const apiSlice = createApi({
       invalidatesTags: [{type: 'Games', id: 'LIST'}],
     }),
     getGames: builder.query({
-      query: () => `/fastapi/money_maker`,
+      query: () => `/api/money_maker`,
       providesTags: data => {
         const tags = [{type: 'Games', id: 'LIST'}];
         if (!data || !data.games) return tags;
@@ -44,7 +44,7 @@ export const apiSlice = createApi({
         return tags;
       }
     }),
-    
+
   }),
 });
 

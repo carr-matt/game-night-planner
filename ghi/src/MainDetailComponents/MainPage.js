@@ -1,3 +1,5 @@
+//will need use effect to get the data for the filters
+
 function MainPage() {
   return (
     <div>

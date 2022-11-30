@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import './comp.css';
-import { useGetMyGameQuery } from "../app/gameApi"; 
+import { gameSlice } from "../app/gameApi"; 
 
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,11 +17,16 @@ import { useGetMyGameQuery } from "../app/gameApi";
 
 function UserDashboard(props) {
      // {data: gameData }
-    const [gameData, setGameData] = useState([])
-    const {data} = useGetMyGameQuery();
+    // const [gameData, setGameData] = useState([])
+    const {useGetOwnedQuery} = gameSlice //use_query sandwhich lets redux know that this is a hook
+    const {data, isLoading} = useGetOwnedQuery(); 
     console.log(data)
-    setGameData(data)
+    // setGameData(data)
     const [ ownedGame, setOwnedGame ] = useState("");
+
+    if(isLoading) {
+      return null
+    }
 
     return ( 
     <div className="app-list">
@@ -38,7 +43,7 @@ function UserDashboard(props) {
             <Item> Owned Games </Item>
             <Item> <select id="owned-form1" className="form-control" onChange={e => setOwnedGame({ownedGame: e.target.value})}>  {/* {ownedGames.map(ownedGame => { */}
                     <option id="owned-form1" value="">Your Owned Games</option>
-                    {gameData.ownedGames.map( ownedGame => {
+                    {data.ownedGames.map( ownedGame => {
                     return (
                       <option key={`${ownedGame.name} ${ownedGame.id}`} value={ownedGame.id}>{ownedGame.name}</option>
                     )

@@ -1,75 +1,50 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/esm/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { useLogInMutation } from "./app/authApi";
-import { useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { updateField } from "./app/accountSlice";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLogInMutation } from './app/authApi';
+import { eventTargetSelector as target, preventDefault } from './app/utils';
+import { updateField } from './app/accountSlice';
+import Notification from './Notification';
 
 function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { email, password } = useSelector((state) => state.account);
-  const [logIn] = useLogInMutation();
+  const { username, password } = useSelector(state => state.account);
+  const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
   const field = useCallback(
-    (e) =>
-      dispatch(updateField({ field: e.target.name, value: e.target.value })),
-    [dispatch]
+    e => dispatch(updateField({field: e.target.name, value: e.target.value})),
+    [dispatch],
   );
 
   return (
-    <Container className="form-login card shadow p-4 mt-5 d-grid">
-      <div className="text-center mt-3">
-        <h5>Please sign in</h5>
-      </div>
-      <Form
-        className="mt-3 mb-3 w-100 justify-content-center"
-        method="POST"
-        onSubmit={ (e) => {
-          e.preventDefault()
-          logIn(e.target)
-          navigate('/')
-        }
-      }
-      >
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control
-            required
-            onChange={field}
-            value={email}
-            name="email"
-            type="email"
-            placeholder="Enter email"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control
-            required
-            onChange={field}
-            value={password}
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Group>
-        <div className="d-grid gap-2">
-          <Button size="md" variant="info" type="submit">
-            Sign in
-          </Button>
+        <div className="box content">
+          <h3>Log In</h3>
+          { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
+          <form method="POST" onSubmit={preventDefault(logIn, target)}>
+            <div className="field">
+              <label className="label" htmlFor="email">Email</label>
+              <div className="control">
+                <input required onChange={field} value={username} name="username" className="input" type="email" placeholder="you@example.com" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input required onChange={field} value={password} name="password" className="input" type="password" placeholder="secret..." />
+              </div>
+            </div>
+            <div className="field is-grouped">
+              <div className="control">
+                <button disabled={logInLoading} className="button is-primary">Submit</button>
+              </div>
+              <div className="control">
+                <button
+                  type="button"
+                  onClick={() => dispatch((null))}
+                  className="button">Cancel</button>
+              </div>
+            </div>
+          </form>
         </div>
-      </Form>
-      <div className="text-center">
-        <p>Don't have an account?</p>
-        <p>
-          Create one{" "}
-          <Link className="link" to="/signup">
-            {" "}
-            here!
-          </Link>
-        </p>
-      </div>
-    </Container>
   );
 }
+
 export default Login;

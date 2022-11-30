@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from game_night import routers
 
 
 # from routers import account_data
-from routers import auth
+from game_night.routers import auth
 from routers import accounts
 from routers import sockets
 from routers import boardgame

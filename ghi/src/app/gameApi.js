@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { accountApiSlice } from "./accountApi";
+import { accountSlice } from "./accountSlice";
 
 
-export const myGamesApi = createApi({
+export const useGetMyGameQuery = createApi({
     prepareHeaders: (headers, { getState }) => {
-      const selector = accountApiSlice.endpoints.getToken.select();
+      const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
       if (tokenData && tokenData.access_token) {
         headers.set(
@@ -30,7 +30,3 @@ export const myGamesApi = createApi({
     }),
     })
 });
-
-export const {
-  useGetMyGameQuery
-} = gameApi;

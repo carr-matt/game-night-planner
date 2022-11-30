@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 // import ErrorNotification from './ErrorNotification';
 import './App.css';
-import LogInModal from './SignUpComponents/LogInModal';
-import Signup from './SignUpComponents/Signup';
+import Login from './Login';
+import Signup from './Signup';
 import UserDashboard from './DashBoardComponents/UserDashboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './Nav';
@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      let url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/launch-details`;
+      let url = `${process.env.REACT_APP_game_night_API_HOST}/api/launch-details`;
       console.log('fastapi url: ', url);
       let response = await fetch(url);
       console.log("------- hello? -------");
@@ -45,7 +45,7 @@ function App() {
         <Route path="/MainPage/" element={<MainPage />} />
         <Route path="/UserDashboard/" element={<UserDashboard />} />
         <Route path="/SearchForm/" element={<SearchForm />} />
-        <Route path="/login/" element={<LogInModal />} />
+        <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
       </Routes>
     </div>

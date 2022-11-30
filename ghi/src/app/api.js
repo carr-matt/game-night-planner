@@ -39,7 +39,7 @@ export const apiSlice = createApi({
 
         const { games } = data;
         if (games) {
-          tags.concat(...gamess.map(({ id }) => ({type: 'Games', id})));
+          tags.concat(...games.map(({ id }) => ({type: 'Games', id})));
         }
         return tags;
       }

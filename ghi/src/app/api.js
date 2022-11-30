@@ -24,7 +24,7 @@ export const apiSlice = createApi({
         const data = entries.reduce((acc, [key, value]) => {acc[key] = Number.parseInt(value) || value; return acc;}, {});
         return {
           method: 'post',
-          url: '/fastapi/boardgame',
+          url: '/api/boardgame',
           credentials: 'include',
           body: data,
         }
@@ -32,7 +32,7 @@ export const apiSlice = createApi({
       invalidatesTags: [{type: 'Games', id: 'LIST'}],
     }),
     getGames: builder.query({
-      query: () => `/fastapi/boardgame`,
+      query: () => `/api/boardgame`,
       providesTags: data => {
         const tags = [{type: 'Games', id: 'LIST'}];
         if (!data || !data.games) return tags;

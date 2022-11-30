@@ -7,7 +7,7 @@ import Notification from './Notification';
 
 function Signup() {
   const dispatch = useDispatch();
-  const {show, username, password } = useSelector(state => state.account);
+  const { username, password } = useSelector(state => state.account);
   const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),

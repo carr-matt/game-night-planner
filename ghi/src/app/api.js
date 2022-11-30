@@ -5,7 +5,7 @@ import { authApiSlice } from './authApi';
 export const apiSlice = createApi({
   reducerPath: 'games',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BOOKS_API_HOST,
+    baseUrl: process.env.REACT_APP_game_night_API_HOST,
     prepareHeaders: (headers, { getState }) => {
       const selector = authApiSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
@@ -44,12 +44,12 @@ export const apiSlice = createApi({
         return tags;
       }
     }),
-    
+
   }),
 });
 
 export const {
   useAddGameMutation,
   useGetGamesQuery,
-  
+
 } = apiSlice;

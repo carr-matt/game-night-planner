@@ -5,12 +5,12 @@ import { authApiSlice } from './authApi';
 export const apiSlice = createApi({
   reducerPath: 'games',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BOOKS_API_HOST,
+    baseUrl: process.env.REACT_APP_game_night_API_HOST,
     prepareHeaders: (headers, { getState }) => {
       const selector = authApiSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
       if (tokenData && tokenData.access_token) {
-        headers.set('Authorization', `Bearer ${tokenData.access_token}`);
+        headers.set('Authorization', `Bearer ${tokenData.access_token}`); 
       }
       return headers;
     }
@@ -24,7 +24,7 @@ export const apiSlice = createApi({
         const data = entries.reduce((acc, [key, value]) => {acc[key] = Number.parseInt(value) || value; return acc;}, {});
         return {
           method: 'post',
-          url: '/fastapi/boardgame',
+          url: '/fastapi/money_maker',
           credentials: 'include',
           body: data,
         }
@@ -32,14 +32,14 @@ export const apiSlice = createApi({
       invalidatesTags: [{type: 'Games', id: 'LIST'}],
     }),
     getGames: builder.query({
-      query: () => `/fastapi/boardgame`,
+      query: () => `/fastapi/money_maker`,
       providesTags: data => {
         const tags = [{type: 'Games', id: 'LIST'}];
         if (!data || !data.games) return tags;
 
         const { games } = data;
         if (games) {
-          tags.concat(...gamess.map(({ id }) => ({type: 'Games', id})));
+          tags.concat(...games.map(({ id }) => ({type: 'Games', id})));
         }
         return tags;
       }
@@ -51,5 +51,5 @@ export const apiSlice = createApi({
 export const {
   useAddGameMutation,
   useGetGamesQuery,
-  
+
 } = apiSlice;

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
-export const useGetMyGameQuery = createApi({
+export const gameSlice = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
@@ -21,9 +21,9 @@ export const useGetMyGameQuery = createApi({
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
     // Get all the methods from preferences //
-    get_owned: builder.query({
+    getOwned: builder.query({
       query: () => ({
-        url: "/preferences/",
+        url: "api/money_maker/",
         credentials: "include",
       }),
       providesTags: ["GameList"],

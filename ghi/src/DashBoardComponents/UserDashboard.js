@@ -4,56 +4,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import './comp.css';
-// import Item from '@material-ui/core/Item';
+import { useGetMyGameQuery } from "../app/gameApi"; 
 
-function UserDashboard() {
-  const blankForm = {
-    ownedGame: "",
-    likedGame: "",
-  }
-
-  const [ownedGames, setOwnedGames] = useState([]);
-  const [likedGames, setLikedGames] = useState([]);
-    // const [playedGames, setPlayedGames] = useState([]) //Destructor = declare multiple variables on one line. State is a function which exporsts multiple variables
-    // setPlayedGames('newPlayedGames', playedGames) // setPlayed games is a function and now it replaces playedGames as Risk. 
-    // playedGames // ['catan']
-
-  async function getOwnedGames() {
-    let ownedUrl = "http://localhost:8080/games/ownedGames/"
-    try {
-      const response = await fetch(ownedUrl);
-      const listOfOwnedGames = await response.json();
-      setOwnedGames(listOfOwnedGames)
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  useEffect(
-    () => {
-      getOwnedGames();
-    }, []
-  )
-
-  async function getLikedGames() {
-    let likedUrl = "http://localhost:8080/games/likedGames/"
-    try {
-      const response = await fetch(likedUrl);
-      const listOfLikedGames = await response.json();
-      setLikedGames(listOfLikedGames)
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  useEffect(
-    () => {
-      getLikedGames();
-    }, []
-  )
-  
-
-    
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -61,7 +13,15 @@ function UserDashboard() {
   textAlign: 'center',
   color: theme.palette.text.secondary,
   }));
+// import Item from '@material-ui/core/Item';
 
+function UserDashboard(props) {
+     // {data: gameData }
+    const [gameData, setGameData] = useState([])
+    const {data} = useGetMyGameQuery();
+    console.log(data)
+    setGameData(data)
+    const [ ownedGame, setOwnedGame ] = useState("");
 
     return ( 
     <div className="app-list">
@@ -76,18 +36,20 @@ function UserDashboard() {
           </Grid>
           <Grid item xs={6} md={3}>
             <Item> Owned Games </Item>
-            <Item> <select id="owned-form1" className="form-control" onChange={e => setOwnedGames({ownedGame: e.target.value})}> {ownedGames.map(ownedGame => {
-                    return(
-                    <option id="owned-form1" key={ownedGame.id}>{ownedGame.name} </option>
+            <Item> <select id="owned-form1" className="form-control" onChange={e => setOwnedGame({ownedGame: e.target.value})}>  {/* {ownedGames.map(ownedGame => { */}
+                    <option id="owned-form1" value="">Your Owned Games</option>
+                    {gameData.ownedGames.map( ownedGame => {
+                    return (
+                      <option key={`${ownedGame.name} ${ownedGame.id}`} value={ownedGame.id}>{ownedGame.name}</option>
                     )
-                  })} </select> </Item>
+                  })}  </select> </Item> 
           </Grid>
           <Grid item xs={6} md={3}>
-            <Item> Liked Games <select id="owned-form1" className="form-control" onChange={e => setLikedGames({likedGame: e.target.value})}> {likedGames.map(likedGame => {
+            {/* <Item> Liked Games <select id="owned-form1" className="form-control" onChange={e => setLikedGames({likedGame: e.target.value})}> {likedGames.map(likedGame => {
                     return(
                     <option id="owned-form1" key={likedGame.id}>{likedGame.name} </option>
                     )
-                  })} </select> </Item>
+                  })} </select> </Item> */}
           </Grid>
         </Grid>
         </Box>

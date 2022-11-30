@@ -28,12 +28,12 @@ services:
 
   fastapi:
     build:
-      context: FastAPI_service
+      context: game_night
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./FastAPI_service:/app
+      - ./game_night:/app
     environment:
       SIGNING_KEY: ${DJWTO_SIGNING_KEY}
       BGA_ID: ${BGA_ID}
@@ -54,4 +54,4 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_FastAPI_SERVICE_API_HOST: http://localhost:8000
+      REACT_APP_game_night_API_HOST: http://localhost:8000

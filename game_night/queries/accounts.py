@@ -1,5 +1,5 @@
 from .client import Queries
-from models import Account, AccountIn
+from models import Account, AccountIn, AccountOut
 from pymongo.errors import DuplicateKeyError
 
 
@@ -28,3 +28,11 @@ class AccountQueries(Queries):
             raise DuplicateAccountError()
         props["id"] = str(props["_id"])
         return Account(**props)
+
+    def get_all(self) -> list[AccountOut]:
+        db = self.collection.find()
+        account_emails = []
+        for document in db:
+            document["id"] = str(document["_id"])
+            account_emails.append(AccountOut(**document))
+        return account_emails

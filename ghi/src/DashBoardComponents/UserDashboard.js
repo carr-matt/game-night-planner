@@ -16,13 +16,16 @@ import { gameSlice } from "../app/gameApi";
 // import Item from '@material-ui/core/Item';
 
 function UserDashboard(props) {
-    const {useGetOwnedQuery} = gameSlice //use_query sandwhich lets redux know that this is a hook
+    const {useGetOwnedQuery, useGetFavoriteQuery} = gameSlice //use_query sandwhich lets redux know that this is a hook
     const [collectionOfGames, setCollectionOfGames] = useState({}) //setcollection is a function which recieves the selected data from our handle change on collection of games
+    const [collectionOfFavGames, setCollectionOfFavGames] = useState({})
     const {data, isLoading} = useGetOwnedQuery(); 
-    const [ ownedGame, setOwnedGame ] = useState(null); 
-    const [ likedGame, setLikedGame ] = useState(null);
+    const {favData, isFavLoading} = useGetFavoriteQuery();
+    const [ownedGame, setOwnedGame ] = useState(null); 
+    const [favoriteGame, setFavoriteGame ] = useState(null); 
 
     useEffect(() => console.log(ownedGame), [ownedGame])
+    useEffect(() => console.log(favoriteGame), [favoriteGame])
 
     useEffect(() =>{
       
@@ -36,16 +39,31 @@ function UserDashboard(props) {
         //   collectionOfGames[game.id] = game
         // } == what forEach does. 
         setCollectionOfGames(map)// we are taking this temporay bucket of games (map) and setting it equal to our variable collection of games to persitst the data over reRenders
-      } // 
-    },[data])
+      }
+      if(favData){
+        const mapp = {}
+        favData.favorites.forEach(favGame =>{ 
+          mapp[favGame.bgaID] = favGame
+           })
+          setCollectionOfFavGames(mapp)
+      } 
+    },[data, favData])
 
     const handleChange = e =>{
       console.log('event',e,  e.target.value, 'collectionOfGames', collectionOfGames)
       const selectedGame = collectionOfGames[e.target.value]
       setOwnedGame(selectedGame)
+
+      console.log('event',e,  e.target.value, 'collectionOfFavGames', collectionOfFavGames)
+      const selectedfavGame = collectionOfFavGames[e.target.value]
+      setFavoriteGame(selectedfavGame)
     }
 
     if(isLoading) {
+      return null
+    }
+
+     if(isFavLoading) {
       return null
     }
     
@@ -65,14 +83,14 @@ function UserDashboard(props) {
                   })}  </select> </Item> 
           </Grid>
           <Grid item xs={6} md={5}>
-            {/* <Item> Favorite Games </Item> 
+            <Item> Favorite Games </Item> 
             <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  
-                    <option id="owned-form1" value="">Your Owned Games</option>
-                    {data.games.map( game => {
+                    <option id="owned-form1" value="">Your Favorite Games</option>
+                    {favData.favorites.map( favGame => {
                     return (
-                      <option key={`${game.name} ${game.id}`} value={game.id}>{game.name}</option>
+                      <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name}</option>
                     )
-                  })}  </select> </Item> */}
+                  })}  </select> </Item> 
           </Grid>
         </Grid>
         </Box>
@@ -83,6 +101,3 @@ function UserDashboard(props) {
 }
 
 export default UserDashboard
-
-
-{/* {ownedGames.map(ownedGame => { */}

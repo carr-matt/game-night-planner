@@ -28,5 +28,12 @@ export const gameSlice = createApi({
       }),
       providesTags: ["GameList"],
     }),
+      getFavorite: builder.query({
+        query: () => ({
+            url: "/get_favorites",
+            credentials: "include",
+      }),
+      providesTags: ["GameList"],
+    }),
     })
 });

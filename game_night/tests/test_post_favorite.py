@@ -8,7 +8,8 @@ client = TestClient(app)
 mockAccount = {"email": "email"}
 
 mockFavorite = {
-    "favorite": "string",
+    "bgaID": "string",
+    "name": "string",
 }
 
 mockFavoriteStatus = {"success": True}

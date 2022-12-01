@@ -25,16 +25,19 @@ class DuplicatePreferenceError(ValueError):
 
 
 class FavoriteIn(BaseModel):
-    favorite: str
+    bgaID: str
+    name: str
 
 
 class OwnedIn(BaseModel):
-    owned: str
+    bgaID: str
+    name: str
 
 
 class Owned(BaseModel):
     email: str
-    owned: str
+    bgaID: str
+    name: str
     _id: PydanticObjectId
 
 
@@ -44,7 +47,8 @@ class OwnedList(BaseModel):
 
 class Favorite(BaseModel):
     email: str
-    favorite: str
+    bgaID: str
+    name: str
     _id: PydanticObjectId
 
 
@@ -79,7 +83,7 @@ class PreferenceQueries(Queries):
                     "$match": {
                         "$and": [
                             {"email": email},
-                            {"owned": {"$exists": True}},
+                            {"bgaID": {"$exists": True}},
                         ]
                     }
                 }
@@ -97,7 +101,7 @@ class PreferenceQueries(Queries):
                     "$match": {
                         "$and": [
                             {"email": email},
-                            {"favorite": {"$exists": True}},
+                            {"bgaID": {"$exists": True}},
                         ]
                     }
                 }

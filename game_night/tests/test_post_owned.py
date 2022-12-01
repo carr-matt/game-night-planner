@@ -8,7 +8,8 @@ client = TestClient(app)
 mockAccount = {"email": "email"}
 
 mockOwned = {
-    "owned": "string",
+    "bgaID": "string",
+    "name": "string",
 }
 
 mockOwnedStatus = {"success": True}

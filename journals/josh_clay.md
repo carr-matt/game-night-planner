@@ -25,3 +25,15 @@ Did a liveshare session with Jazz, and Matt. We all took turns writing API endpo
 ## 11/23/22
 
 Did some code clean up and created a boardgames.py file while setting goals for next week after Thanksgiving! Feeling really good about our progress up until this point.
+
+## 11/28/22
+
+Worked on learning Redux.
+
+## 11/29/22
+
+Focused on connecting our frontend to the backend.
+
+## 11/30/22
+
+Worked exclusively on writing all of our unit tests. Successfully wrote 4 of the 5 unit test that we needed. Lots of succesful front end authentication. The login and sign up pages are working properly and Joe is working on the User Dashboard components.

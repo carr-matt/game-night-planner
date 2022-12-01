@@ -6,8 +6,7 @@ from fastapi import (
     APIRouter,
     Request,
 )
-from queries.preferences import (
-    FavoriteIn,
+from queries.owned import (
     OwnedIn,
     PreferenceQueries,
 )
@@ -20,18 +19,6 @@ router = APIRouter()
 
 class PreferenceOut(BaseModel):
     success: bool
-
-
-@router.post("/favorite", response_model=PreferenceOut)
-async def add_favorite(
-    favorite: FavoriteIn,
-    preferences: PreferenceQueries = Depends(),
-    account_data: Optional[dict] = Depends(
-        authenticator.try_get_current_account_data
-    ),
-):
-    preferences.add_to_favorite(favorite, account_data["email"])
-    return PreferenceOut(success=True)
 
 
 @router.post("/owned", response_model=PreferenceOut)
@@ -54,13 +41,3 @@ async def get_owned(
     ),
 ):
     return preferences.get_user_owned(account_data["email"])
-
-
-@router.get("/get_favorites")
-async def get_favorites(
-    preferences: PreferenceQueries = Depends(),
-    account_data: Optional[dict] = Depends(
-        authenticator.try_get_current_account_data
-    ),
-):
-    return preferences.get_user_favorites(account_data["email"])

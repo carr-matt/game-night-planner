@@ -16,14 +16,9 @@ import { gameSlice } from "../app/gameApi";
 // import Item from '@material-ui/core/Item';
 
 function UserDashboard(props) {
-     // {data: gameData }
-    // const [gameData, setGameData] = useState([])
     const {useGetOwnedQuery} = gameSlice //use_query sandwhich lets redux know that this is a hook
     const [collectionOfGames, setCollectionOfGames] = useState({}) //setcollection is a function which recieves the selected data from our handle change on collection of games
-    // console.log(gameSlice)
     const {data, isLoading} = useGetOwnedQuery(); 
-    // console.log(data)
-    // setGameData(data)
     const [ ownedGame, setOwnedGame ] = useState(null); 
     const [ likedGame, setLikedGame ] = useState(null);
 
@@ -33,8 +28,8 @@ function UserDashboard(props) {
       
       if(data){
         const map = {}
-        data.games.forEach(game =>{ 
-          map[game.id] = game
+        data.owned_list.forEach(game =>{ 
+          map[game.bgaID] = game
         }) //go through the game data and (forEach) means to create a bucket
         // for(let i = 0; i < data.games.length; i++){//same thing as above
         //   const game = data.games[i]
@@ -63,19 +58,21 @@ function UserDashboard(props) {
             <Item> Owned Games </Item> {/* xs = the height and md = the column space it takes up out of 12 */}
             <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  {/* {ownedGames.map(ownedGame => { */}
                     <option id="owned-form1" value="">Your Owned Games</option>
-                    {data.games.map( game => {
+                    {data.owned_list.map( game => {
                     return (
-                      <option key={`${game.name} ${game.id}`} value={game.id}>{game.name}</option>
+                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name}</option>
                     )
                   })}  </select> </Item> 
           </Grid>
           <Grid item xs={6} md={5}>
-            <Item> Favorite Games </Item> 
-             {/* <Item> Favorite Games <select id="owned-form1" className="form-control" onChange={e => setFavoriteGames({likedGame: e.target.value})}> {favoriteGames.map(favoriteGame => {
-                    return(
-                    <option key={`${game.name} ${game.id}`} value={game.id}>{game.name}</option> 
+            {/* <Item> Favorite Games </Item> 
+            <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  
+                    <option id="owned-form1" value="">Your Owned Games</option>
+                    {data.games.map( game => {
+                    return (
+                      <option key={`${game.name} ${game.id}`} value={game.id}>{game.name}</option>
                     )
-                  })} </select> </Item>  */}
+                  })}  </select> </Item> */}
           </Grid>
         </Grid>
         </Box>
@@ -86,3 +83,6 @@ function UserDashboard(props) {
 }
 
 export default UserDashboard
+
+
+{/* {ownedGames.map(ownedGame => { */}

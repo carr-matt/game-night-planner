@@ -10,7 +10,7 @@ export const apiSlice = createApi({
       const selector = authApiSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
       if (tokenData && tokenData.access_token) {
-        headers.set('Authorization', `Bearer ${tokenData.access_token}`); 
+        headers.set('Authorization', `Bearer ${tokenData.access_token}`);
       }
       return headers;
     }
@@ -24,7 +24,7 @@ export const apiSlice = createApi({
         const data = entries.reduce((acc, [key, value]) => {acc[key] = Number.parseInt(value) || value; return acc;}, {});
         return {
           method: 'post',
-          url: '/api/money_maker',
+          url: '/bga/money_maker',
           credentials: 'include',
           body: data,
         }
@@ -32,7 +32,7 @@ export const apiSlice = createApi({
       invalidatesTags: [{type: 'Games', id: 'LIST'}],
     }),
     getGames: builder.query({
-      query: () => `/api/money_maker`,
+      query: () => `/bga/money_maker`,
       providesTags: data => {
         const tags = [{type: 'Games', id: 'LIST'}];
         if (!data || !data.games) return tags;

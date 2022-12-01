@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
-from queries.preferences import PreferenceQueries
+from queries.favorites import FavoritesQueries
 from routers.auth import authenticator
 
 client = TestClient(app)  # replacing swagger in code
@@ -19,7 +19,7 @@ class PrefQueriesMock:
 
 def test_get_favs():
     # arrange
-    app.dependency_overrides[PrefQueriesMock] = PreferenceQueries
+    app.dependency_overrides[PrefQueriesMock] = FavoritesQueries
     app.dependency_overrides[
         authenticator.try_get_current_account_data
     ] = account_out_override

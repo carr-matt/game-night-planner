@@ -6,16 +6,15 @@ from fastapi import (
     APIRouter,
     Request,
 )
-from queries.preferences import (
+from queries.favorites import (
     FavoriteIn,
-    OwnedIn,
-    PreferenceQueries,
+    FavoritesQueries,
 )
 from pydantic import BaseModel
 from .auth import authenticator
 from typing import Optional
 
-router = APIRouter()
+router = APIRouter(tags=["Favorites"])
 
 
 class PreferenceOut(BaseModel):
@@ -25,7 +24,7 @@ class PreferenceOut(BaseModel):
 @router.post("/favorite", response_model=PreferenceOut)
 async def add_favorite(
     favorite: FavoriteIn,
-    preferences: PreferenceQueries = Depends(),
+    preferences: FavoritesQueries = Depends(),
     account_data: Optional[dict] = Depends(
         authenticator.try_get_current_account_data
     ),
@@ -34,31 +33,19 @@ async def add_favorite(
     return PreferenceOut(success=True)
 
 
-@router.post("/owned", response_model=PreferenceOut)
-async def add_owned(
-    owned: OwnedIn,
-    preferences: PreferenceQueries = Depends(),
-    account_data: Optional[dict] = Depends(
-        authenticator.try_get_current_account_data
-    ),
+@router.delete("/favorite/{favorite_id}", response_model=bool)
+async def delete_favorite(
+    favorite_id: str,
+    preferences: FavoritesQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    preferences.add_to_owned(owned, account_data["email"])
-    return PreferenceOut(success=True)
-
-
-@router.get("/get_owned")
-async def get_owned(
-    preferences: PreferenceQueries = Depends(),
-    account_data: Optional[dict] = Depends(
-        authenticator.try_get_current_account_data
-    ),
-):
-    return preferences.get_user_owned(account_data["email"])
+    preferences.delete_favorite(favorite_id)
+    return True
 
 
 @router.get("/get_favorites")
 async def get_favorites(
-    preferences: PreferenceQueries = Depends(),
+    preferences: FavoritesQueries = Depends(),
     account_data: Optional[dict] = Depends(
         authenticator.try_get_current_account_data
     ),

@@ -7,16 +7,16 @@ client = TestClient(app)
 
 mockAccount = {"email": "email"}
 
-mockFavorite = {
+mockOwned = {
     "bgaID": "string",
     "name": "string",
 }
 
-mockFavoriteStatus = {"success": True}
+mockOwnedStatus = {"success": True}
 
 
-class mockFavoriteQuery:
-    def add_to_favorite(self, item1, item2):
+class mockOwnedQuery:
+    def add_to_owned(self, item1, item2):
         pass
 
 
@@ -26,17 +26,17 @@ async def account_out_override():
 
 def test_preference_post():
     # Arrange
-    app.dependency_overrides[PreferenceQueries] = mockFavoriteQuery
+    app.dependency_overrides[PreferenceQueries] = mockOwnedQuery
     app.dependency_overrides[
         authenticator.try_get_current_account_data
     ] = account_out_override
 
     # Act
-    response = client.post("/favorite", json=mockFavorite)
+    response = client.post("/owned", json=mockOwned)
 
     # Assert
     assert response.status_code == 200
-    assert response.json() == mockFavoriteStatus
+    assert response.json() == mockOwnedStatus
 
     # Clean up
     app.dependency_overrides = {}

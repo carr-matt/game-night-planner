@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from queries.preferences import PreferenceQueries
+from queries.favorites import FavoritesQueries
 from main import app
 from routers.auth import authenticator
 
@@ -26,7 +26,7 @@ async def account_out_override():
 
 def test_preference_post():
     # Arrange
-    app.dependency_overrides[PreferenceQueries] = mockFavoriteQuery
+    app.dependency_overrides[FavoritesQueries] = mockFavoriteQuery
     app.dependency_overrides[
         authenticator.try_get_current_account_data
     ] = account_out_override

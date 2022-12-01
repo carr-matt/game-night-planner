@@ -4,12 +4,12 @@ from routers.auth import authenticator
 import os
 
 
-# from routers import account_data
 from routers import auth
 from routers import accounts
 from routers import sockets
 from routers import boardgame
-from routers import preferences
+from routers import owned
+from routers import favorites
 
 app = FastAPI()
 
@@ -32,4 +32,5 @@ app.include_router(auth.authenticator.router)
 app.include_router(accounts.router)
 app.include_router(sockets.router)
 app.include_router(boardgame.router)
-app.include_router(preferences.router)
+app.include_router(owned.router)
+app.include_router(favorites.router)

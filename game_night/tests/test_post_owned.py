@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from queries.preferences import PreferenceQueries
+from queries.owned import PreferenceQueries
 from main import app
 from routers.auth import authenticator
 

@@ -23,7 +23,7 @@ export const gameSlice = createApi({
     // Get all the methods from preferences //
     getOwned: builder.query({
       query: () => ({
-        url: "api/money_maker/",
+        url: "/api/money_maker",
         credentials: "include",
       }),
       providesTags: ["GameList"],

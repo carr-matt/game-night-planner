@@ -4,6 +4,7 @@ import { useSignUpMutation } from './app/authApi';
 import { preventDefault } from './app/utils';
 import { updateField } from './app/accountSlice';
 import Notification from './Notification';
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -13,22 +14,28 @@ function Signup() {
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
   );
+   const navigate = useNavigate()
 
   return (
         <div className="box content">
           <h3>Sign Up</h3>
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          <form method="POST" onSubmit={preventDefault(signUp, () => ({ email: username, password }))}>
+          <form method="POST"
+        onSubmit={ (e) => {e.preventDefault()
+          signUp({ username, password, })
+          navigate("/login")
+        }}
+>
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
               <div className="control">
-                <input required onChange={field} value={username} name="username" className="input" type="email" placeholder="you@example.com" />
+                <input required onChange={field} value={username} name="username" className="input" type="email" placeholder="example@example.com" />
               </div>
             </div>
             <div className="field">
               <label className="label">Password</label>
               <div className="control">
-                <input required onChange={field} value={password} name="password" className="input" type="password" placeholder="secret..." />
+                <input required onChange={field} value={password} name="password" className="input" type="password" placeholder="password" />
               </div>
             </div>
             <div className="field is-grouped">

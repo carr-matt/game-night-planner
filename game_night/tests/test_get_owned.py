@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
-from queries.preferences import PreferenceQueries
+from queries.owned import PreferenceQueries
 from routers.auth import authenticator
 
 client = TestClient(app)  # replacing swagger in code

@@ -37,3 +37,7 @@ Focused on connecting our frontend to the backend.
 ## 11/30/22
 
 Worked exclusively on writing all of our unit tests. Successfully wrote 4 of the 5 unit test that we needed. Lots of succesful front end authentication. The login and sign up pages are working properly and Joe is working on the User Dashboard components.
+
+## 12/1/22
+
+Finshed all of our unit test. Messed with incorporating more preferences into our OwnedIn, Owned model and our FavoriteIn, Favorite models. Worked with renaming some API paths to help with our frontend team.

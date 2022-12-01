@@ -21,4 +21,8 @@ time to do some extra research.
 Worked with Josh and Matt on set up API endpoints for random game, our filtered search, game details, etc.
 
 ## 11/30/22
-Worked on unit tests.
+Worked on unit tests.]
+
+## 12/1/22
+Wifi was down :c
+

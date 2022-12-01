@@ -56,7 +56,7 @@ def get_game_categories():
     return content
 
 
-@router.get("/api/get_games_by_name")
+@router.get("/bga/get_games_by_name")
 async def name_search(name: str, bga_api: BgaApi = Depends()):
     params = {
         "name": name,
@@ -75,7 +75,7 @@ async def name_search(name: str, bga_api: BgaApi = Depends()):
         return "Invalid Parameters"
 
 
-@router.get("/api/get_reviews")
+@router.get("/bga/get_reviews")
 async def game_reviews(game_id: str, bga_api: BgaApi = Depends()):
     params = {
         "game_id": game_id,
@@ -90,7 +90,7 @@ async def game_reviews(game_id: str, bga_api: BgaApi = Depends()):
         return "Invalid Parameters"
 
 
-@router.get("/api/game_detail")
+@router.get("/bga/game_detail")
 async def game_details(ids: str, bga_api: BgaApi = Depends()):
     params = {
         "ids": ids,
@@ -106,25 +106,25 @@ async def game_details(ids: str, bga_api: BgaApi = Depends()):
         return "Invalid Parameters"
 
 
-@router.get("/api/random_game")
+@router.get("/bga/random_game")
 def random_game():
     data = get_random_game()
     return data
 
 
-@router.get("/api/game_mechanics_list")
+@router.get("/bga/game_mechanics_list")
 def game_mechanics():
     data = get_game_mechanics()
     return data
 
 
-@router.get("/api/game_categories_list")
+@router.get("/bga/game_categories_list")
 def game_categories():
     data = get_game_categories()
     return data
 
 
-@router.get("/api/money_maker")
+@router.get("/bga/money_maker")
 async def money_maker(
     min_players: int | None = None,
     max_players: int | None = None,

@@ -1,6 +1,6 @@
 ## 11/14/22
 
-Worked with Matt and Jazz on some of the API-design.md on matt's personal branch. Made sure everyone had signed up with boardgameatlas to get their personal API keys. As a group we talked through our wireframe and decided to incorporate new functionality on the User Dashboard. Created a tab system so users can see Liked Games, Reviews, Played Games, and Owned Games.
+Worked with Matt and Jazz on some of the API-design.md on matt's personal branch. Made sure everyone had signed up with Board Game Atlas to get their personal API keys. As a group we talked through our wire-frame and decided to incorporate new functionality on the User Dashboard. Created a tab system so users can see Liked Games, Reviews, Played Games, and Owned Games.
 
 ## 11/15/22
 

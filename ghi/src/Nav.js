@@ -8,6 +8,7 @@ function Nav() {
         <NavLink className="nav-item" to="/MainPage/"> Let's Pick a Game! </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>
         <NavLink className="nav-item" to="/UserDashboard/">User Dashboard</NavLink>
+        <NavLink className="nav-item" to="/Detail/">Detail</NavLink>
         {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button> */}

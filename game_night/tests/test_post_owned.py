@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from queries.owned import PreferenceQueries
+from queries.owned import OwnedQueries
 from main import app
 from routers.auth import authenticator
 
@@ -26,7 +26,7 @@ async def account_out_override():
 
 def test_preference_post():
     # Arrange
-    app.dependency_overrides[PreferenceQueries] = mockOwnedQuery
+    app.dependency_overrides[OwnedQueries] = mockOwnedQuery
     app.dependency_overrides[
         authenticator.try_get_current_account_data
     ] = account_out_override

@@ -86,7 +86,7 @@ function UserDashboard(props) {
             <Item> Favorite Games </Item> 
             <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  
                     <option id="owned-form1" value="">Your Favorite Games</option>
-                    {favData.favorites.map( favGame => {
+                    {favData?.favorites.map( favGame => {
                     return (
                       <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name}</option>
                     )

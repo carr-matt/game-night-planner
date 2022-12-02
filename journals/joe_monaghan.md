@@ -6,3 +6,7 @@ Worked with whole team on the Authentification. It took Most of the day as there
 
 11/21/22 
 Worked on front end components. Started to explore grids and implementing it into our userdashboard page. Spent a lot of the day debugging as it was my first day cracking grids. Got the localhost 300 bug fixed and connected so we can see our front end issues as we work. 
+
+
+11/30/22
+Today I worked with Cnadice and learned a lot about redux. It was a big deal because I finally connected backend to the front. (YESSS) Huge connect to the store.js 

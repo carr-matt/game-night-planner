@@ -8,7 +8,8 @@ from fastapi import (
 )
 from queries.owned import (
     OwnedIn,
-    PreferenceQueries,
+    OwnedList,
+    OwnedQueries,
 )
 from pydantic import BaseModel
 from .auth import authenticator
@@ -24,7 +25,7 @@ class PreferenceOut(BaseModel):
 @router.post("/owned", response_model=PreferenceOut)
 async def add_owned(
     owned: OwnedIn,
-    preferences: PreferenceQueries = Depends(),
+    preferences: OwnedQueries = Depends(),
     account_data: Optional[dict] = Depends(
         authenticator.try_get_current_account_data
     ),
@@ -33,9 +34,19 @@ async def add_owned(
     return PreferenceOut(success=True)
 
 
-@router.get("/get_owned")
+@router.delete("/owned/{owned_id}", response_model=bool)
+async def delete_owned(
+    owned_id: str,
+    preferences: OwnedQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    preferences.delete_owned(owned_id)
+    return True
+
+
+@router.get("/get_owned", response_model=OwnedList)
 async def get_owned(
-    preferences: PreferenceQueries = Depends(),
+    preferences: OwnedQueries = Depends(),
     account_data: Optional[dict] = Depends(
         authenticator.try_get_current_account_data
     ),

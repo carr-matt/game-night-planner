@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './Nav';
 import MainPage from './MainDetailComponents/MainPage';
 import SearchForm from './MainDetailComponents/SearchForm';
+import DetailPage from './MainDetailComponents/DetailPage';
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
@@ -47,6 +48,7 @@ function App() {
         <Route path="/SearchForm/" element={<SearchForm />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
+        <Route path="/detail/" element={<DetailPage />} />
       </Routes>
     </div>
     </BrowserRouter>

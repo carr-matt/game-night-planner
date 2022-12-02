@@ -24,6 +24,7 @@ function UserDashboard(props) {
     const [ownedGame, setOwnedGame ] = useState(null); 
     const [favoriteGame, setFavoriteGame ] = useState(null); 
 
+    //react router on change to link
     useEffect(() => console.log(ownedGame), [ownedGame])
     useEffect(() => console.log(favoriteGame), [favoriteGame])
 
@@ -78,7 +79,7 @@ function UserDashboard(props) {
                     <option id="owned-form1" value="">Your Owned Games</option>
                     {data.owned_list.map( game => {
                     return (
-                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name}</option>
+                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
                     )
                   })}  </select> </Item> 
           </Grid>

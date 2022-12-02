@@ -17,7 +17,12 @@ function Signup() {
    const navigate = useNavigate()
 
   return (
-        <div className="box content">
+        <div className="box content" style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "80vh"
+        }}>
           <h3>Sign Up</h3>
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
           <form method="POST"

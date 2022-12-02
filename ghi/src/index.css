@@ -26,7 +26,21 @@ text-align: center;
 color: antiquewhite;
 }
 
+h5{
+color: antiquewhite;
+}
+
 .textstyle {
 text-align: center;
 color: antiquewhite;
+}
+
+.w-100 {
+  width: 350px !important;
+  height: 25%;
+}
+.carousel img {
+
+  margin: auto;
+
 }

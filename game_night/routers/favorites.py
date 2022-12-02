@@ -8,6 +8,7 @@ from fastapi import (
 )
 from queries.favorites import (
     FavoriteIn,
+    Favorites,
     FavoritesQueries,
 )
 from pydantic import BaseModel
@@ -43,7 +44,7 @@ async def delete_favorite(
     return True
 
 
-@router.get("/get_favorites")
+@router.get("/get_favorites", response_model=Favorites)
 async def get_favorites(
     preferences: FavoritesQueries = Depends(),
     account_data: Optional[dict] = Depends(

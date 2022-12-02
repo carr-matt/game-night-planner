@@ -29,11 +29,11 @@ class FavoriteIn(BaseModel):
     name: str
 
 
-class Favorite(BaseModel):
+class Favorite(FavoriteIn):
     email: str
     bgaID: str
     name: str
-    _id: PydanticObjectId
+    id: str
 
 
 class Favorites(BaseModel):
@@ -47,6 +47,7 @@ class FavoritesQueries(Queries):
     def add_to_favorite(self, favorite: FavoriteIn, email: str) -> bool:
         props = favorite.dict()
         props["email"] = email
+        print(props)
         try:
             self.collection.insert_one(props)
         except DuplicateKeyError:
@@ -56,19 +57,11 @@ class FavoritesQueries(Queries):
         self.collection.delete_one({"_id": ObjectId(f"{favorite_id}")})
 
     def get_user_favorites(self, email: str) -> Favorites:
-        props = self.collection.aggregate(
-            [
-                {
-                    "$match": {
-                        "$and": [
-                            {"email": email},
-                            {"bgaID": {"$exists": True}},
-                        ]
-                    }
-                }
-            ]
-        )
+        props = []
+        data = self.collection.find({"email": email})
+        for doc in data:
+            doc["id"] = str(doc["_id"])
+            props.append(doc)
         if not props:
             print("Not a known email")
-        favoritesPropsList = list(props)
-        return Favorites(favorites=favoritesPropsList)
+        return Favorites(favorites=props)

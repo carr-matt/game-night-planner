@@ -14,7 +14,7 @@ from pydantic import BaseModel
 from .auth import authenticator
 from typing import Optional
 
-router = APIRouter()
+router = APIRouter(tags=["Owned"])
 
 
 class PreferenceOut(BaseModel):

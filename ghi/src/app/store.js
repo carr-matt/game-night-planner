@@ -4,6 +4,7 @@ import { apiSlice } from './api';
 import { authApiSlice } from './authApi';
 import { accountSlice } from './accountSlice';
 import { gameSlice } from './gameApi';
+import { randomSlice } from './randomApi';
 
 export const store = configureStore({
   reducer: {
@@ -11,12 +12,14 @@ export const store = configureStore({
     [authApiSlice.reducerPath]: authApiSlice.reducer,
     [accountSlice.name]: accountSlice.reducer,
     [gameSlice.reducerPath]: gameSlice.reducer,
+    [randomSlice.reducerPath]: randomSlice.reducer,
   },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware()
       .concat(apiSlice.middleware)
       .concat(authApiSlice.middleware)
-      .concat(gameSlice.middleware);
+      .concat(gameSlice.middleware)
+      .concat(randomSlice.middleware);
   },
 });
 

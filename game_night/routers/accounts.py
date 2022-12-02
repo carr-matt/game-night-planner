@@ -36,7 +36,7 @@ class HttpError(BaseModel):
     detail: str
 
 
-router = APIRouter()
+router = APIRouter(tags=["Accounts"])
 
 
 not_authorized = HTTPException(

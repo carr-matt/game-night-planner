@@ -21,7 +21,7 @@ time to do some extra research.
 Worked with Josh and Matt on set up API endpoints for random game, our filtered search, game details, etc.
 
 ## 11/30/22
-Worked on unit tests.
+Worked on unit tests.]
 
-## 12/2/22
-Spent the day working on styling the login and sign up page as well as the nav bar. Made everything look nice and zesty.
+## 12/1/22
+Wifi was down :c

@@ -29,18 +29,18 @@ class OwnedIn(BaseModel):
     name: str
 
 
-class Owned(BaseModel):
+class Owned(OwnedIn):
     email: str
     bgaID: str
     name: str
-    _id: PydanticObjectId
+    id: str
 
 
 class OwnedList(BaseModel):
     owned_list: List[Owned]
 
 
-class PreferenceQueries(Queries):
+class OwnedQueries(Queries):
     DB_NAME = "dashboard-data"
     COLLECTION = "owned"
 
@@ -52,20 +52,15 @@ class PreferenceQueries(Queries):
         except DuplicateKeyError:
             raise DuplicatePreferenceError()
 
-    def get_user_owned(self, email: str) -> Owned:
-        props = self.collection.aggregate(
-            [
-                {
-                    "$match": {
-                        "$and": [
-                            {"email": email},
-                            {"bgaID": {"$exists": True}},
-                        ]
-                    }
-                }
-            ]
-        )
+    def delete_owned(self, owned_id: str) -> bool:
+        self.collection.delete_one({"_id": ObjectId(f"{owned_id}")})
+
+    def get_user_owned(self, email: str) -> OwnedList:
+        props = []
+        data = self.collection.find({"email": email})
+        for doc in data:
+            doc["id"] = str(doc["_id"])
+            props.append(doc)
         if not props:
             print("Not a known email")
-        ownedPropsList = list(props)
-        return OwnedList(owned_list=ownedPropsList)
+        return OwnedList(owned_list=props)

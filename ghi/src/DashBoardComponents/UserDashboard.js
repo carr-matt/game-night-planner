@@ -4,7 +4,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import './comp.css';
-import { gameSlice } from "../app/gameApi"; 
+import { gameSlice } from "../app/gameApi";
+
 
   const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -13,20 +14,20 @@ import { gameSlice } from "../app/gameApi";
   textAlign: 'center',
   color: theme.palette.text.secondary,
   }));
-// import Item from '@material-ui/core/Item';
+
 
 function UserDashboard(props) {
     const {useGetOwnedQuery, useGetFavoriteQuery} = gameSlice //use_query sandwhich lets redux know that this is a hook
     const [collectionOfGames, setCollectionOfGames] = useState({}) //setcollection is a function which recieves the selected data from our handle change on collection of games
     const [collectionOfFavGames, setCollectionOfFavGames] = useState({})
-    const {data, isLoading} = useGetOwnedQuery(); 
-    const {favData, isFavLoading} = useGetFavoriteQuery();
+    const {data, error: gameError, isLoading} = useGetOwnedQuery(); 
+    const {favData, error: favGameError, isFavLoading} = useGetFavoriteQuery();
     const [ownedGame, setOwnedGame ] = useState(null); 
     const [favoriteGame, setFavoriteGame ] = useState(null); 
 
     //react router on change to link
-    useEffect(() => console.log(ownedGame), [ownedGame])
-    useEffect(() => console.log(favoriteGame), [favoriteGame])
+    useEffect(() =>  [ownedGame])
+    useEffect(() =>  [favoriteGame])
 
     useEffect(() =>{
       
@@ -60,12 +61,15 @@ function UserDashboard(props) {
       setFavoriteGame(selectedfavGame)
     }
 
-    if(isLoading) {
-      return null
+    if(isLoading || gameError) {
+      return (<React.Fragment>Loading...</React.Fragment>)
     }
 
-     if(isFavLoading) {
-      return null
+
+    
+
+     if(isFavLoading  || favGameError) {
+      return (<React.Fragment>Loading...</React.Fragment>)
     }
     
     return (  
@@ -83,7 +87,7 @@ function UserDashboard(props) {
                     )
                   })}  </select> </Item> 
           </Grid>
-          <Grid item xs={6} md={5}>
+          {/* <Grid item xs={6} md={5}>
             <Item> Favorite Games </Item> 
             <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  
                     <option id="owned-form1" value="">Your Favorite Games</option>
@@ -92,10 +96,10 @@ function UserDashboard(props) {
                       <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name}</option>
                     )
                   })}  </select> </Item> 
-          </Grid>
+          </Grid> */}
         </Grid>
         </Box>
-         </div>
+         </div> 
 
     )
 

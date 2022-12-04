@@ -5,7 +5,7 @@ import { authApiSlice } from './authApi';
 import { accountSlice } from './accountSlice';
 import { gameSlice } from './gameApi';
 import { randomSlice } from './randomApi';
-import { detailSlice } from './detail.Api';
+import { detailSlice } from './detailApi';
 
 export const store = configureStore({
   reducer: {

@@ -30,3 +30,5 @@ export const randomSlice = createApi({
     }),
     })
 });
+
+export const {useGetRandomQuery} = randomSlice

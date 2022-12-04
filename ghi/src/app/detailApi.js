@@ -30,3 +30,5 @@ export const detailSlice = createApi({
     }),
     })
 });
+
+export const {useGetDetailQuery} = detailSlice

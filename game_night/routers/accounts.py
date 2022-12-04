@@ -78,10 +78,7 @@ async def create_account(
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
 
-<<<<<<< HEAD
-=======
 
 @router.get("/accounts", response_model=list[AccountOut])
 async def get_accounts(repo: AccountQueries = Depends()):
     return repo.get_all()
->>>>>>> main

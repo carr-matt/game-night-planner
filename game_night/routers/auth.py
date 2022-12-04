@@ -1,8 +1,8 @@
 import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
-from game_night.models import AccountOut, Account
-from game_night.queries.accounts import AccountQueries
+from models import AccountOut, Account
+from queries.accounts import AccountQueries
 
 
 class Auth(Authenticator):

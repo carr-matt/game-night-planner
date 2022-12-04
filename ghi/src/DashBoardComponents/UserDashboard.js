@@ -26,8 +26,8 @@ function UserDashboard(props) {
     const [favoriteGame, setFavoriteGame ] = useState(null); 
 
     //react router on change to link
-    useEffect(() =>  [ownedGame])
-    useEffect(() =>  [favoriteGame])
+    useEffect(() => console.log(ownedGame) [ownedGame])
+    // useEffect(() =>  console.log(ownedGame) [favoriteGame])
 
     useEffect(() =>{
       

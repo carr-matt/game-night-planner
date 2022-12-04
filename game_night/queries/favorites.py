@@ -1,4 +1,4 @@
-gitfrom .client import Queries
+from .client import Queries
 from pydantic import BaseModel
 from pymongo.errors import DuplicateKeyError
 from typing import List

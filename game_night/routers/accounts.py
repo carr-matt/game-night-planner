@@ -46,7 +46,7 @@ not_authorized = HTTPException(
 )
 
 
-@router.get("/token", response_model=AccountToken | None)
+@router.get("/token", tags=["Accounts"], response_model=AccountToken | None)
 async def get_token(
     request: Request,
     account: dict = Depends(authenticator.try_get_current_account_data),
@@ -59,7 +59,9 @@ async def get_token(
         }
 
 
-@router.post("/account", response_model=AccountToken | HttpError)
+@router.post(
+    "/account", tags=["Accounts"], response_model=AccountToken | HttpError
+)
 async def create_account(
     info: AccountIn,
     request: Request,
@@ -74,11 +76,21 @@ async def create_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
+    # The following code is an alternative to the above code.
+    # It prevents duplicate accounts but throws a 500 error.
+    # try:
+    #     if repo.get(info.email) is None:
+    #         account = repo.create(info, hashed_password)
+    # except DuplicateAccountError:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_400_BAD_REQUEST,
+    #         detail="That username is taken. Please choose another.",
+    #     )
     form = AccountForm(username=info.email, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
 
 
-@router.get("/accounts", response_model=list[AccountOut])
+@router.get("/accounts", tags=["Accounts"], response_model=list[AccountOut])
 async def get_accounts(repo: AccountQueries = Depends()):
     return repo.get_all()

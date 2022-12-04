@@ -14,7 +14,7 @@ export const gameSlice = createApi({
       }
       return headers;
     },
-    reducerPath: "myGames",
+    reducerPath: "myOwnedGames",
     baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_game_night_API_HOST,
   }),

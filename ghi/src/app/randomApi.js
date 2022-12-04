@@ -14,7 +14,7 @@ export const randomSlice = createApi({
       }
       return headers;
     },
-    reducerPath: "myGames",
+    reducerPath: "myRandomGames",
     baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_game_night_API_HOST,
   }),

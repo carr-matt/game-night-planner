@@ -21,7 +21,7 @@ function UserDashboard(props) {
     const [collectionOfGames, setCollectionOfGames] = useState({}) //setcollection is a function which recieves the selected data from our handle change on collection of games
     const [collectionOfFavGames, setCollectionOfFavGames] = useState({})
     const {data, error: gameError, isLoading} = useGetOwnedQuery(); 
-    const {favData, error: favGameError, isFavLoading} = useGetFavoriteQuery();
+    const {data: favData, error: favGameError, isLoading: isFavLoading} = useGetFavoriteQuery();
     const [ownedGame, setOwnedGame ] = useState(null); 
     const [favoriteGame, setFavoriteGame ] = useState(null); 
 
@@ -48,6 +48,7 @@ function UserDashboard(props) {
           mapp[favGame.bgaID] = favGame
            })
           setCollectionOfFavGames(mapp)
+          console.log(favData)
       } 
     },[data, favData])
 

@@ -15,7 +15,19 @@ Finally got the react compenants to the localhost:3000. Work on some JSX/HTML to
 
 Was able to set up setState in sign up and login pages. Worked on charting the course of my next steps. Made more visible jsx. Communicated with the backend team for ubiquitous language.
 
+11/23/2022
+
+Created modals for login and sign up
+
 
 11/28/2022
 
 Created several files for the utilization of react redux. Created Login modal.
+
+11/29/2022
+
+no longer doing modals, switching to regular forms on their own pages, still debugging to connect to backend on these react components.
+
+11/30/2022
+
+CONNECTED BACKEND TO FRONT END. TOKEN'S WORK! CAN SIGN UP AND LOG IN

@@ -14,7 +14,7 @@ export const store = configureStore({
     [accountSlice.name]: accountSlice.reducer,
     [gameSlice.reducerPath]: gameSlice.reducer,
     [randomSlice.reducerPath]: randomSlice.reducer,
-    // [detailSlice.reducerPath]: detailSlice.reducer,
+    [detailSlice.reducerPath]: detailSlice.reducer,
   },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware()
@@ -22,7 +22,7 @@ export const store = configureStore({
       .concat(authApiSlice.middleware)
       .concat(gameSlice.middleware)
       .concat(randomSlice.middleware)
-      // .concat(detailSlice.middleware);
+      .concat(detailSlice.middleware);
   },
 });
 

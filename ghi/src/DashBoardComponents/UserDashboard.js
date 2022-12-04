@@ -26,8 +26,8 @@ function UserDashboard(props) {
     const [favoriteGame, setFavoriteGame ] = useState(null); 
 
     //react router on change to link
-    useEffect(() => console.log(ownedGame) [ownedGame])
-    // useEffect(() =>  console.log(ownedGame) [favoriteGame])
+    useEffect(() => console.log(ownedGame), [ownedGame])
+    useEffect(() =>  console.log(favoriteGame), [favoriteGame])
 
     useEffect(() =>{
       
@@ -61,16 +61,22 @@ function UserDashboard(props) {
       setFavoriteGame(selectedfavGame)
     }
 
-    if(isLoading || gameError) {
-      return (<React.Fragment>Loading...</React.Fragment>)
-    }
+    // if(isLoading || gameError) {
+    //   return (<React.Fragment>Loading...</React.Fragment>)
+    // }
+      if(isLoading) {
+        return null
+      }
 
+      if(isFavLoading) {
+        return null
+      }
 
     
 
-     if(isFavLoading  || favGameError) {
-      return (<React.Fragment>Loading...</React.Fragment>)
-    }
+    //  if(isFavLoading  || favGameError) {
+    //   return (<React.Fragment>Loading...</React.Fragment>)
+    // }
     
     return (  
     <div className="app-list">
@@ -81,13 +87,13 @@ function UserDashboard(props) {
             <Item> Owned Games </Item> {/* xs = the height and md = the column space it takes up out of 12 */}
             <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  {/* {ownedGames.map(ownedGame => { */}
                     <option id="owned-form1" value="">Your Owned Games</option>
-                    {data.owned_list.map( game => {
+                    {data.owned_list?.map( game => {
                     return (
                       <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
                     )
                   })}  </select> </Item> 
           </Grid>
-          {/* <Grid item xs={6} md={5}>
+          <Grid item xs={6} md={5}>
             <Item> Favorite Games </Item> 
             <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  
                     <option id="owned-form1" value="">Your Favorite Games</option>
@@ -96,7 +102,7 @@ function UserDashboard(props) {
                       <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name}</option>
                     )
                   })}  </select> </Item> 
-          </Grid> */}
+          </Grid>
         </Grid>
         </Box>
          </div> 

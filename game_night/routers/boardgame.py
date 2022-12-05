@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
-import requests, json
+import requests
+import json
 import os
 
 BGA_ID = os.environ["BGA_ID"]
@@ -34,6 +35,21 @@ def get_random_game():
     return content
 
 
+def get_popular():
+    params = {
+        # "order_by": "rank",
+        "order_by": "reddit_week_count",
+        "pretty": "true",
+        "fields": "name,id,url,image_url,description",
+        "limit": 5,
+        "client_id": BGA_ID,
+    }
+    url = "https://api.boardgameatlas.com/api/search"
+    response = requests.get(url, params=params)
+    content = json.loads(response.content)
+    return content
+
+
 def get_game_mechanics():
     params = {
         "pretty": "true",
@@ -56,7 +72,7 @@ def get_game_categories():
     return content
 
 
-@router.get("/bga/get_games_by_name")
+@router.get("/bga/get_games_by_name", tags=["Board Game Atlas"])
 async def name_search(name: str, bga_api: BgaApi = Depends()):
     params = {
         "name": name,
@@ -109,6 +125,12 @@ async def game_details(ids: str, bga_api: BgaApi = Depends()):
 @router.get("/bga/random_game")
 def random_game():
     data = get_random_game()
+    return data
+
+
+@router.get("/bga/popular_games")
+def popular_games():
+    data = get_popular()
     return data
 
 

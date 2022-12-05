@@ -60,7 +60,7 @@ p{
   font-weight: bold;
 }
 
-img{
+.randomimg{
   width: 350px;
   height: 25%;
   image-rendering: crisp-edges;

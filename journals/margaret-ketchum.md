@@ -31,3 +31,12 @@ no longer doing modals, switching to regular forms on their own pages, still deb
 11/30/2022
 
 CONNECTED BACKEND TO FRONT END. TOKEN'S WORK! CAN SIGN UP AND LOG IN
+
+
+12/1/2022
+
+Got the useNavigate to work on login and signup. started on mainpage random component.
+
+12/2/2022
+
+got random games to finally show up on main page.

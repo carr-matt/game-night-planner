@@ -30,6 +30,13 @@ color: antiquewhite;
 
 h5{
 color: antiquewhite;
+text-align: center;
+}
+
+h3{
+color: antiquewhite;
+text-align: center;
+font-weight: bold;
 }
 
 .textstyle {
@@ -45,4 +52,19 @@ color: antiquewhite;
 
   margin: auto;
 
+}
+
+p{
+  color: antiquewhite;
+  text-align: center;
+  font-weight: bold;
+}
+
+.randomimg{
+  width: 350px;
+  height: 25%;
+  image-rendering: crisp-edges;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

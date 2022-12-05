@@ -31,7 +31,7 @@ function MainPage() {
               <div className="card-header">
                 <h2>Random Game</h2>
               </div>
-                <div className="card">
+                <div className="image-card">
 
                     {data.games?.map(randomGame => (
                       <div key={randomGame.id}>

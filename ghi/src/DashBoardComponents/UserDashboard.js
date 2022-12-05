@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import './comp.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { gameSlice } from "../app/gameApi";
 
 
@@ -61,6 +62,9 @@ function UserDashboard(props) {
     const handleChange = e =>{
       console.log('event',e,  e.target.value, 'collectionOfGames', collectionOfGames)
 
+      window.location.href = `${window.location.origin}/detail/` //$ equls string interpalation only with backticks
+      // window.location.href = `${window.location.origin}/detail/${e.target.value}`
+
       const selectedGame = collectionOfGames[e.target.value]
       setOwnedGame(selectedGame)
       
@@ -98,7 +102,8 @@ function UserDashboard(props) {
                     <option id="owned-form1" value="">Your Owned Games</option>
                     {data.owned_list?.map( game => {
                     return (
-                      <option onClick={handleClick} key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
+                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option> 
+                      
                     )
                   })}  </select> </Item> 
           </Grid>

@@ -7,9 +7,9 @@ from queries.accounts import AccountQueries
 
 class Auth(Authenticator):
     async def get_account_data(
-        self, username: str, accounts: AccountQueries
+        self, email: str, accounts: AccountQueries
     ) -> Account:
-        return accounts.get(username)
+        return accounts.get(email)
 
     def get_account_getter(
         self, accounts: AccountQueries = Depends()

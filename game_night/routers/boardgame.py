@@ -80,7 +80,7 @@ async def name_search(name: str, bga_api: BgaApi = Depends()):
         "pretty": "true",
         "fuzzy_match": "true",
         "order_by": "rank",
-        "fields": "name,price,min_players,max_players,min_age,image_url,description",
+        "fields": "name,min_players,max_players,min_age,image_url,description",
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)
@@ -111,7 +111,7 @@ async def game_details(ids: str, bga_api: BgaApi = Depends()):
     params = {
         "ids": ids,
         "pretty": "true",
-        "fields": "name,price,min_players,max_players,min_age,image_url,description",
+        "fields": "name,min_players,max_players,min_age,image_url,description",
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)
@@ -151,7 +151,6 @@ async def money_maker(
     min_players: int | None = None,
     max_players: int | None = None,
     min_age: int | None = None,
-    lt_msrp: float | None = None,
     max_playtime: int | None = None,
     mechanics: str | None = None,
     categories: str | None = None,
@@ -161,16 +160,13 @@ async def money_maker(
         "min_players": min_players,
         "max_players": max_players,
         "min_age": min_age,
-        "lt_msrp": lt_msrp,
         "max_playtime": max_playtime,
-        "gt_price": "1",
-        "gt_msrp": "1",
         "limit": 10,
         "pretty": "true",
         "mechanics": mechanics,
         "categories": categories,
         "order_by": "rank",
-        "fields": "name,id,url,price,msrp,min_players,max_players,min_age,min_playtime,max_playtime,image_url,description",
+        "fields": "name,id,url,min_players,max_players,min_age,min_playtime,max_playtime,image_url,description",
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)

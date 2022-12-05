@@ -8,9 +8,11 @@ import { useParams } from "react-router-dom";
 
 function DetailPage() {
 
+   let { detailId } = useParams();
    const { data, isLoading } = useGetDetailQuery();
-   console.log(data)
-
+  //  console.log(data)
+  //  console.log(useParams)
+      console.log(detailId)
 
    if (isLoading) {
     return null}
@@ -33,7 +35,7 @@ function DetailPage() {
                 <table>
                   <tbody>
                     {data.games?.map(detailGame => (
-                      <tr key={detailGame.id}>
+                      <tr key={detailGame.games}>
                         <td>
                           <image> src={detailGame.image_url}  </image>
                         </td>

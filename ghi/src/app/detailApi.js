@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
-export const detailSlice = createApi({
+export const detailApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
@@ -31,4 +31,4 @@ export const detailSlice = createApi({
     })
 });
 
-export const {useGetDetailQuery} = detailSlice
+export const {useGetDetailQuery} = detailApi

@@ -17,6 +17,9 @@ function MainPage() {
    if (isLoading) {
     return null}
 
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
 
   return (
@@ -36,7 +39,7 @@ function MainPage() {
                     {data.games?.map(randomGame => (
                       <div key={randomGame.id}>
 
-                        <img src={randomGame.image_url} className="random-img" alt="..." />
+                        <img src={randomGame.image_url} onClick={() => openInNewTab('http://localhost:3000/detail')} className="random-img" alt="..." />
                         <div className="card-body">
                          <h3 className="card-title"> {randomGame.name} </h3>
 

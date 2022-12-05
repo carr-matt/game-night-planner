@@ -1,7 +1,5 @@
 from .client import Queries
 from pydantic import BaseModel
-from pymongo.errors import DuplicateKeyError
-from typing import List
 from bson.objectid import ObjectId
 
 
@@ -20,7 +18,7 @@ class PydanticObjectId(ObjectId):
         return value
 
 
-class DuplicatePreferenceError(ValueError):
+class DuplicateFavoriteError(ValueError):
     pass
 
 
@@ -37,21 +35,24 @@ class Favorite(FavoriteIn):
 
 
 class Favorites(BaseModel):
-    favorites: List[Favorite]
+    favorites: list[Favorite]
 
 
 class FavoritesQueries(Queries):
-    DB_NAME = "dashboard-data"
+    DB_NAME = "game_night"
     COLLECTION = "favorites"
 
     def add_to_favorite(self, favorite: FavoriteIn, email: str) -> bool:
         props = favorite.dict()
         props["email"] = email
-        print(props)
-        try:
+        data = self.collection.find({"email": email, "bgaID": favorite.bgaID})
+        docs = []
+        for doc in data:
+            docs.append(doc)
+        if len(docs) == 0:
             self.collection.insert_one(props)
-        except DuplicateKeyError:
-            raise DuplicatePreferenceError()
+        else:
+            raise DuplicateFavoriteError()
 
     def delete_favorite(self, favorite_id: str) -> bool:
         self.collection.delete_one({"_id": ObjectId(f"{favorite_id}")})

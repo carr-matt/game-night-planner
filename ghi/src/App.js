@@ -4,7 +4,7 @@ import './App.css';
 import Login from './Login';
 import Signup from './Signup';
 import UserDashboard from './DashBoardComponents/UserDashboard';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import Nav from './Nav';
 import MainPage from './MainDetailComponents/MainPage';
 import SearchForm from './MainDetailComponents/SearchForm';
@@ -13,6 +13,10 @@ import DetailPage from './MainDetailComponents/DetailPage';
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
+  
+function detailID(props) {
+  return <tr> {props.id}</tr>;
+}
 
   // useEffect(() => {
   //   async function getData() {
@@ -37,6 +41,7 @@ function App() {
   return (
 
     <BrowserRouter>
+    {/* <Link to={`/details/${props.game_detail.id}`}></Link> */}
     <Nav />
     <div>
       {/* <ErrorNotification error={error} /> */}
@@ -49,6 +54,7 @@ function App() {
         <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
         <Route path="/detail/${e.target.value}" element={<DetailPage />} />
+        {/* <Route path="/details/:detailId" element={<DetailPage />} /> */}
       </Routes>
     </div>
     </BrowserRouter>

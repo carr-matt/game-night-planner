@@ -1,4 +1,3 @@
-# router.py
 from fastapi import (
     Depends,
     HTTPException,
@@ -17,7 +16,6 @@ from queries.accounts import (
     DuplicateAccountError,
 )
 from models import (
-    Account,
     AccountIn,
     AccountOut,
 )
@@ -46,7 +44,7 @@ not_authorized = HTTPException(
 )
 
 
-@router.get("/token", response_model=AccountToken | None)
+@router.get("/token", tags=["Accounts"], response_model=AccountToken | None)
 async def get_token(
     request: Request,
     account: dict = Depends(authenticator.try_get_current_account_data),
@@ -59,7 +57,9 @@ async def get_token(
         }
 
 
-@router.post("/account", response_model=AccountToken | HttpError)
+@router.post(
+    "/account", tags=["Accounts"], response_model=AccountToken | HttpError
+)
 async def create_account(
     info: AccountIn,
     request: Request,
@@ -72,13 +72,13 @@ async def create_account(
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Cannot create an account with those credentials",
+            detail="An account with that email already exists.",
         )
     form = AccountForm(username=info.email, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
 
 
-@router.get("/accounts", response_model=list[AccountOut])
+@router.get("/accounts", tags=["Accounts"], response_model=list[AccountOut])
 async def get_accounts(repo: AccountQueries = Depends()):
     return repo.get_all()

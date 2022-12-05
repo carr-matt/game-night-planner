@@ -1,7 +1,5 @@
 from .client import Queries
 from pydantic import BaseModel
-from pymongo.errors import DuplicateKeyError
-from typing import List
 from bson.objectid import ObjectId
 
 
@@ -20,7 +18,7 @@ class PydanticObjectId(ObjectId):
         return value
 
 
-class DuplicatePreferenceError(ValueError):
+class DuplicateOwnedError(ValueError):
     pass
 
 
@@ -37,20 +35,24 @@ class Owned(OwnedIn):
 
 
 class OwnedList(BaseModel):
-    owned_list: List[Owned]
+    owned_list: list[Owned]
 
 
 class OwnedQueries(Queries):
-    DB_NAME = "dashboard-data"
+    DB_NAME = "game_night"
     COLLECTION = "owned"
 
     def add_to_owned(self, owned: OwnedIn, email: str) -> bool:
         props = owned.dict()
         props["email"] = email
-        try:
+        data = self.collection.find({"email": email, "bgaID": owned.bgaID})
+        docs = []
+        for doc in data:
+            docs.append(doc)
+        if len(docs) == 0:
             self.collection.insert_one(props)
-        except DuplicateKeyError:
-            raise DuplicatePreferenceError()
+        else:
+            raise DuplicateOwnedError()
 
     def delete_owned(self, owned_id: str) -> bool:
         self.collection.delete_one({"_id": ObjectId(f"{owned_id}")})

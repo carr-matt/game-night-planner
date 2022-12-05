@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useGetRandomQuery } from '../app/randomApi';
 import { useParams } from "react-router-dom";
 
+// make the random game image clickable to bring us to the detail page for that game
 
 
 

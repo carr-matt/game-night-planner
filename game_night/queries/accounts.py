@@ -1,5 +1,6 @@
 from .client import Queries
 from models import Account, AccountIn, AccountOut
+import pymongo
 from pymongo.errors import DuplicateKeyError
 
 
@@ -8,7 +9,7 @@ class DuplicateAccountError(ValueError):
 
 
 class AccountQueries(Queries):
-    DB_NAME = "mongo-data"
+    DB_NAME = "game_night"
     COLLECTION = "accounts"
 
     def get(self, email: str) -> Account:
@@ -19,9 +20,9 @@ class AccountQueries(Queries):
         return Account(**props)
 
     def create(self, info: AccountIn, hashed_password: str) -> Account:
+        self.collection.create_index("email", unique=True)
         props = info.dict()
         props["password"] = hashed_password
-        # props["roles"] = roles
         try:
             self.collection.insert_one(props)
         except DuplicateKeyError:

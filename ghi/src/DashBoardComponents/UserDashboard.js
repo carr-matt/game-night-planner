@@ -62,8 +62,8 @@ function UserDashboard(props) {
     const handleChange = e =>{
       console.log('event',e,  e.target.value, 'collectionOfGames', collectionOfGames)
 
-      window.location.href = `${window.location.origin}/detail/` //$ equls string interpalation only with backticks
-      // window.location.href = `${window.location.origin}/detail/${e.target.value}`
+      // window.location.href = `${window.location.origin}/detail/` //$ equls string interpalation only with backticks
+      window.location.href = `${window.location.origin}/detail/${e.target.value}`
 
       const selectedGame = collectionOfGames[e.target.value]
       setOwnedGame(selectedGame)

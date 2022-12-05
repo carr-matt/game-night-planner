@@ -48,7 +48,7 @@ function App() {
         <Route path="/SearchForm/" element={<SearchForm />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
-        <Route path="/detail/" element={<DetailPage />} />
+        <Route path="/detail/${e.target.value}" element={<DetailPage />} />
       </Routes>
     </div>
     </BrowserRouter>

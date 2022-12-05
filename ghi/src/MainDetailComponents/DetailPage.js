@@ -35,7 +35,7 @@ function DetailPage() {
                     {data.games?.map(detailGame => (
                       <tr key={detailGame.id}>
                         <td>
-                          <a href={detailGame.image_url} />
+                          <image> src={detailGame.image_url}  </image>
                         </td>
                         <td>
                           {detailGame.name}

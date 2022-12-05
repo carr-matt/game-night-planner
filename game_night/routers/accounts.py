@@ -1,4 +1,3 @@
-# router.py
 from fastapi import (
     Depends,
     HTTPException,
@@ -17,7 +16,6 @@ from queries.accounts import (
     DuplicateAccountError,
 )
 from models import (
-    Account,
     AccountIn,
     AccountOut,
 )
@@ -74,18 +72,8 @@ async def create_account(
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Cannot create an account with those credentials",
+            detail="An account with that email already exists.",
         )
-    # The following code is an alternative to the above code.
-    # It prevents duplicate accounts but throws a 500 error.
-    # try:
-    #     if repo.get(info.email) is None:
-    #         account = repo.create(info, hashed_password)
-    # except DuplicateAccountError:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         detail="That username is taken. Please choose another.",
-    #     )
     form = AccountForm(username=info.email, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())

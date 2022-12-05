@@ -27,21 +27,21 @@ function DetailPage() {
           <div className="col">
             <div className="card">
               <div className="card-header">
-                <h2>Random Game</h2>
+                <h2>Game Details</h2>
               </div>
               <div className="card-body">
                 <table>
                   <tbody>
-                    {data.games?.map(randomGame => (
-                      <tr key={randomGame.id}>
+                    {data.games?.map(detailGame => (
+                      <tr key={detailGame.id}>
                         <td>
-                          <a href={randomGame.image_url} />
+                          <a href={detailGame.image_url} />
                         </td>
                         <td>
-                          {randomGame.name}
+                          {detailGame.name}
                         </td>
                         <td>
-                          {randomGame.description}
+                          {detailGame.description}
                         </td>
                       </tr>
                     ))}

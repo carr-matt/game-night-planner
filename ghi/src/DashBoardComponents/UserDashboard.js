@@ -52,10 +52,18 @@ function UserDashboard(props) {
       } 
     },[data, favData])
 
+    
+    const handleClick = (e) => {
+      e.preventDefault();
+      console.log('The link was clicked.');
+  }
+
     const handleChange = e =>{
       console.log('event',e,  e.target.value, 'collectionOfGames', collectionOfGames)
+
       const selectedGame = collectionOfGames[e.target.value]
       setOwnedGame(selectedGame)
+      
 
       console.log('event',e,  e.target.value, 'collectionOfFavGames', collectionOfFavGames)
       const selectedfavGame = collectionOfFavGames[e.target.value]
@@ -90,7 +98,7 @@ function UserDashboard(props) {
                     <option id="owned-form1" value="">Your Owned Games</option>
                     {data.owned_list?.map( game => {
                     return (
-                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
+                      <option onClick={handleClick} key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
                     )
                   })}  </select> </Item> 
           </Grid>
@@ -100,9 +108,11 @@ function UserDashboard(props) {
                     <option id="owned-form1" value="">Your Favorite Games</option>
                     {favData?.favorites.map( favGame => {
                     return (
-                      <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name}</option>
+                      <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name} </option>
+                      
                     )
-                  })}  </select> </Item> 
+                  })}  </select> 
+                  </Item> 
           </Grid>
         </Grid>
         </Box>

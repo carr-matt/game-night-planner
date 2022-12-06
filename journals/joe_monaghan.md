@@ -10,3 +10,8 @@ Worked on front end components. Started to explore grids and implementing it int
 
 11/30/22
 Today I worked with Cnadice and learned a lot about redux. It was a big deal because I finally connected backend to the front. (YESSS) Huge connect to the store.js 
+
+
+12/5/22
+
+After getting the Userdashbord finished and dropdowns to redirect over the weekend me and Matt got the redirected path to succesfully show the details for a specific game. 

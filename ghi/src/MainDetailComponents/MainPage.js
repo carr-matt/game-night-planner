@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useGetRandomQuery } from '../app/randomApi';
 import { useParams } from "react-router-dom";
 
+// make the random game image clickable to bring us to the detail page for that game
 
 
 
@@ -16,6 +17,9 @@ function MainPage() {
    if (isLoading) {
     return null}
 
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
 
   return (
@@ -30,30 +34,28 @@ function MainPage() {
               <div className="card-header">
                 <h2>Random Game</h2>
               </div>
-              <div className="card-body">
-                <table>
-                  <tbody>
+                <div className="image-card">
+
                     {data.games?.map(randomGame => (
-                      <tr key={randomGame.id}>
-                        <td>
-                          <a href={randomGame.image_url} />
-                        </td>
-                        <td>
-                          {randomGame.name}
-                        </td>
-                        <td>
-                          {randomGame.description}
-                        </td>
-                      </tr>
+                      <div key={randomGame.id}>
+
+                        <img src={randomGame.image_url} onClick={() => openInNewTab('http://localhost:3000/detail')} className="random-img" alt="..." />
+                        <div className="card-body">
+                         <h3 className="card-title"> {randomGame.name} </h3>
+
+                          <p className="card-text"> {randomGame.description} </p>
+                        </div>
+                      </div>
                     ))}
-                  </tbody>
-                </table>
+                 </div>
               </div>
             </div>
           </div>
         </div>
         </div>
-        </div>
+
+
+
 )}
 
 export default MainPage

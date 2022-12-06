@@ -37,6 +37,11 @@ Follow these steps to run this application on your local machine:
 
 ## Unit Tests
 
+- Get all accounts -
+- Get all favorite games -
+- Get all owned games -
+- Add a game to favorites list -
+- Add a game to owned list -
 
 
 

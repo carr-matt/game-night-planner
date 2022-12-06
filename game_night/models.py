@@ -1,6 +1,6 @@
 from bson.objectid import ObjectId
 from pydantic import BaseModel
-from typing import List
+from pydantic.types import constr
 
 
 class PydanticObjectId(ObjectId):
@@ -19,14 +19,12 @@ class PydanticObjectId(ObjectId):
 
 
 class AccountIn(BaseModel):
-    email: str
+    email: constr(to_lower=True)
     password: str
-    # full_name: str
 
 
 class Account(AccountIn):
     id: PydanticObjectId
-    # roles: List[str]
 
 
 class AccountOut(BaseModel):
@@ -44,8 +42,8 @@ class Game(BaseModel):
     max_playtime: int
     description: str
     image_url: str
-    mechanics: List[str]
-    category: List[str]
+    mechanics: list[str]
+    category: list[str]
 
 
 class GameOut(BaseModel):

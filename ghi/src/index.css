@@ -28,13 +28,45 @@ text-align: center;
 color: antiquewhite;
 }
 
-h3{
+h5{
+color: antiquewhite;
 text-align: center;
-color: purple;
-text-shadow: #FC0 1px 0 10px;
+}
+
+h3{
+color: antiquewhite;
+text-align: center;
+font-weight: bold;
 }
 
 .textstyle {
 text-align: center;
 color: antiquewhite;
+}
+
+.w-100 {
+  width: 350px !important;
+  height: 25%;
+  display: block;
+}
+.carousel img {
+
+  margin: auto;
+
+}
+
+p{
+  color: antiquewhite;
+  text-align: center;
+  font-weight: bold;
+}
+
+.random-img{
+  width: 350px;
+  height: 25%;
+  image-rendering: crisp-edges;
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }

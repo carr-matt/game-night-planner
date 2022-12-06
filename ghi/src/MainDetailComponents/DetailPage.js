@@ -29,7 +29,7 @@ function DetailPage() {
           <div className="col">
             <div className="card">
               <div className="card-header">
-                <h2>Game Details</h2>
+                <h3>Game Details</h3>
               </div>
               <div className="card-body">
                 <table>
@@ -37,13 +37,22 @@ function DetailPage() {
                     {data.games?.map(detailGame => (
                       <tr key={detailGame.games}>
                         <td>
-                          <image> src={detailGame.image_url}  </image>
+                          <img src={detailGame.image_url} />
                         </td>
                         <td>
                           {detailGame.name}
                         </td>
                         <td>
                           {detailGame.description}
+                        </td>
+                        <td>
+                          Minimum players: {detailGame.min_players}
+                        </td>
+                        <td>
+                          Maximum players: {detailGame.max_players}
+                        </td>
+                        <td>
+                          Minimum age: {detailGame.min_age}
                         </td>
                       </tr>
                     ))}

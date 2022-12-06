@@ -14,11 +14,11 @@ import { useParams } from "react-router-dom";
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
-  
+
 // function DetailPage() {
 //   // Get the detailId param from the URL.
 //   let { detailId } = useParams();
-  
+
 // }
 
   // useEffect(() => {
@@ -56,7 +56,7 @@ function App() {
         <Route path="/SearchForm/" element={<SearchForm />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
-        <Route path="/detail/:detailId" element={<DetailPage />} />
+        <Route path="/detail/:bgaID" element={<DetailPage />} />
         {/* <Route path="/detail/${e.target.value}" element={<DetailPage />} />
         <Route path="/details/:detailId" element={<DetailPage />} /> */}
       </Routes>

@@ -22,7 +22,7 @@ export const detailApi = createApi({
   endpoints: (builder) => ({
     // Get all the methods from preferences //
     getDetail: builder.query({
-      query: () => ({
+      query: (ids) => ({
         url: "/bga/game_detail/",
         credentials: "include",
       }),

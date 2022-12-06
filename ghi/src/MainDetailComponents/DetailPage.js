@@ -8,11 +8,11 @@ import { useParams } from "react-router-dom";
 
 function DetailPage() {
 
-   let { detailId } = useParams();
-   const { data, isLoading } = useGetDetailQuery();
+   let { bgaID } = useParams();
+   const { data, isLoading } = useGetDetailQuery(bgaID);
   //  console.log(data)
   //  console.log(useParams)
-      console.log(detailId)
+      console.log(bgaID)
 
    if (isLoading) {
     return null}
@@ -77,7 +77,7 @@ export default DetailPage
 // import Box from '@mui/material/Box';
 // import 'bootstrap/dist/css/bootstrap.css'
 // import './compy.css';
-// import { detailSlice } from "../app/detailApi"; 
+// import { detailSlice } from "../app/detailApi";
 // import 'bootstrap/dist/css/bootstrap.css'
 
 
@@ -89,7 +89,7 @@ export default DetailPage
 //   color: theme.palette.text.secondary,
 //   }));
 
-  
+
 // function DetailPage (props) {s
 //   const {useGetDetailQuery} = detailSlice
 //   const {data, isLoading} = useGetDetailQuery();
@@ -98,11 +98,11 @@ export default DetailPage
 //     useEffect(() =>{
 //        if(favData){
 //         const map = {}
-//         data.games.forEach(game =>{ 
+//         data.games.forEach(game =>{
 //           map[game.image_url] = game
-//         }) 
-//         setCollectionOfDetails(map)  
-          
+//         })
+//         setCollectionOfDetails(map)
+
 //     }
 
 //     const handleChange = e =>{
@@ -119,15 +119,15 @@ export default DetailPage
 //          <Grid container spacing={5}> {/* space between Items in grid */}
 //           <Grid item xs={6} md={5}>
 //             <Item> Game Details </Item>
-            
-                
-        
-        
-//         </Grid> 
+
+
+
+
+//         </Grid>
 //         </Grid>
 //         </Box>
 //   )
-                
+
 // }
 
 

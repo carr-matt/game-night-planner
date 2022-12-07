@@ -29,3 +29,7 @@ Wifi was down :c
 ## 12/6/22
 Worked on styling of the login.signup page.
 and worked on visibility of text.
+
+## 12/7/22
+Fused the login/Signup Page into one login page.
+

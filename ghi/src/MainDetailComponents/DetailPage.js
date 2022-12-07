@@ -23,38 +23,6 @@ const [addNewGame, response] = useAddNewPostMutation()
 
 
 
-//     async function addOwned(token, bgaID, name) {
-//     const ownedUrl = "http:localhost:8000/owned" 
-//     const fetchConfig = {
-//         method: 'POST',
-//         body: JSON.stringify({ "bgaID": bgaID, "name": name }),
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//             credentials: "include",
-//             accept: "application/json",
-//             "Content-Type": "application/json"
-//         }
-
-//     };
-//     // await fetch(ownedUrl, fetchConfig);
-// }
-
-//   async function addFavorite(token, bgaID, name) {
-//       const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
-//       const fetchConfig = {
-//           method: 'POST',
-//           body: JSON.stringify({ "bgaID": bgaID, "name": name }),
-//           headers: {
-//               Authorization: `Bearer ${token}`,
-//               credentials: "include",
-//               accept: "application/json",
-//               "Content-Type": "application/json"
-//           }
-//       };
-//       // await fetch(favUrl, fetchConfig);
-//   }
-
-
 
    if (isLoading) {
     return null
@@ -66,12 +34,14 @@ const [addNewGame, response] = useAddNewPostMutation()
       // const handleOwnedClick = e => {
       // data.games( detailGame => {
       //   map[detailGame.id, detailGame.name] = detailGame
-      // addNewGame(detailGame)
+      // addNewGame(detailGame) }
 
      const handleOwnedClick = e => {
       {data.games?.map( detailGame => {
-        addNewGame(detailGame.id, detailGame.name)}) 
+        const idName = {"bgaID": detailGame.id,  "name": detailGame.name}
+        addNewGame(idName) }) 
          } } 
+        //  detailGame.id,
       // e.preventDefault();
       // console.log(detailGame)
       console.log('The link was clicked.');
@@ -139,6 +109,38 @@ export default DetailPage
 
 
 
+
+
+//     async function addOwned(token, bgaID, name) {
+//     const ownedUrl = "http:localhost:8000/owned" 
+//     const fetchConfig = {
+//         method: 'POST',
+//         body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//             credentials: "include",
+//             accept: "application/json",
+//             "Content-Type": "application/json"
+//         }
+
+//     };
+//     // await fetch(ownedUrl, fetchConfig);
+// }
+
+//   async function addFavorite(token, bgaID, name) {
+//       const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
+//       const fetchConfig = {
+//           method: 'POST',
+//           body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+//           headers: {
+//               Authorization: `Bearer ${token}`,
+//               credentials: "include",
+//               accept: "application/json",
+//               "Content-Type": "application/json"
+//           }
+//       };
+//       // await fetch(favUrl, fetchConfig);
+//   }
 
 
 

@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
-
 export const createSlice = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
@@ -27,19 +26,24 @@ export const createSlice = createApi({
         providesTags: ['Post'],
       }),
       addNewPost: builder.mutation({
-      query: (payload) => ({
+      
+      query: (idName) => ({
         url: '/owned',
         method: 'POST',
-        body: payload,
+        body: idName,
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
       }),
       invalidatesTags: ['Post'],
     }),
+    
   }),
 })
 
+
 export const { useGetPostsQuery, useAddNewPostMutation } = createSlice
       
-    
+// console.log(payload)
+    // "bgaID": bgaID, 
+//JSON.stringify({ "name": name }),

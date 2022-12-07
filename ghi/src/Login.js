@@ -9,12 +9,14 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
-  const { email, password } = useSelector(state => state.account);
-  const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
+  const { email, password } = useSelector((state) => state.account);
+  console.log(email, password)
+  const [logIn, { error, isLoading: logInLoading, isSuccess: loginSuccessful }] = useLogInMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
   );
+  console.log(loginSuccessful)
   const navigate = useNavigate()
 
   return (
@@ -28,10 +30,14 @@ function Login() {
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
           <form method="POST" onSubmit={ (e) => {e.preventDefault()
           logIn(e.target)
-          navigate('/')
-        }
+          if (loginSuccessful) {
+            navigate('/')
+          } else {
+            alert("Login failed. Please try again!")
+            // window.location.reload()
+          }
       }
- >
+    } >
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
               <div className="control">

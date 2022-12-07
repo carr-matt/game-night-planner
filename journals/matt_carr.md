@@ -1,3 +1,7 @@
+## December 6, 2022
+
+* More work on detail page functionality with Joe. Not quite there with "like" or "owned" button functionality but very close.
+
 ## December 5, 2022
 
 * One week til project submission. Let's goooo!
@@ -22,7 +26,7 @@
 
 ## December 1, 2022
 
-* Split favs & owned into their own collections.
+* Split favs & owned into their own collections within the Mongo DB.
 
 ## November 30, 2022
 

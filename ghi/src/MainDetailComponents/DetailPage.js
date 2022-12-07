@@ -14,8 +14,53 @@ function DetailPage() {
   //  console.log(useParams)
       console.log(bgaID)
 
+
+
+
+    async function addOwned(token, bgaID, name) {
+    const ownedUrl = "http:localhost:8000/owned" 
+    const fetchConfig = {
+        method: 'POST',
+        body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+        headers: {
+            Authorization: `Bearer ${token}`,
+            credentials: "include",
+            accept: "application/json",
+            "Content-Type": "application/json"
+        }
+
+    };
+    // await fetch(ownedUrl, fetchConfig);
+}
+
+  async function addFavorite(token, bgaID, name) {
+      const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
+      const fetchConfig = {
+          method: 'POST',
+          body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+          headers: {
+              Authorization: `Bearer ${token}`,
+              credentials: "include",
+              accept: "application/json",
+              "Content-Type": "application/json"
+          }
+      };
+      // await fetch(favUrl, fetchConfig);
+  }
+
+
+
    if (isLoading) {
-    return null}
+    return null
+  }
+
+     const handleOwnedClick = (e) => {
+      {data.games?.map(detailGame => (
+        addOwned(detailGame.id, detailGame.name))
+        )}} 
+      // e.preventDefault();
+      console.log('The link was clicked.');
+  
 
 
 
@@ -33,6 +78,9 @@ function DetailPage() {
                 <h3 key={detailGame.games}>
                    {detailGame.name}</h3>)
                 ) }
+
+                <button onClick={handleOwnedClick}> Add to Owned List</button>
+                
               </div>
 
               <div className="card-body">

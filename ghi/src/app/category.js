@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
-export const mechanicSlice = createApi({
+export const categorySlice = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
@@ -14,21 +14,21 @@ export const mechanicSlice = createApi({
       }
       return headers;
     },
-    reducerPath: "gameMechanic",
+    reducerPath: "gameCategory",
     baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_game_night_API_HOST,
   }),
-  tagTypes: ["GameList"],
+  tagTypes: ["CategoryList"],
   endpoints: (builder) => ({
     // Get all the methods from preferences //
-    getMechanic: builder.query({
+    getCategory: builder.query({
       query: () => ({
-        url: "/bga/game_mechanics_list/",
+        url: "/bga/game_categories_list/",
         credentials: "include",
       }),
-      providesTags: ["MechanicList"],
+      providesTags: ["CategoryList"],
     }),
     })
 });
 
-export const { useGetMechanicQuery } = mechanicSlice
+export const { useGetCategoryQuery } = categorySlice

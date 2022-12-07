@@ -51,11 +51,11 @@ build-front-end-job:
     paths:
       - ghi/build/
 
-build-fastapi-image-job:
-  rules:
-    # Only run if pushing to the main branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  stage: build
+# build-fastapi-image-job:
+#   rules:
+#     # Only run if pushing to the main branch
+#     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#   stage: build
 
 # Deploy the React/JavaScript front-end to GitLab pages
 pages:

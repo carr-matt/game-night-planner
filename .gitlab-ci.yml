@@ -3,6 +3,9 @@ stages:
   - build
   - deploy
 
+variables:
+  MONGO_URL: fake
+
 # Run flake8 to check for code quality
 # lint-test-job:
 #   image: python:3-bullseye
@@ -47,6 +50,12 @@ build-front-end-job:
   artifacts:
     paths:
       - ghi/build/
+
+build-fastapi-image-job:
+  rules:
+    # Only run if pushing to the main branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  stage: build
 
 # Deploy the React/JavaScript front-end to GitLab pages
 pages:

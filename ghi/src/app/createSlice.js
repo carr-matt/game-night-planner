@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
-export const gameSlice = createApi({
+
+export const createSlice = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
@@ -14,26 +15,31 @@ export const gameSlice = createApi({
       }
       return headers;
     },
-    reducerPath: "myOwnedGames",
+    reducerPath: "postGames",
     baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_game_night_API_HOST,
   }),
-  tagTypes: ["GameList"],
+  tagTypes: ["Post"],
   endpoints: (builder) => ({
     // Get all the methods from preferences //
-    postOwned: builder.query({
-      query: () => ({
-        url: "/owned",
-        credentials: "include",
+    getPosts: builder.query({
+        query: () => '/owned',
+        providesTags: ['Post'],
       }),
-      providesTags: ["GameList"],
-    }),
-      postFavorite: builder.query({
-        query: () => ({
-            url: "/favorites",
-            credentials: "include",
+      addNewPost: builder.mutation({
+      query: (payload) => ({
+        url: '/owned',
+        method: 'POST',
+        body: payload,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
       }),
-      providesTags: ["GameList"],
+      invalidatesTags: ['Post'],
     }),
-    })
-});
+  }),
+})
+
+export const { useGetPostsQuery, useAddNewPostMutation } = createSlice
+      
+    

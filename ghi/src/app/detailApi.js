@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
+
 export const detailApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();

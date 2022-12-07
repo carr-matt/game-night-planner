@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom'
 import { useGetDetailQuery } from '../app/detailApi';
 import { useParams } from "react-router-dom";
+import { useAddNewPostMutation } from "../app/createSlice"; 
 
 
 
@@ -9,58 +10,73 @@ import { useParams } from "react-router-dom";
 function DetailPage() {
 
    let { bgaID } = useParams();
-   const { data, isLoading } = useGetDetailQuery(bgaID);
+   const { data, isLoading } = useGetDetailQuery(bgaID)
   //  console.log(data)
   //  console.log(useParams)
       console.log(bgaID)
+      console.log(data)
+// const { data: postData } = api.endpoints.getPosts.useQuery()
+// const [updatePost, { data:updatePostData }] = api.endpoints.updatePost.useMutation()
+const [addNewGame, response] = useAddNewPostMutation()
+// const { data: updatePostData } = useAddNewPostMutation();
 
 
 
 
-    async function addOwned(token, bgaID, name) {
-    const ownedUrl = "http:localhost:8000/owned" 
-    const fetchConfig = {
-        method: 'POST',
-        body: JSON.stringify({ "bgaID": bgaID, "name": name }),
-        headers: {
-            Authorization: `Bearer ${token}`,
-            credentials: "include",
-            accept: "application/json",
-            "Content-Type": "application/json"
-        }
+//     async function addOwned(token, bgaID, name) {
+//     const ownedUrl = "http:localhost:8000/owned" 
+//     const fetchConfig = {
+//         method: 'POST',
+//         body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//             credentials: "include",
+//             accept: "application/json",
+//             "Content-Type": "application/json"
+//         }
 
-    };
-    // await fetch(ownedUrl, fetchConfig);
-}
+//     };
+//     // await fetch(ownedUrl, fetchConfig);
+// }
 
-  async function addFavorite(token, bgaID, name) {
-      const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
-      const fetchConfig = {
-          method: 'POST',
-          body: JSON.stringify({ "bgaID": bgaID, "name": name }),
-          headers: {
-              Authorization: `Bearer ${token}`,
-              credentials: "include",
-              accept: "application/json",
-              "Content-Type": "application/json"
-          }
-      };
-      // await fetch(favUrl, fetchConfig);
-  }
+//   async function addFavorite(token, bgaID, name) {
+//       const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
+//       const fetchConfig = {
+//           method: 'POST',
+//           body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+//           headers: {
+//               Authorization: `Bearer ${token}`,
+//               credentials: "include",
+//               accept: "application/json",
+//               "Content-Type": "application/json"
+//           }
+//       };
+//       // await fetch(favUrl, fetchConfig);
+//   }
 
 
 
    if (isLoading) {
     return null
   }
-
-     const handleOwnedClick = (e) => {
-      {data.games?.map(detailGame => (
-        addOwned(detailGame.id, detailGame.name))
-        )}} 
-      // e.preventDefault();
-      console.log('The link was clicked.');
+    //  const handleOwnedClick = (e) => {
+    //     addNewGame(bgaID.bgaId, bgaID.name)
+    //     }
   
+      // const handleOwnedClick = e => {
+      // data.games( detailGame => {
+      //   map[detailGame.id, detailGame.name] = detailGame
+      // addNewGame(detailGame)
+
+     const handleOwnedClick = e => {
+      {data.games?.map( detailGame => {
+        addNewGame(detailGame.id, detailGame.name)}) 
+         } } 
+      // e.preventDefault();
+      // console.log(detailGame)
+      console.log('The link was clicked.');
+      
+            
 
 
 

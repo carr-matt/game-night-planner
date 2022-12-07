@@ -111,7 +111,7 @@ async def game_details(ids: str, bga_api: BgaApi = Depends()):
     params = {
         "ids": ids,
         "pretty": "true",
-        # "fields": "name,min_players,max_players,min_age,image_url,description",
+        # "fields": "id,name,year_published,min_age,min_players,max_players,min_playtime,max_playtime,image_url,description,description_preview,mechanics,categories,reddit_day_count,reddit_week_count,reddit_all_time_count",
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)

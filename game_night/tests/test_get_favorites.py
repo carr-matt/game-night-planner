@@ -5,7 +5,7 @@ from routers.auth import authenticator
 
 client = TestClient(app)  # replacing swagger in code
 
-mockAccount = {"email": "email"}
+mockAccount = {"username": "username"}
 
 
 async def account_out_override():

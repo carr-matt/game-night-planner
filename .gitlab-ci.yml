@@ -36,10 +36,6 @@ build-front-end-job:
     # - lint-test-job
     - api-unit-test-job
   variables:
-    # If either of these variables is defined in the GitLab
-    # CI/CD variables, that value will override the value here.
-    # You need to substitute in your real values for
-    # GROUP_NAME, PROJECT_NAME, & WEBSERVICE_NAME below.
     PUBLIC_URL: https://M2J3.gitlab.io/game-night-planner
     REACT_APP_SAMPLE_SERVICE_API_HOST: https://game-night-planner.onrender.com
   script:

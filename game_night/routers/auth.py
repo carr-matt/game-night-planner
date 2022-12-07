@@ -7,9 +7,9 @@ from queries.accounts import AccountQueries
 
 class Auth(Authenticator):
     async def get_account_data(
-        self, email: str, accounts: AccountQueries
+        self, username: str, accounts: AccountQueries
     ) -> Account:
-        return accounts.get(email)
+        return accounts.get(username)
 
     def get_account_getter(
         self, accounts: AccountQueries = Depends()
@@ -20,7 +20,7 @@ class Auth(Authenticator):
         return account.password
 
     def get_account_data_for_cookie(self, account: Account) -> AccountOut:
-        return account.email, AccountOut(**account.dict())
+        return account.username, AccountOut(**account.dict())
 
 
 authenticator = Auth(os.environ["SIGNING_KEY"])

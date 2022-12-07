@@ -19,7 +19,7 @@ class PydanticObjectId(ObjectId):
 
 
 class AccountIn(BaseModel):
-    email: constr(to_lower=True)
+    username: constr(to_lower=True)
     password: str
 
 
@@ -29,7 +29,7 @@ class Account(AccountIn):
 
 class AccountOut(BaseModel):
     id: str
-    email: str
+    username: str
 
 
 class Game(BaseModel):

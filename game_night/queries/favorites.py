@@ -28,7 +28,7 @@ class FavoriteIn(BaseModel):
 
 
 class Favorite(FavoriteIn):
-    email: str
+    username: str
     bgaID: str
     name: str
     id: str
@@ -42,10 +42,12 @@ class FavoritesQueries(Queries):
     DB_NAME = "game_night"
     COLLECTION = "favorites"
 
-    def add_to_favorite(self, favorite: FavoriteIn, email: str) -> bool:
+    def add_to_favorite(self, favorite: FavoriteIn, username: str) -> bool:
         props = favorite.dict()
-        props["email"] = email
-        data = self.collection.find({"email": email, "bgaID": favorite.bgaID})
+        props["username"] = username
+        data = self.collection.find(
+            {"username": username, "bgaID": favorite.bgaID}
+        )
         docs = []
         for doc in data:
             docs.append(doc)
@@ -57,12 +59,12 @@ class FavoritesQueries(Queries):
     def delete_favorite(self, favorite_id: str) -> bool:
         self.collection.delete_one({"_id": ObjectId(f"{favorite_id}")})
 
-    def get_user_favorites(self, email: str) -> Favorites:
+    def get_user_favorites(self, username: str) -> Favorites:
         props = []
-        data = self.collection.find({"email": email})
+        data = self.collection.find({"username": username})
         for doc in data:
             doc["id"] = str(doc["_id"])
             props.append(doc)
         if not props:
-            print("Not a known email")
+            print("Not a known username")
         return Favorites(favorites=props)

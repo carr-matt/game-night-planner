@@ -9,6 +9,9 @@ import Nav from './Nav';
 import MainPage from './MainDetailComponents/MainPage';
 import SearchForm from './MainDetailComponents/SearchForm';
 import DetailPage from './MainDetailComponents/DetailPage';
+import { Container } from 'react-bootstrap/Container';
+import Form from "react-bootstrap/Form"
+
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);

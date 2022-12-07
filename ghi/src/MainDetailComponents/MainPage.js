@@ -30,7 +30,7 @@ function MainPage() {
         <div className="container">
         <div className="row mt-5">
           <div className="col">
-            <div className="card">
+            <div className="card bg-dark mb-3 border-light mb-3">
               <div className="card-header">
                 <h2>Random Game</h2>
               </div>

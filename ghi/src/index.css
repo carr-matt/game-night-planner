@@ -21,11 +21,13 @@ code {
 h1{
 text-align: center;
 color: antiquewhite;
+text-shadow: 2px 2px 4px #000000;
 }
 
 h2{
 text-align: center;
 color: antiquewhite;
+text-shadow: 2px 2px 4px #000000;
 }
 
 h5{
@@ -59,6 +61,7 @@ p{
   color: antiquewhite;
   text-align: center;
   font-weight: bold;
+  text-shadow: 2px 2px 4px #3d3d3d;
 }
 
 .random-img{

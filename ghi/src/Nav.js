@@ -4,9 +4,10 @@ import gon from "./Images/gon.png";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success" id="navbar">
+    <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
+    {/* <nav className="navbar navbar-expand-lg navbar-dark bg-success" id="navbar"></nav> */}
       <div className="container-fluid">
-        <img src={logo} />
+        <img src={logo} className="logo" />
         <NavLink className="nav-item" to="/">Game Night Planner </NavLink>
         <NavLink className="nav-item" to="/MainPage/"> Let's Pick a Game! </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>

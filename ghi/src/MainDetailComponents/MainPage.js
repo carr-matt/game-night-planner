@@ -1,17 +1,18 @@
 //will need use effect to get the data for the filters
-import { useEffect, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom'
 import { useGetRandomQuery } from '../app/randomApi';
 import { useParams } from "react-router-dom";
-
 // make the random game image clickable to bring us to the detail page for that game
 
 
 
 function MainPage() {
 
-   const { data, isLoading } = useGetRandomQuery();
+
+
+  const { data, isLoading } = useGetRandomQuery();
    console.log(data)
+
 
 
    if (isLoading) {
@@ -19,6 +20,7 @@ function MainPage() {
 
   const openInNewTab = url => {
     window.open(url, '_blank', 'noopener,noreferrer');
+
   };
 
 
@@ -52,10 +54,12 @@ function MainPage() {
             </div>
           </div>
         </div>
+
         </div>
 
 
 
-)}
+);
+}
 
 export default MainPage;

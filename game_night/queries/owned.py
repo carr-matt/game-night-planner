@@ -28,7 +28,7 @@ class OwnedIn(BaseModel):
 
 
 class Owned(OwnedIn):
-    email: str
+    username: str
     bgaID: str
     name: str
     id: str
@@ -42,10 +42,12 @@ class OwnedQueries(Queries):
     DB_NAME = "game_night"
     COLLECTION = "owned"
 
-    def add_to_owned(self, owned: OwnedIn, email: str) -> bool:
+    def add_to_owned(self, owned: OwnedIn, username: str) -> bool:
         props = owned.dict()
-        props["email"] = email
-        data = self.collection.find({"email": email, "bgaID": owned.bgaID})
+        props["username"] = username
+        data = self.collection.find(
+            {"username": username, "bgaID": owned.bgaID}
+        )
         docs = []
         for doc in data:
             docs.append(doc)
@@ -57,12 +59,12 @@ class OwnedQueries(Queries):
     def delete_owned(self, owned_id: str) -> bool:
         self.collection.delete_one({"_id": ObjectId(f"{owned_id}")})
 
-    def get_user_owned(self, email: str) -> OwnedList:
+    def get_user_owned(self, username: str) -> OwnedList:
         props = []
-        data = self.collection.find({"email": email})
+        data = self.collection.find({"username": username})
         for doc in data:
             doc["id"] = str(doc["_id"])
             props.append(doc)
         if not props:
-            print("Not a known email")
+            print("Not a known username")
         return OwnedList(owned_list=props)

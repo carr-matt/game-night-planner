@@ -95,8 +95,6 @@ function SearchForm() {
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
-
-    // Do something with the gameData here...
   }, [gameData, minimum, maximum, playtime, minAge, mechanic, category]);
 
   if (isGameLoading) {
@@ -112,7 +110,7 @@ function SearchForm() {
 
     return (
 
-               <div className="row">
+      <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1 className="header-title">Search Form</h1>

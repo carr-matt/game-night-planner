@@ -72,7 +72,7 @@ function SearchForm() {
 
       <div className="row">
       <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
+        <div className="shadow p-4 mt-4 bg-dark rounded">
           <h1 className="header-title">Search Form</h1>
           <form id="search-form" onSubmit={handleSubmit}>
             <div className="mb-3">

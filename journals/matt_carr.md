@@ -1,7 +1,11 @@
+## December 6, 2022
+
+* More work on detail page functionality with Joe. Not quite there with "like" or "owned" button functionality but very close.
+
 ## December 5, 2022
 
 * One week til project submission. Let's goooo!
-*
+* Made some really good progress on the detail page with Joe!! Using the params hook to pass the BgaId needed for the GET request to grab the actual game object. Woohoooo!
 
 ## December 4, 2022
 
@@ -22,9 +26,9 @@
 
 ## December 1, 2022
 
-* Split favs & owned into their own collections.
+* Split favs & owned into their own collections within the Mongo DB.
 
-## Novomber 30, 2022
+## November 30, 2022
 
 * More work on unit tests with Jazz & Josh joining on a live share coding session.
 

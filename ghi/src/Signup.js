@@ -8,14 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const dispatch = useDispatch();
-  const { email, password } = useSelector(state => state.account);
+  const { username, password } = useSelector(state => state.account);
   const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
   );
    const navigate = useNavigate()
-   console.log(email, password)
+   console.log(username, password)
 
   return (
         <div className="box content" style={{
@@ -28,14 +28,14 @@ function Signup() {
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
           <form method="POST"
         onSubmit={ (e) => {e.preventDefault()
-          signUp({ email, password, })
+          signUp({ username, password, })
           navigate("/login")
         }}
 >
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
               <div className="control">
-                <input required onChange={field} value={email} name="email" className="input" type="email" placeholder="example@example.com" />
+                <input required onChange={field} value={username} name="username" className="input" type="username" placeholder="example@example.com" />
               </div>
             </div>
             <div className="field">

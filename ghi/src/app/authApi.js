@@ -41,7 +41,7 @@ export const authApiSlice = createApi({
           formData = new FormData(info);
         } else {
           formData = new FormData();
-          formData.append('username', info.email);
+          formData.append('username', info.username);
           formData.append('password', info.password);
         }
         return {

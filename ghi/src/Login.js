@@ -6,11 +6,13 @@ import { updateField } from './app/accountSlice';
 import Notification from './Notification';
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { Alert } from 'react-bootstrap';
+
 
 function Login() {
   const dispatch = useDispatch();
-  const { email, password } = useSelector((state) => state.account);
-  console.log(email, password)
+  const { username, password } = useSelector((state) => state.account);
   const [logIn, { error, isLoading: logInLoading, isSuccess: loginSuccessful }] = useLogInMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
@@ -18,6 +20,17 @@ function Login() {
   );
   console.log(loginSuccessful)
   const navigate = useNavigate()
+
+  const handleLogin = async () => {
+  if (loginSuccessful) {
+    navigate('/')
+  }
+}
+
+useEffect(() => {
+  handleLogin();
+}, [loginSuccessful]);
+
 
   return (
         <div className="box content" style={{
@@ -27,21 +40,13 @@ function Login() {
           height: "80vh"
         }}>
           <h3>Log In</h3>
-          { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          <form method="POST" onSubmit={ (e) => {e.preventDefault()
-          logIn(e.target)
-          if (loginSuccessful) {
-            navigate('/')
-          } else {
-            alert("Login failed. Please try again!")
-            // window.location.reload()
-          }
-      }
-    } >
+          { error ? <Alert variant="danger">{error.data.detail}</Alert> : null }
+      <form method="POST" onSubmit={ async (e) => {
+        e.preventDefault(); await logIn(e.target); handleLogin();}}>
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
               <div className="control">
-                <input required onChange={field} value={email} name="email" className="input" type="email" placeholder="example@example.com" />
+                <input required onChange={field} value={username} name="username" className="input" type="username" placeholder="example@example.com" />
               </div>
             </div>
             <div className="field">

@@ -34,4 +34,4 @@ and worked on visibility of text.
 Fused the login/Signup Page into one login page.
 
 ## 12/8/22
-Added Login and Sign up to the navbar.
+Added Login and Sign up to the navbar. Everything broke and took an hour to fix just for the fix to be restarting my pc.

@@ -9,8 +9,6 @@ import { useGetCategoryQuery } from '../app/category'
 function SearchForm() {
 
 
-    // const {data: mechanicData , isLoading: isMechanicLoading } = useGetMechanicQuery();
-    // const {data: categoryData , isLoading: isCategoryLoading } = useGetCategoryQuery();
 
     let min_players = []
       for (let i = 1; i <= 10; i++) {
@@ -37,8 +35,6 @@ function SearchForm() {
     const [minimum, setMinimum] = useState(0)
     const [maximum, setMaximum] = useState(10000)
     const [playtime, setPlayTime] = useState(100000)
-    // const [category, setCategory] = useState();
-    // const [mechanic, setMechanic] = useState();
     const [searched, setSearched] = useState([])
 
     const handleMinimumChange = (event) => {
@@ -52,17 +48,6 @@ function SearchForm() {
   setPlayTime(event.target.value)
 }
 
-  //     const handleCategoryChange = (event) => {
-  //   setCategory(event.target.value);
-  // }
-
-  //     const handleMechanicChange = (event) => {
-  //   setMechanic(event.target.value);
-  // }
-
-
-
-  // const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery();
 
   const fetchData = async () => {
     const response = await fetch(`http://localhost:8000/bga/money_maker?gt_min_players=${minimum}&lt_max_players=${maximum}&gt_min_age=${minAge}&lt_max_playtime=${playtime}`);
@@ -71,53 +56,15 @@ function SearchForm() {
     console.log(data)
   };
 
-//   function renderGameData(gameData) {
-//   if (!searched) {
-//     return (
-//       <div>
-//         No game data to display
-//       </div>
-//     );
-//   } else {
 
-//   return (
-//     <div className="results-container">
-//         {gameData.games?.map((game) => {
-//           if ((minimum === null || game.min_players >= minimum) &&
-//           (maximum === null || game.max_players <= maximum) &&
-//           (playtime === null || game.max_playtime <= playtime) &&
-//           (minAge === null || game.min_age >= minAge) &&
-//           (mechanic === null || game.mechanics === mechanic) &&
-//           (category === null || game.categories === category)) {
-//             return (
-//               <div key={game.id}>
-//                 <h2>{game.name}</h2>
-//                 <p>{game.description}</p>
-//                 <img src={game.img_url} />
-//               </div>
-//             );
-//           }
-//         })}
-//       </div>
-//   );}
-// }
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearched(true)
     console.log(event)
-    // console.log(gameData)
     fetchData();
   }
 
 
-  // if (isGameLoading) {
-  //   return null}
-
-  // if (isMechanicLoading) {
-  //   return null}
-
-  // if (isCategoryLoading) {
-  //   return null}
 
   console.log(minAge, minimum, maximum, playtime)
 
@@ -150,29 +97,6 @@ function SearchForm() {
                 {play_time.map((playtime) => <option key={playtime.label} value={playtime.value}>{playtime.label}</option>)}
               </select>
                   </div>
-                 {/* <div className="mb-3">
-                    <select onChange={handleMechanicChange} required name="mechanics" type="text" className="form-select" defaultValue="Mechanics">
-                      <option value="">Mechanics</option>
-                      {mechanicData.mechanics?.map(mechanic => {
-                        return (
-                            <option key={`${mechanic.id}`} value={mechanic.name}>{mechanic.name}
-                            </option>
-                        )
-                      })}
-                    </select>
-                  </div>
-                  <div className="mb-3">
-                    <select onChange={handleCategoryChange} required name="category" type="text" className="form-select" defaultValue="Category">
-                      <option value="">Category</option>
-                        {categoryData.categories?.map(category => {
-                        return (
-                            <option key={`${category.id}`} value={category.name}>{category.name}
-                            </option>
-                        )
-                      })}
-
-                    </select>
-                  </div> */}
                   <button type="submit" className="form-button" onClick={handleSubmit}>Search</button>
                 </form>
               </div>

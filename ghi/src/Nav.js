@@ -11,6 +11,8 @@ function Nav() {
         <NavLink className="nav-item" to="/MainPage/"> Let's Pick a Game! </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>
         <NavLink className="nav-item" to="/UserDashboard/">My Dashboard</NavLink>
+        <NavLink className="nav-item" to="/Login/">Login</NavLink>
+        <NavLink className="nav-item" to="/SignUp/">SignUp</NavLink>
         {/* <NavLink className="nav-item" to="/Detail/">Detail</NavLink> */}
         <img className='avatar' src={gon} />
         {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

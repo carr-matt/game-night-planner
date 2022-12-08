@@ -33,3 +33,5 @@ and worked on visibility of text.
 ## 12/7/22
 Fused the login/Signup Page into one login page.
 
+## 12/8/22
+Added Login and Sign up to the navbar.

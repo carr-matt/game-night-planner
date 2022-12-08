@@ -23,13 +23,13 @@ function SearchForm() {
       }
 
     let play_time = [
-      {label: "15 minutes", value: 15},
-      {label: "30 minutes", value: 30},
-      {label: "45 minutes", value: 45},
-      {label: "1 hour", value: 60},
-      {label: "90 minutes", value: 90},
-      {label: "2 hours", value: 120},
-      {label: "3 hours", value: 180},
+      {label: "15 minutes", value: 16},
+      {label: "30 minutes", value: 31},
+      {label: "45 minutes", value: 46},
+      {label: "1 hour", value: 61},
+      {label: "90 minutes", value: 91},
+      {label: "2 hours", value: 121},
+      {label: "3 hours", value: 181},
 
     ]
 
@@ -65,7 +65,7 @@ function SearchForm() {
   // const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery();
 
   const fetchData = async () => {
-    const response = await fetch(`http://localhost:8000/bga/money_maker?min_players=${minimum}&max_players=${maximum}&min_age=${minAge}&max_playtime=${playtime}`);
+    const response = await fetch(`http://localhost:8000/bga/money_maker?gt_min_players=${minimum}&lt_max_players=${maximum}&gt_min_age=${minAge}&lt_max_playtime=${playtime}`);
     const data = await response.json();
     setSearched(data);
     console.log(data)
@@ -183,6 +183,7 @@ function SearchForm() {
                         <img src={game.image_url} className="random-img" alt="..." />
                         <div className="card-body">
                          <h3 className="card-title"> {game.name} </h3>
+                         <h5 className="card-body"> {game.description_preview} </h5>
                       </div>
                   </div>))}
             </div>

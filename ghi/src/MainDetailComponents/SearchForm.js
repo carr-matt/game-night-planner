@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './compy.css';
 import { useGetGamesQuery } from '../app/api';
 import { useGetMechanicQuery } from '../app/mechanics'
@@ -13,7 +13,6 @@ import { useGetCategoryQuery } from '../app/category'
 function SearchForm() {
 
 
-    const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery();
     const {data: mechanicData , isLoading: isMechanicLoading } = useGetMechanicQuery();
     const {data: categroyData , isLoading: isCategoryLoading } = useGetCategoryQuery();
 
@@ -65,7 +64,6 @@ function SearchForm() {
     const [category, setCategory] = useState("Category");
     const [mechanic, setMechanic] = useState("Mechanic");
 
-
     const handleMinimumChange = (event) => {
   setMinimum(event.target.value)
 }
@@ -85,7 +83,23 @@ function SearchForm() {
     setMechanic(event.target.value);
   }
 
-   if (isGameLoading) {
+
+  const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery({
+    min_players: minimum,
+    max_players: maximum,
+    play_time: playtime,
+    min_age: minAge,
+    mechanics: mechanic,
+    category: category
+  });
+
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+
+    // Do something with the gameData here...
+  }, [gameData, minimum, maximum, playtime, minAge, mechanic, category]);
+
+  if (isGameLoading) {
     return null}
 
   if (isMechanicLoading) {
@@ -94,8 +108,7 @@ function SearchForm() {
   if (isCategoryLoading) {
     return null}
 
-    console.log(minAge, minimum, maximum, playtime, mechanic, category)
-
+  console.log(minAge, minimum, maximum, playtime, mechanic, category)
 
     return (
 
@@ -103,7 +116,7 @@ function SearchForm() {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1 className="header-title">Search Form</h1>
-          <form id="search-form">
+          <form id="search-form" onSubmit={handleSubmit}>
             <div className="mb-3">
               <input type="number" className="form-input" placeholder="Minimum Age" value={minAge}
                      onChange={(event) => setMinAge(event.target.value)} />
@@ -149,7 +162,7 @@ function SearchForm() {
 
                     </select>
                   </div>
-                  <button className="btn btn-secondary">Search</button>
+                  <button type="submit" className="form-button">Search</button>
                 </form>
               </div>
             </div>

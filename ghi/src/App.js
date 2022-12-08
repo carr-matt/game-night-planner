@@ -9,9 +9,7 @@ import Nav from './Nav';
 import MainPage from './MainDetailComponents/MainPage';
 import SearchForm from './MainDetailComponents/SearchForm';
 import DetailPage from './MainDetailComponents/DetailPage';
-import { Container } from 'react-bootstrap/Container';
-import Form from "react-bootstrap/Form"
-
+import Footer from "./Footer/Footer";
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);
@@ -53,6 +51,7 @@ function App() {
         <Route path="/signup/" element={<Signup />} />
         <Route path="/detail/" element={<DetailPage />} />
       </Routes>
+      <Footer />
     </div>
     </BrowserRouter>
   );

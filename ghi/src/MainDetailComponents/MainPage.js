@@ -10,12 +10,12 @@ function MainPage() {
 
 
 
-  const { data, isLoading } = useGetRandomQuery();
-   console.log(data)
+  const { data: randomData, isLoading: randomIsLoading} = useGetRandomQuery();
+  //  console.log(data)
 
 
 
-   if (isLoading) {
+   if (randomIsLoading) {
     return null}
 
   const openInNewTab = url => {
@@ -38,7 +38,7 @@ function MainPage() {
               </div>
                 <div className="image-card">
 
-                    {data.games?.map(randomGame => (
+                    {randomData.games?.map(randomGame => (
                       <div key={randomGame.id}>
 
                         <img src={randomGame.image_url} onClick={() => openInNewTab('http://localhost:3000/detail')} className="random-img" alt="..." />

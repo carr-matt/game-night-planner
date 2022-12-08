@@ -6,6 +6,7 @@ export const createSlice = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
+      console.log({ tokenData } )
       if (tokenData && tokenData.access_token) {
         headers.set(
           "Authorization",

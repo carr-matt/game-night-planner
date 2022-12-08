@@ -14,8 +14,8 @@ export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     [authApiSlice.reducerPath]: authApiSlice.reducer,
-    [accountSlice.name]: accountSlice.reducer,
-    [createSlice.name]: createSlice.reducer,
+    [accountSlice.reducerPath]: accountSlice.reducer,
+    [createSlice.reducerPath]: createSlice.reducer,
     [gameSlice.reducerPath]: gameSlice.reducer,
     [randomSlice.reducerPath]: randomSlice.reducer,
     [detailApi.reducerPath]: detailApi.reducer,

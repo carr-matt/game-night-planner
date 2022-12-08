@@ -31,6 +31,7 @@ async def add_owned(
         authenticator.try_get_current_account_data
     ),
 ):
+    print(account_data, "***")
     try:
         repo.add_to_owned(owned, account_data["username"])
     except DuplicateOwnedError:

@@ -19,6 +19,7 @@ function Login() {
   const dispatch = useDispatch();
   const { username, password } = useSelector((state) => state.account);
   const [logIn, { error, isLoading: logInLoading, isSuccess: loginSuccessful }] = useLogInMutation();
+  const [signUp, { isLoading: signUpLoading }] = useSignUpMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
@@ -36,56 +37,69 @@ useEffect(() => {
   handleLogin();
 }, [loginSuccessful]);
 
-
-  return (
-        <div className="box content" style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "80vh"
-        }}>
-          <h3>Log In</h3>
+  if (authMode === "signin") {
+    return (
+      <div className="Auth-form-container">
+        <form className="Auth-form">
+          <div className="Auth-form-content">
+            <h3 className="Auth-form-title">Sign In</h3>
           { error ? <Alert variant="danger">{error.data.detail}</Alert> : null }
       <form method="POST" onSubmit={ async (e) => {
-        e.preventDefault(); await logIn(e.target); handleLogin();}}>
-            <div className="field">
-              <label className="label" htmlFor="email">Email</label>
-              <div className="control">
-                <input required onChange={field} value={username} name="username" className="input" type="username" placeholder="example@example.com" />
-              </div>
+        e.preventDefault(); await logIn(e.target); handleLogin();}}/>
+            <div className="text-center">
+              Not registered yet?{" "}
+              <span className="link-primary" onClick={changeAuthMode}>
+                Register
+              </span>
             </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input required onChange={field} value={password} name="password" className="input" type="password" placeholder="password" />
-              </div>
+            <div className="form-group mt-3">
+              <label className='label' htmlFor='email'>Email address</label>
+              <input
+                required onChange={field}
+                value={username}
+                name="username"
+                type="username"
+                className="form-control mt-1 input"
+                placeholder="example@example.com"
+              />
             </div>
-            <div className="field is-grouped">
-              <div className="control">
-                <button disabled={logInLoading} className="button is-primary">Submit</button>
-              </div>
-              <div className="control">
-                <button
-                  type="button"
-                  onClick={() => dispatch((null))}
-                  className="button">Cancel</button>
-              </div>
+            <div className="form-group mt-3">
+              <label className='label'>Password</label>
+              <input
+                required onChange={field}
+                value={password}
+                name="password"
+                type="password"
+                className="form-control mt-1 input"
+                placeholder="Enter password"
+              />
             </div>
-          </form>
-        </div>
-      </form>
-    </div>
-  );
-}
+            <div className="d-grid gap-2 mt-3">
+              <button disabled={logInLoading} type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+            <p className="text-center mt-2">
+              Forgot your password? Too bad. {'>'}:)
+            </p>
+          </div>
+        </form>
+      </div>
+    )
+  }
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form" method='POST' onSubmit={ (e) => {e.preventDefault()
-      signUp({ username, password,})
-      navigate("/")}}>
+      <form className="Auth-form">
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Register</h3>
-            { error ? <Notification type="danger"> {error.data.detail} </Notification> : null }
+          { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
+          <form method="POST"
+        onSubmit={ (e) => {e.preventDefault()
+          signUp({ username, password, })
+          navigate("/login")
+        }}
+></form>
           <div className="text-center">
             Already registered?{" "}
             <span className="link-primary" onClick={changeAuthMode}>
@@ -95,19 +109,23 @@ useEffect(() => {
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
-              required onChange={field} value={username} name="username"
-              type="email"
-              className="form-control mt-1 input"
-              placeholder="Email Address"
+                required onChange={field}
+                value={username}
+                name="username"
+                type="username"
+                className="form-control mt-1 input"
+                placeholder="example@example.com"
             />
           </div>
           <div className="form-group mt-3">
             <label>Password</label>
             <input
-              required onChange={field} value={password} name="password"
-              type="password"
-              className="form-control mt-1 input"
-              placeholder="Password"
+                required onChange={field}
+                value={password}
+                name="password"
+                type="password"
+                className="form-control mt-1 input"
+                placeholder="Enter password"
             />
           </div>
           <div className="d-grid gap-2 mt-3">
@@ -116,14 +134,13 @@ useEffect(() => {
             </button>
           </div>
           <p className="text-center mt-2">
-            Remember your password. Or else.
+            Remember you password, or else.
           </p>
         </div>
       </form>
     </div>
   )
 }
-
 
 
 //         <div className="box content" style={{
@@ -166,6 +183,4 @@ useEffect(() => {
 //             </div>
 //           </form>
 //         </div>
-
-
 export default Login;

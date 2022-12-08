@@ -32,7 +32,7 @@ async def add_owned(
     ),
 ):
     try:
-        repo.add_to_owned(owned, account_data["email"])
+        repo.add_to_owned(owned, account_data["username"])
     except DuplicateOwnedError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -58,4 +58,4 @@ async def get_owned(
         authenticator.try_get_current_account_data
     ),
 ):
-    return repo.get_user_owned(account_data["email"])
+    return repo.get_user_owned(account_data["username"])

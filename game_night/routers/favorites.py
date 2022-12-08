@@ -32,7 +32,7 @@ async def add_favorite(
     ),
 ):
     try:
-        repo.add_to_favorite(favorite, account_data["email"])
+        repo.add_to_favorite(favorite, account_data["username"])
     except DuplicateFavoriteError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -58,4 +58,4 @@ async def get_favorites(
         authenticator.try_get_current_account_data
     ),
 ):
-    return repo.get_user_favorites(account_data["email"])
+    return repo.get_user_favorites(account_data["username"])

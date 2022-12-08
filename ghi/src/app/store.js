@@ -7,6 +7,8 @@ import { gameSlice } from './gameApi';
 import { randomSlice } from './randomApi';
 import { detailSlice } from './detailApi';
 import { carouselSlice } from './carouselApi';
+import { mechanicSlice } from './mechanics';
+import { categorySlice, useGetCategoryQuery } from './category';
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +19,8 @@ export const store = configureStore({
     [randomSlice.reducerPath]: randomSlice.reducer,
     [detailSlice.reducerPath]: detailSlice.reducer,
     [carouselSlice.reducerPath]: carouselSlice.reducer,
+    [mechanicSlice.reducerPath]: mechanicSlice.reducer,
+    [categorySlice.reducerPath]: categorySlice.reducer,
   },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware()
@@ -25,7 +29,9 @@ export const store = configureStore({
       .concat(gameSlice.middleware)
       .concat(randomSlice.middleware)
       .concat(detailSlice.middleware)
-      .concat(carouselSlice.middleware);
+      .concat(carouselSlice.middleware)
+      .concat(mechanicSlice.middleware)
+      .concat(categorySlice.middleware);
   },
 });
 

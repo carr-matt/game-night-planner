@@ -5,7 +5,7 @@ from routers.auth import authenticator
 
 client = TestClient(app)
 
-mockAccount = {"email": "email"}
+mockAccount = {"username": "username"}
 
 mockFavorite = {
     "bgaID": "string",

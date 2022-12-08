@@ -40,3 +40,17 @@ Got the useNavigate to work on login and signup. started on mainpage random comp
 12/2/2022
 
 got random games to finally show up on main page.
+
+12/5/2022
+
+got the bones of the dropdowns for the search form ready and working on connecting to backend endpoints.
+
+12/6/2022
+
+got all the dropdowns to populate and all but the mechanics and categories to store the clicked options.
+
+12/7/2022
+
+got login and sign up functional again and made it so that login actually validates the token and only lets you login if you
+have proper credentials stored in the backend. had to fiddle a lot with use effect and making functions async so that the error
+message stopped popping up before the user even tried to login.

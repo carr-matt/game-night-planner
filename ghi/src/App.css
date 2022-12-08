@@ -4,11 +4,11 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 72px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -26,10 +26,10 @@
     text-decoration: none;
     color: antiquewhite;
     font-family: "Merienda";
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
-    margin: 20px;
-    align-items: "center";
+    margin: 5px;
+    /* align-items: stretch; */
   }
 
   .bg-success{
@@ -40,35 +40,72 @@
   }
 
   #navbar{
-    background-color: #282828!important;
-    border: solid 2px #282828;
-    padding-left:500px;
-    padding-right:400px;
+    background-color: #171717!important;
+    border: solid 2px #000000;
+    padding-left:50px;
+    padding-right:40px;
+    box-shadow: 0.2px, 0.2px, 0.2px;
   }
   .avatar {
     /* Rounded border */
-    border-radius: 50%;
+    border-radius: 55%;
 
     /* Center the content */
-    align-items: "center";
-    display: "flex";
-    justify-content: "center";
+    align-items: left;
+    display: right;
+    justify-content: left;
+
 
     /* Size */
     height: 4rem;
     width: 4rem;
+}
 
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: whitesmoke;
+}
 
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
 
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color:antiquewhite;
+  font-weight: 800;
+}
 
+.centered-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-
-
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: antiquewhite;
 }
 
 
 
 
+
+
+
+.logo{
+  font-size: 20px;
+  font-weight: 600;
+}
 
 
 

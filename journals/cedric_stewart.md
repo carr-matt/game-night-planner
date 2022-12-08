@@ -25,3 +25,13 @@ Worked on unit tests.]
 
 ## 12/1/22
 Wifi was down :c
+
+## 12/6/22
+Worked on styling of the login.signup page.
+and worked on visibility of text.
+
+## 12/7/22
+Fused the login/Signup Page into one login page.
+
+## 12/8/22
+Added Login and Sign up to the navbar. Everything broke and took an hour to fix just for the fix to be restarting my pc.

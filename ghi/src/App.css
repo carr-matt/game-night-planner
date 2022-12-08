@@ -79,14 +79,21 @@
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
-  color: rgb(34, 34, 34);
+  color:antiquewhite;
   font-weight: 800;
+}
+
+.centered-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 label {
   font-size: 14px;
   font-weight: 600;
-  color: rgb(34, 34, 34);
+  color: antiquewhite;
 }
 
 

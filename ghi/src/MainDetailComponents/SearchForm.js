@@ -87,10 +87,10 @@ function SearchForm() {
   const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery({
     min_players: minimum,
     max_players: maximum,
-    play_time: playtime,
+    max_playtime: playtime,
     min_age: minAge,
     mechanics: mechanic,
-    category: category
+    categories: category
   });
 
   const handleSubmit = useCallback((event) => {

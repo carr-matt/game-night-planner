@@ -51,7 +51,7 @@ function App() {
         <Route path="/signup/" element={<Signup />} />
         <Route path="/detail/" element={<DetailPage />} />
       </Routes>
-      <Footer />  
+      <Footer />
     </div>
     </BrowserRouter>
   );

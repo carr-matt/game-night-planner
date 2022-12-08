@@ -42,7 +42,7 @@ function MainPage() {
       <div>
         <Container className="random-game-container">
             <div className="col">
-              <div className="card">
+              <div className="card bg-dark">
                 <div className="card-header">
                   <h2>Click here to Generate a Random Game</h2>
                 </div>
@@ -66,6 +66,7 @@ function MainPage() {
       </div>
       <div>
         <Container className="popular-game-carousel">
+          <div className='card bg-dark'>
           <Carousel style={{width: "100%"}}>
             {carouselData.games?.map(popularGames => (
               <Carousel.Item key={popularGames.id}>
@@ -86,6 +87,7 @@ function MainPage() {
             )
           )};
           </Carousel>
+          </div>
         </Container>
       </div>
       </div>

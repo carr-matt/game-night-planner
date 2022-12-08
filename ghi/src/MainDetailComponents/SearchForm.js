@@ -16,10 +16,6 @@ function SearchForm() {
     const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery();
     const {data: mechanicData , isLoading: isMechanicLoading } = useGetMechanicQuery();
     const {data: categroyData , isLoading: isCategoryLoading } = useGetCategoryQuery();
-    console.log(gameData, mechanicData, categroyData)
-
-
-    const [minAge, setMinAge] = useState("");
 
     let min_players = [
       {label: "1", value: "1"},
@@ -62,20 +58,32 @@ function SearchForm() {
 
     ]
 
-    let [minimum, setMinimum] = useState("Minumum Players")
-    let [maximum, setMaximum] = useState("Maximum Players")
-    let [playtime, setPlayTime] = useState("Play Time")
+    const [minAge, setMinAge] = useState("");
+    const [minimum, setMinimum] = useState("Minumum Players")
+    const [maximum, setMaximum] = useState("Maximum Players")
+    const [playtime, setPlayTime] = useState("Play Time")
+    const [category, setCategory] = useState("Category");
+    const [mechanic, setMechanic] = useState("Mechanic");
 
-    let handleMinimumChange = (e) => {
-  setMinimum(e.target.value)
+
+    const handleMinimumChange = (event) => {
+  setMinimum(event.target.value)
 }
-    let handleMaximumChange = (e) => {
-  setMaximum(e.target.value)
+    const handleMaximumChange = (event) => {
+  setMaximum(event.target.value)
 }
 
-    let handlePlayTimeChange = (e) => {
-  setPlayTime(e.target.value)
+    const handlePlayTimeChange = (event) => {
+  setPlayTime(event.target.value)
 }
+
+      const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  }
+
+      const handleMechanicChange = (event) => {
+    setMechanic(event.target.value);
+  }
 
    if (isGameLoading) {
     return null}
@@ -86,54 +94,55 @@ function SearchForm() {
   if (isCategoryLoading) {
     return null}
 
+    console.log(minAge, minimum, maximum, playtime, mechanic, category)
 
 
     return (
 
-              <div className="row" >
-            <div className="offset-3 col-6">
-              <div className="shadow p-4 mt-4">
-                <h1 className="header-title">Search Form</h1>
-                <form id="search-form">
-                 <div className="mb-3">
-                    <input type="number" className="form-text" placeholder="Minimum Age" value={minAge}
-                    onChange={(event) => setMinAge(event.target.value)} />
+               <div className="row">
+      <div className="offset-3 col-6">
+        <div className="shadow p-4 mt-4">
+          <h1 className="header-title">Search Form</h1>
+          <form id="search-form">
+            <div className="mb-3">
+              <input type="number" className="form-input" placeholder="Minimum Age" value={minAge}
+                     onChange={(event) => setMinAge(event.target.value)} />
+            </div>
+            <div className="mb-3">
+              <select onChange={handleMinimumChange} className="form-select">
+                <option value="Minumum Players">Minimum Number of Players</option>
+                {min_players.map((minimum) => <option key={minimum.label} value={minimum.value}>{minimum.label}</option>)}
+              </select>
+            </div>
+            <div className="mb-3">
+              <select onChange={handleMaximumChange} className="form-select">
+                <option value="Maximum Players">Maximum Number of Players</option>
+                {max_players.map((maximum) => <option key={maximum.label} value={maximum.value}>{maximum.label}</option>)}
+              </select>
+            </div>
+            <div className="mb-3">
+              <select onChange={handlePlayTimeChange} className="form-select">
+                <option value="Play Time">Play Time</option>
+                {play_time.map((playtime) => <option key={playtime.label} value={playtime.value}>{playtime.label}</option>)}
+              </select>
                   </div>
                  <div className="mb-3">
-                    <select onChange={handleMinimumChange} className="form-select">
-                      <option value="Minumum Players">Minimum Number of Players</option>
-                      {min_players.map((minimum) => <option key={minimum.label} value={minimum.value}>{minimum.label}</option>)}
-                    </select>
-                  </div>
-                 <div className="mb-3">
-                    <select onChange={handleMaximumChange} className="form-select">
-                      <option value="Maximum Players">Maximum Number of Players</option>
-                      {max_players.map((maximum) => <option key={maximum.label} value={maximum.value}>{maximum.label}</option>)}
-                    </select>
-                  </div>
-                 <div className="mb-3">
-                    <select onChange={handlePlayTimeChange} className="form-select">
-                      <option value="Play Time">Play Time</option>
-                      {play_time.map((playtime) => <option key={playtime.label} value={playtime.value}>{playtime.label}</option>)}
-                    </select>
-                  </div>
-                 <div className="mb-3">
-                    <select required name="mechanics" type="text" className="form-select">
+                    <select onChange={handleMechanicChange} required name="mechanics" type="text" className="form-select">
                       <option value="">Mechanics</option>
                       {mechanicData.mechanics?.map(mechanic => {
                         return (
-                            <option key={`${mechanic.id}, ${mechanic.name}`} value={mechanic.id}>{mechanic.name}
+                            <option key={`${mechanic.id}`} value={mechanic.name}>{mechanic.name}
                             </option>
                         )
                       })}
                     </select>
                   </div>
                   <div className="mb-3">
-                    <select required name="category" type="text" className="form-select">
+                    <select onChange={handleCategoryChange} required name="category" type="text" className="form-select">
                       <option value="">Category</option>
                         {categroyData.categories?.map(category => {
                         return (
-                            <option key={`${category.id}, ${category.name}`} value={category.id}>{category.name}
+                            <option key={`${category.id}`} value={category.name}>{category.name}
                             </option>
                         )
                       })}

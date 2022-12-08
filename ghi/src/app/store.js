@@ -5,7 +5,8 @@ import { authApiSlice } from './authApi';
 import { accountSlice } from './accountSlice';
 import { gameSlice } from './gameApi';
 import { randomSlice } from './randomApi';
-import { detailSlice } from './detailApi';
+import { createSlice } from './createSlice';
+import { detailApi } from './detailApi';
 import { mechanicSlice } from './mechanics';
 import { categorySlice, useGetCategoryQuery } from './category';
 
@@ -14,9 +15,10 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
     [authApiSlice.reducerPath]: authApiSlice.reducer,
     [accountSlice.name]: accountSlice.reducer,
+    [createSlice.name]: createSlice.reducer,
     [gameSlice.reducerPath]: gameSlice.reducer,
     [randomSlice.reducerPath]: randomSlice.reducer,
-    [detailSlice.reducerPath]: detailSlice.reducer,
+    [detailApi.reducerPath]: detailApi.reducer,
     [mechanicSlice.reducerPath]: mechanicSlice.reducer,
     [categorySlice.reducerPath]: categorySlice.reducer,
   },
@@ -26,8 +28,9 @@ export const store = configureStore({
       .concat(authApiSlice.middleware)
       .concat(gameSlice.middleware)
       .concat(randomSlice.middleware)
-      .concat(detailSlice.middleware)
+      .concat(detailApi.middleware)
       .concat(mechanicSlice.middleware)
+      .concat(createSlice.middleware)
       .concat(categorySlice.middleware);
   },
 });

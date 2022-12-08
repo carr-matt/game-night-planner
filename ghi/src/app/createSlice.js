@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
-export const detailApi = createApi({
+export const createSlice = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
@@ -14,21 +14,36 @@ export const detailApi = createApi({
       }
       return headers;
     },
-    reducerPath: "myDetailGames",
+    reducerPath: "postGames",
     baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_game_night_API_HOST,
   }),
-  tagTypes: ["GameList"],
+  tagTypes: ["Post"],
   endpoints: (builder) => ({
     // Get all the methods from preferences //
-    getDetail: builder.query({
-      query: () => ({
-        url: "/bga/game_detail/",
-        credentials: "include",
+    getPosts: builder.query({
+        query: () => '/owned',
+        providesTags: ['Post'],
       }),
-      providesTags: ["GameList"],
+      addNewPost: builder.mutation({
+      
+      query: (idName) => ({
+        url: '/owned',
+        method: 'POST',
+        body: idName,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }),
+      invalidatesTags: ['Post'],
     }),
-    })
-});
+    
+  }),
+})
 
-export const { useGetDetailQuery } = detailApi
+
+export const { useGetPostsQuery, useAddNewPostMutation } = createSlice
+      
+// console.log(payload)
+    // "bgaID": bgaID, 
+//JSON.stringify({ "name": name }),

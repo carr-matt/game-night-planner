@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { accountSlice } from "./accountSlice";
 
 
+
 export const detailApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const selector = accountSlice.endpoints.getToken.select();
@@ -22,8 +23,12 @@ export const detailApi = createApi({
   endpoints: (builder) => ({
     // Get all the methods from preferences //
     getDetail: builder.query({
-      query: () => ({
-        url: "/bga/game_detail/",
+
+      // query: (ids) => ({
+      //   url: "/bga/game_detail/",
+
+      query: (bgaID) => ({
+        url: `/bga/game_detail?ids=${bgaID}`,
         credentials: "include",
       }),
       providesTags: ["GameList"],
@@ -31,4 +36,4 @@ export const detailApi = createApi({
     })
 });
 
-export const { useGetDetailQuery } = detailApi
+export const {useGetDetailQuery} = detailApi

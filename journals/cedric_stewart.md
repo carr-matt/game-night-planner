@@ -35,3 +35,6 @@ Fused the login/Signup Page into one login page.
 
 ## 12/8/22
 Added Login and Sign up to the navbar. Everything broke and took an hour to fix just for the fix to be restarting my pc.
+
+## 12/9/22
+Finished the nav bar dropdown.

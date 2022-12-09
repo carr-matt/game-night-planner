@@ -58,3 +58,7 @@ message stopped popping up before the user even tried to login.
 12/8/2022
 
 now the search form works and brings back results with pictures and descriptions. want to add the category filter back, will work on that tomorrow. but basic functionality is complete.
+
+12/9/2022
+
+fixed some stuff on the search form. researched and made plans for a logout feature. researched to add back the category filter. worked with joe and matt on making the links to the detail page dynamic. walked through the project with riley.

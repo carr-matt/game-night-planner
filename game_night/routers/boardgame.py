@@ -76,7 +76,7 @@ def get_game_categories():
 async def name_search(name: str, bga_api: BgaApi = Depends()):
     params = {
         "name": name,
-        "limit": 10,
+        # "limit": 10,
         "pretty": "true",
         "fuzzy_match": "true",
         "order_by": "rank",
@@ -148,25 +148,25 @@ def game_categories():
 
 @router.get("/bga/money_maker")
 async def money_maker(
-    min_players: int | None = None,
-    max_players: int | None = None,
-    min_age: int | None = None,
-    max_playtime: int | None = None,
-    mechanics: str | None = None,
-    categories: str | None = None,
+    gt_min_players: int | None = None,
+    lt_max_players: int | None = None,
+    gt_min_age: int | None = None,
+    lt_max_playtime: int | None = None,
+    # mechanics: str | None = None,
+    # categories: str | None = None,
     bga_api: BgaApi = Depends(),
 ):
     params = {
-        "min_players": min_players,
-        "max_players": max_players,
-        "min_age": min_age,
-        "max_playtime": max_playtime,
+        "gt_min_players": gt_min_players,
+        "lt_max_players": lt_max_players,
+        "gt_min_age": gt_min_age,
+        "lt_max_playtime": lt_max_playtime,
         "limit": 10,
         "pretty": "true",
-        "mechanics": mechanics,
-        "categories": categories,
+        # "mechanics": mechanics,
+        # "categories": categories,
         "order_by": "rank",
-        "fields": "name,id,url,min_players,max_players,min_age,min_playtime,max_playtime,image_url,description",
+        "fields": "name,id,url,min_players,max_players,min_age,min_playtime,max_playtime,image_url,description,description_preview",
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)

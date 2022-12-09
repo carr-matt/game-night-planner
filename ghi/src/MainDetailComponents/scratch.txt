@@ -1,0 +1,178 @@
+import React, {useState, useCallback} from 'react';
+import './compy.css';
+import { useGetGamesQuery } from '../app/api';
+import { useGetMechanicQuery } from '../app/mechanics'
+import { useGetCategoryQuery } from '../app/category'
+
+
+
+function SearchForm() {
+
+
+    const {data: mechanicData , isLoading: isMechanicLoading } = useGetMechanicQuery();
+    const {data: categoryData , isLoading: isCategoryLoading } = useGetCategoryQuery();
+
+    let min_players = []
+      for (let i = 1; i <= 10; i++) {
+        min_players.push({label: Number(i), value: Number(i)})
+      }
+
+    let max_players = []
+      for (let i = 4; i <= 15; i++) {
+        max_players.push({label: Number(i), value: Number(i)})
+      }
+
+    let play_time = [
+      {label: "15 minutes", value: 15},
+      {label: "30 minutes", value: 30},
+      {label: "45 minutes", value: 45},
+      {label: "1 hour", value: 60},
+      {label: "90 minutes", value: 90},
+      {label: "2 hours", value: 120},
+      {label: "3 hours", value: 180},
+
+    ]
+
+    const [minAge, setMinAge] = useState(null);
+    const [minimum, setMinimum] = useState(null)
+    const [maximum, setMaximum] = useState(null)
+    const [playtime, setPlayTime] = useState(null)
+    const [category, setCategory] = useState(null);
+    const [mechanic, setMechanic] = useState(null);
+    const [searched, setSearched] = useState(false)
+
+    const handleMinimumChange = (event) => {
+  setMinimum(event.target.value)
+}
+    const handleMaximumChange = (event) => {
+  setMaximum(event.target.value)
+}
+
+    const handlePlayTimeChange = (event) => {
+  setPlayTime(event.target.value)
+}
+
+      const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  }
+
+      const handleMechanicChange = (event) => {
+    setMechanic(event.target.value);
+  }
+
+
+
+  const { data: gameData , isLoading: isGameLoading } = useGetGamesQuery();
+
+  function renderGameData(gameData) {
+  if (!searched) {
+    return (
+      <div>
+        No game data to display
+      </div>
+    );
+  } else {
+
+  return (
+    <div className="results-container">
+        {gameData.games?.map((game) => {
+          if ((minimum === null || game.min_players >= minimum) &&
+          (maximum === null || game.max_players <= maximum) &&
+          (playtime === null || game.max_playtime <= playtime) &&
+          (minAge === null || game.min_age >= minAge) &&
+          (mechanic === null || game.mechanics === mechanic) &&
+          (category === null || game.categories === category)) {
+            return (
+              <div key={game.id}>
+                <h2>{game.name}</h2>
+                <p>{game.description}</p>
+                <img src={game.img_url} />
+              </div>
+            );
+          }
+        })}
+      </div>
+  );}
+}
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearched(true)
+    console.log(event)
+    console.log(gameData)
+    renderGameData(gameData)
+  }
+
+
+  if (isGameLoading) {
+    return null}
+
+  if (isMechanicLoading) {
+    return null}
+
+  if (isCategoryLoading) {
+    return null}
+
+  console.log(minAge, minimum, maximum, playtime, mechanic, category)
+
+    return (
+
+      <div className="row">
+      <div className="offset-3 col-6">
+        <div className="shadow p-4 mt-4">
+          <h1 className="header-title">Search Form</h1>
+          <form id="search-form" onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <input type="number" className="form-input" placeholder="Minimum Age" value={minAge}
+                     onChange={(event) => setMinAge(event.target.value)} />
+            </div>
+            <div className="mb-3">
+              <select onChange={handleMinimumChange} className="form-select" defaultValue="Minimum Players">
+                <option value="Minumum Players">Minimum Number of Players</option>
+                {min_players.map((minimum) => <option key={minimum.label} value={minimum.value}>{minimum.label}</option>)}
+              </select>
+            </div>
+            <div className="mb-3">
+              <select onChange={handleMaximumChange} className="form-select" defaultValue="Maximum Players">
+                <option value="Maximum Players">Maximum Number of Players</option>
+                {max_players.map((maximum) => <option key={maximum.label} value={maximum.value}>{maximum.label}</option>)}
+              </select>
+            </div>
+            <div className="mb-3">
+              <select onChange={handlePlayTimeChange} className="form-select" defaultValue="Play Time">
+                <option value="Play Time">Play Time</option>
+                {play_time.map((playtime) => <option key={playtime.label} value={playtime.value}>{playtime.label}</option>)}
+              </select>
+                  </div>
+                 <div className="mb-3">
+                    <select onChange={handleMechanicChange} required name="mechanics" type="text" className="form-select" defaultValue="Mechanics">
+                      <option value="">Mechanics</option>
+                      {mechanicData.mechanics?.map(mechanic => {
+                        return (
+                            <option key={`${mechanic.id}`} value={mechanic.name}>{mechanic.name}
+                            </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+                  <div className="mb-3">
+                    <select onChange={handleCategoryChange} required name="category" type="text" className="form-select" defaultValue="Category">
+                      <option value="">Category</option>
+                        {categoryData.categories?.map(category => {
+                        return (
+                            <option key={`${category.id}`} value={category.name}>{category.name}
+                            </option>
+                        )
+                      })}
+
+                    </select>
+                  </div>
+                  <button type="submit" className="form-button" onClick={handleSubmit}>Search</button>
+                </form>
+              </div>
+              {renderGameData(gameData)}
+            </div>
+    </div>
+  );
+}
+
+export default SearchForm

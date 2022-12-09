@@ -1,0 +1,25 @@
+.row {
+    overflow-y: scroll;
+    max-height: 800px;
+    flex-direction: grid;
+    padding-left: 30px;
+    padding-top: 10px;
+  }
+
+
+.h5 {
+  color: antiquewhite;
+  text-align: center;
+}
+
+.search-form-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  grid-gap: 20px;
+}
+
+.card-img-top {
+  width: 200px;
+  height: 200px;
+}

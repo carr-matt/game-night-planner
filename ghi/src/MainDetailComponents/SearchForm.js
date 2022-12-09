@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import './compy.css';
+import './SearchForm.css';
 import { useGetGamesQuery } from '../app/api';
 import { useGetMechanicQuery } from '../app/mechanics'
 import { useGetCategoryQuery } from '../app/category'
@@ -56,6 +56,10 @@ function SearchForm() {
     console.log(data)
   };
 
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -65,19 +69,19 @@ function SearchForm() {
   }
 
 
-
   console.log(minAge, minimum, maximum, playtime)
 
     return (
 
       <div className="row">
       <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1 className="header-title">Search Form</h1>
+        <div className="shadow p-4 mt-4 bg-dark rounded">
+          <h1 className="header-title">Let's Pick A Game!</h1>
+          <h5>Input your criteria below so we can generate a new game for your perfect game night</h5>
           <form id="search-form" onSubmit={handleSubmit}>
             <div className="mb-3">
-              <input type="number" className="form-input" placeholder="Minimum Age" value={minAge}
-                     onChange={(event) => setMinAge(event.target.value)} />
+              <input type="number" className="form-input" placeholder="Minimum Age"
+                     onChange={(event) => setMinAge(event.target.value)} min={0}/>
             </div>
             <div className="mb-3">
               <select onChange={handleMinimumChange} className="form-select" defaultValue="Minimum Players">
@@ -100,14 +104,14 @@ function SearchForm() {
                   <button type="submit" className="form-button" onClick={handleSubmit}>Search</button>
                 </form>
               </div>
-              <div>
+              <div className='search-form-container'>
                     {searched.games?.map(game => (
                       <div key={game.id}>
+                        <div className="card-body bg-dark rounded">
+                        <img src={game.image_url} onClick={() => openInNewTab('http://localhost:3000/detail')} className="random-img" alt="..." />
 
-                        <img src={game.image_url} className="random-img" alt="..." />
-                        <div className="card-body">
                          <h3 className="card-title"> {game.name} </h3>
-                         <h5 className="card-body"> {game.description_preview} </h5>
+                         <h5> {game.description_preview.substring(0, game.description_preview.indexOf(".") +1)} </h5>
                       </div>
                   </div>))}
             </div>

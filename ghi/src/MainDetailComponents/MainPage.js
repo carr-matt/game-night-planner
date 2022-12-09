@@ -29,7 +29,13 @@ function MainPage() {
   const openInNewTab = url => {
     window.open(url, '_blank', 'noopener,noreferrer');
 
-  };
+  }
+
+  const refreshPage = () => {
+    window.location.reload();
+
+  }
+
 
 
   return (
@@ -37,14 +43,14 @@ function MainPage() {
     <div className="main-page">
       <Container className="banner px-4 mb-5 mt-5 text-center rounded">
         <h1>Game Night Planner</h1>
-        <h4>Never wonder what game you'll play next again!</h4>
+        <h5>Never wonder what game you'll play next again!</h5>
       </Container>
       <div>
         <Container className="random-game-container">
             <div className="col">
               <div className="card bg-dark">
                 <div className="card-header">
-                  <h2>Click here to Generate a Random Game</h2>
+                  <h2 onClick={refreshPage} to="/">Generate a Random Game</h2>
                 </div>
                   <div className="image-card">
                     {randomData.games?.map(randomGame => (

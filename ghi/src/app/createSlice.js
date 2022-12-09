@@ -7,10 +7,12 @@ export const createSlice = createApi({
       const selector = accountSlice.endpoints.getToken.select();
       const { data: tokenData } = selector(getState());
       if (tokenData && tokenData.access_token) {
+        console.log(tokenData)
         headers.set(
           "Authorization",
           `${tokenData.token_type} ${tokenData.access_token}`
         );
+        // console.log({tokenData})
       }
       return headers;
     },
@@ -27,16 +29,17 @@ export const createSlice = createApi({
       }),
       addNewPost: builder.mutation({
       
-      query: (idName) => ({
+      query: () => ({
         url: '/owned',
         method: 'POST',
-        body: idName,
+        body: {bgaID: "uFCQHtGeAS", name: "Cosmic Encounter"},
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
       }),
       invalidatesTags: ['Post'],
     }),
+
     
   }),
 })

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom'
 import { useGetDetailQuery } from '../app/detailApi';
 import { useParams } from "react-router-dom";
-import { useAddNewPostMutation } from "../app/createSlice"; 
+// import { useAddNewPostMutation } from "../app/createSlice"; 
 
 
 
@@ -13,42 +13,50 @@ function DetailPage() {
    const { data, isLoading } = useGetDetailQuery(bgaID)
   //  console.log(data)
   //  console.log(useParams)
-      console.log(bgaID)
-      console.log(data)
+      // console.log(bgaID)
+      // console.log(data)
 // const { data: postData } = api.endpoints.getPosts.useQuery()
 // const [updatePost, { data:updatePostData }] = api.endpoints.updatePost.useMutation()
-const [addNewGame, response] = useAddNewPostMutation()
+  // const [addNewPost, response] = useAddNewPostMutation()
 // const { data: updatePostData } = useAddNewPostMutation();
+  // console.log(addNewPost)
+ 
 
+    async function addOwned( bgaID, name) {
+    // const ownedUrl = "http:localhost:8000/owned" 
+    const fetchConfig = {
+        method: 'POST',
+        body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+        headers: {
+            Authorization: `csrftoken=PhrbCfLEBIpsqbH11dCo4MPfM2trZwBGQU5Y848njnRtyHjYXmPtKb6T5A0D0VUd; fastapi_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMThlODA1NC1kZmRlLTQwYTUtOGM0Yy0zMjljYjExYzJhZmQiLCJleHAiOjE2NzA1NTU1ODksInN1YiI6InVzZXJuYW1lIiwiYWNjb3VudCI6eyJpZCI6IjYzOTI1ODkyYjc2Mzg0YzNmMDlkZjM0ZSIsInVzZXJuYW1lIjoidXNlcm5hbWUifX0.N-eHUQJ62cv4BlP6n0508QvH88m21-1nE69NmLrG_A4`,
+            credentials: "include",
+            accept: "application/json",
+            "Content-Type": "application/json"
+        }
 
-
-
+    };
+     const test = await fetch("http://localhost:8000/owned", fetchConfig);
+     console.log(test)
+}
 
    if (isLoading) {
     return null
   }
-    //  const handleOwnedClick = (e) => {
-    //     addNewGame(bgaID.bgaId, bgaID.name)
-    //     }
-  
-      // const handleOwnedClick = e => {
-      // data.games( detailGame => {
-      //   map[detailGame.id, detailGame.name] = detailGame
-      // addNewGame(detailGame) }
+   
 
      const handleOwnedClick = e => {
       {data.games?.map( detailGame => {
-        const idName = {"bgaID": detailGame.id,  "name": detailGame.name}
-        addNewGame(idName) }) 
-         } } 
+        const ownedData = {"bgaID": detailGame.id,  "name": detailGame.name}
+        return addOwned(ownedData)
+        // console.log(idName)
+        }) }
+
+          } 
         //  detailGame.id,
       // e.preventDefault();
-      // console.log(detailGame)
-      console.log('The link was clicked.');
       
-            
-
-
+      // console.log('The link was clicked.');
+      
 
   return (
     <div>
@@ -107,25 +115,18 @@ const [addNewGame, response] = useAddNewPostMutation()
 export default DetailPage
 
 
+ //  const handleOwnedClick = (e) => {
+    //     addNewGame(bgaID.bgaId, bgaID.name)
+    //     }
+  
+      // const handleOwnedClick = e => {
+      // data.games( detailGame => {
+      //   map[detailGame.id, detailGame.name] = detailGame
+      // addNewGame(detailGame) }
 
 
 
 
-//     async function addOwned(token, bgaID, name) {
-//     const ownedUrl = "http:localhost:8000/owned" 
-//     const fetchConfig = {
-//         method: 'POST',
-//         body: JSON.stringify({ "bgaID": bgaID, "name": name }),
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//             credentials: "include",
-//             accept: "application/json",
-//             "Content-Type": "application/json"
-//         }
-
-//     };
-//     // await fetch(ownedUrl, fetchConfig);
-// }
 
 //   async function addFavorite(token, bgaID, name) {
 //       const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
@@ -144,7 +145,11 @@ export default DetailPage
 
 
 
-
+// addNewPost()
+//         .unwrap()
+//         .then((res) => console.log(res))
+//         .then((error) => {
+//           console.log(error)
 
 
 

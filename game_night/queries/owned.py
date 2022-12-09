@@ -65,6 +65,6 @@ class OwnedQueries(Queries):
         for doc in data:
             doc["id"] = str(doc["_id"])
             props.append(doc)
-        if not props:
-            print("Not a known username")
+        if len(props) == 0:
+            print("Not a known username or no owned games")
         return OwnedList(owned_list=props)

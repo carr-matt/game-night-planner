@@ -23,6 +23,7 @@ class DuplicateFavoriteError(ValueError):
 
 
 class FavoriteIn(BaseModel):
+    username: str
     bgaID: str
     name: str
 
@@ -42,11 +43,10 @@ class FavoritesQueries(Queries):
     DB_NAME = "game_night"
     COLLECTION = "favorites"
 
-    def add_to_favorite(self, favorite: FavoriteIn, username: str) -> bool:
+    def add_to_favorite(self, favorite: FavoriteIn) -> bool:
         props = favorite.dict()
-        props["username"] = username
         data = self.collection.find(
-            {"username": username, "bgaID": favorite.bgaID}
+            {"username": favorite.username, "bgaID": favorite.bgaID}
         )
         docs = []
         for doc in data:
@@ -65,6 +65,6 @@ class FavoritesQueries(Queries):
         for doc in data:
             doc["id"] = str(doc["_id"])
             props.append(doc)
-        if not props:
-            print("Not a known username")
+        if len(props) == 0:
+            print("Not a known username or no favorites for this user")
         return Favorites(favorites=props)

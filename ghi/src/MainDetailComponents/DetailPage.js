@@ -2,7 +2,25 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom'
 import { useGetDetailQuery } from '../app/detailApi';
 import { useParams } from "react-router-dom";
-// import { useAddNewPostMutation } from "../app/createSlice"; 
+// import { useAddNewPostMutation } from "../app/createSlice";
+
+
+// Alternative addFavorite function
+// async function addFavorite(token) {
+//     const favUrl = `http://localhost:8000/favorite`
+//     const fetchConfig = {
+//         method: 'POST',
+//         body: JSON.stringify({ "bgaID": "x998EzEoFt", "name": "Munchkin Zombies", "username": { token.username } }),
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//             credentials: "include",
+//             accept: "application/json",
+//             "Content-Type": "application/json"
+//         }
+
+//     };
+//     await fetch(favUrl, fetchConfig);
+// }
 
 
 
@@ -20,10 +38,10 @@ function DetailPage() {
   // const [addNewPost, response] = useAddNewPostMutation()
 // const { data: updatePostData } = useAddNewPostMutation();
   // console.log(addNewPost)
- 
+
 
     async function addOwned( bgaID, name) {
-    // const ownedUrl = "http:localhost:8000/owned" 
+    // const ownedUrl = "http:localhost:8000/owned"
     const fetchConfig = {
         method: 'POST',
         body: JSON.stringify({ "bgaID": bgaID, "name": name }),
@@ -42,7 +60,7 @@ function DetailPage() {
    if (isLoading) {
     return null
   }
-   
+
 
      const handleOwnedClick = e => {
       {data.games?.map( detailGame => {
@@ -51,12 +69,12 @@ function DetailPage() {
         // console.log(idName)
         }) }
 
-          } 
+          }
         //  detailGame.id,
       // e.preventDefault();
-      
+
       // console.log('The link was clicked.');
-      
+
 
   return (
     <div>
@@ -74,8 +92,17 @@ function DetailPage() {
                 ) }
 
                 <button onClick={handleOwnedClick}> Add to Owned List</button>
-                
+
               </div>
+                  <div className="button">
+                {token ? <><button
+                    onClick={() => {
+                        addFavorite(token);
+                    }} type='submit' className='button23 mx-3 my-2'>Add to Favorites</button>
+                    </> :
+                    <></>}
+
+            </div>
 
               <div className="card-body">
                 <table>
@@ -118,30 +145,12 @@ export default DetailPage
  //  const handleOwnedClick = (e) => {
     //     addNewGame(bgaID.bgaId, bgaID.name)
     //     }
-  
+
       // const handleOwnedClick = e => {
       // data.games( detailGame => {
       //   map[detailGame.id, detailGame.name] = detailGame
       // addNewGame(detailGame) }
 
-
-
-
-
-//   async function addFavorite(token, bgaID, name) {
-//       const favUrl = `${process.env.REACT_APP_API_HOST}/favorite`
-//       const fetchConfig = {
-//           method: 'POST',
-//           body: JSON.stringify({ "bgaID": bgaID, "name": name }),
-//           headers: {
-//               Authorization: `Bearer ${token}`,
-//               credentials: "include",
-//               accept: "application/json",
-//               "Content-Type": "application/json"
-//           }
-//       };
-//       // await fetch(favUrl, fetchConfig);
-//   }
 
 
 

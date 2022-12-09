@@ -7,3 +7,30 @@
 .popular-game-carousel {
   margin-top: 30px;
 }
+
+h2:hover {
+  cursor: pointer;
+}
+
+
+.Header{
+/* display: flex;
+justify-content: center; */
+color: #03f658e4;
+margin-top: 10px;
+margin-right: 30px;
+padding-left: 20px;
+font-size: x-large;
+/* position: relative;
+left: 40%; */
+
+}
+
+.app-container {
+    overflow-y: scroll;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-top: 10px;
+  }

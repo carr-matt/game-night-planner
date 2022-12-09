@@ -36,7 +36,7 @@ return (
       <form className="Auth-form bg-dark centered-form" method='POST' onSubmit={ async (e) => {
         e.preventDefault(); await logIn(e.target); handleLogin();}}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h3 className="Auth-form-title">Login</h3>
           { error ? <Alert variant="danger">{error.data.detail}</Alert> : null }
                     <div className="text-center">
             <a href="/SignUp">Need to Register?{" "}</a>

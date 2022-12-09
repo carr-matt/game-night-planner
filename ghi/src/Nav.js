@@ -1,17 +1,35 @@
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import logo from "./Images/dice-logo.ico";
 import gon from "./Images/gon.png";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import './nav.css';
+
 
 
 
 function Nav() {
+  const [isVibrating, setIsVibrating] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsVibrating(true);
+  }
+
+  const handleMouseLeave = () => {
+    setIsVibrating(false);
+  }
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
     {/* <nav className="navbar navbar-expand-lg navbar-dark bg-success" id="navbar"></nav> */}
       <div className="container-fluid">
-        <img src={logo} className="logo" />
+        <img src={logo}
+        className={`logo ${isVibrating ? 'vibrate' : ''}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      />
         <NavLink className="nav-item" to="/">Game Night Planner </NavLink>
         <NavLink className="nav-item" to="/MainPage/"> Let's Pick a Game! </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>

@@ -10,13 +10,14 @@ mockAccount = {"username": "username"}
 mockFavorite = {
     "bgaID": "string",
     "name": "string",
+    "username": "string",
 }
 
 mockFavoriteStatus = {"success": True}
 
 
 class mockFavoriteQuery:
-    def add_to_favorite(self, item1, item2):
+    def add_to_favorite(self, item1):
         pass
 
 

@@ -23,6 +23,7 @@ class DuplicateOwnedError(ValueError):
 
 
 class OwnedIn(BaseModel):
+    username: str
     bgaID: str
     name: str
 
@@ -42,11 +43,10 @@ class OwnedQueries(Queries):
     DB_NAME = "game_night"
     COLLECTION = "owned"
 
-    def add_to_owned(self, owned: OwnedIn, username: str) -> bool:
+    def add_to_owned(self, owned: OwnedIn) -> bool:
         props = owned.dict()
-        props["username"] = username
         data = self.collection.find(
-            {"username": username, "bgaID": owned.bgaID}
+            {"username": owned.username, "bgaID": owned.bgaID}
         )
         docs = []
         for doc in data:
@@ -65,6 +65,6 @@ class OwnedQueries(Queries):
         for doc in data:
             doc["id"] = str(doc["_id"])
             props.append(doc)
-        if not props:
-            print("Not a known username")
+        if len(props) == 0:
+            print("Not a known username or no owned games")
         return OwnedList(owned_list=props)

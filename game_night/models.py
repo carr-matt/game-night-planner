@@ -13,9 +13,14 @@ class PydanticObjectId(ObjectId):
         if value:
             try:
                 ObjectId(value)
-            except:
+            except ValueError:
                 raise ValueError(f"Not a valid object id: {value}")
         return value
+
+
+class SessionOut(BaseModel):
+    jti: str
+    account_id: str
 
 
 class AccountIn(BaseModel):

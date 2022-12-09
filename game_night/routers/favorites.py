@@ -2,9 +2,7 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    # Response,
     APIRouter,
-    # Request,
 )
 from queries.favorites import (
     FavoriteIn,
@@ -27,12 +25,9 @@ class FavoriteOut(BaseModel):
 async def add_favorite(
     favorite: FavoriteIn,
     repo: FavoritesQueries = Depends(),
-    account_data: Optional[dict] = Depends(
-        authenticator.try_get_current_account_data
-    ),
 ):
     try:
-        repo.add_to_favorite(favorite, account_data["username"])
+        repo.add_to_favorite(favorite)
     except DuplicateFavoriteError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

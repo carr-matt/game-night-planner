@@ -18,6 +18,11 @@ class PydanticObjectId(ObjectId):
         return value
 
 
+class SessionOut(BaseModel):
+    jti: str
+    account_id: str
+
+
 class AccountIn(BaseModel):
     username: constr(to_lower=True)
     password: str

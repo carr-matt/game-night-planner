@@ -10,13 +10,14 @@ mockAccount = {"username": "username"}
 mockOwned = {
     "bgaID": "string",
     "name": "string",
+    "username": "string",
 }
 
 mockOwnedStatus = {"success": True}
 
 
 class mockOwnedQuery:
-    def add_to_owned(self, item1, item2):
+    def add_to_owned(self, item1):
         pass
 
 

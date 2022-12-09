@@ -2,9 +2,7 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    # Response,
     APIRouter,
-    # Request,
 )
 from queries.owned import (
     OwnedIn,
@@ -27,12 +25,9 @@ class OwnedOut(BaseModel):
 async def add_owned(
     owned: OwnedIn,
     repo: OwnedQueries = Depends(),
-    account_data: Optional[dict] = Depends(
-        authenticator.try_get_current_account_data
-    ),
 ):
     try:
-        repo.add_to_owned(owned, account_data["username"])
+        repo.add_to_owned(owned)
     except DuplicateOwnedError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

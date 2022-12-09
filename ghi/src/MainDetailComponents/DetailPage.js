@@ -3,16 +3,19 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useGetDetailQuery } from '../app/detailApi';
 import { useParams } from "react-router-dom";
 // import { useAddNewPostMutation } from "../app/createSlice";
+import { useGetTokenQuery } from '../app/authApi'; 
+
+
 
 
 // Alternative addFavorite function
-// async function addFavorite(token) {
+// async function addFavorite(tokenData, DetailGame) {
 //     const favUrl = `http://localhost:8000/favorite`
 //     const fetchConfig = {
 //         method: 'POST',
-//         body: JSON.stringify({ "bgaID": "x998EzEoFt", "name": "Munchkin Zombies", "username": { token.username } }),
+//         body: JSON.stringify({"bgaID": "x998EzEoFt", "name": "Munchkin Zombies", "username": "username" }),
 //         headers: {
-//             Authorization: `Bearer ${token}`,
+//             Authorization: `Bearer ${tokenData}`,
 //             credentials: "include",
 //             accept: "application/json",
 //             "Content-Type": "application/json"
@@ -29,6 +32,8 @@ function DetailPage() {
 
    let { bgaID } = useParams();
    const { data, isLoading } = useGetDetailQuery(bgaID)
+   const { data: tokenData, isLoading: tokenLoading } = useGetTokenQuery();
+   console.log("OG token Data", {tokenData} )
   //  console.log(data)
   //  console.log(useParams)
       // console.log(bgaID)
@@ -40,13 +45,42 @@ function DetailPage() {
   // console.log(addNewPost)
 
 
-    async function addOwned( bgaID, name) {
-    // const ownedUrl = "http:localhost:8000/owned"
+  let detailGameData = e => {
+      {data.games?.map( detailGames => {
+        const nameData = [detailGames.name]
+        return nameData
+        } );  }
+
+          }
+
+    async function addFavorite(bgaID, detailGameData, username) {
+    console.log("tokenData username", {username})
+    console.log("Game Name", {detailGameData}) 
     const fetchConfig = {
         method: 'POST',
-        body: JSON.stringify({ "bgaID": bgaID, "name": name }),
+        body: JSON.stringify({ "bgaID": bgaID, "name": detailGameData, "username": username }),
         headers: {
-            Authorization: `csrftoken=PhrbCfLEBIpsqbH11dCo4MPfM2trZwBGQU5Y848njnRtyHjYXmPtKb6T5A0D0VUd; fastapi_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMThlODA1NC1kZmRlLTQwYTUtOGM0Yy0zMjljYjExYzJhZmQiLCJleHAiOjE2NzA1NTU1ODksInN1YiI6InVzZXJuYW1lIiwiYWNjb3VudCI6eyJpZCI6IjYzOTI1ODkyYjc2Mzg0YzNmMDlkZjM0ZSIsInVzZXJuYW1lIjoidXNlcm5hbWUifX0.N-eHUQJ62cv4BlP6n0508QvH88m21-1nE69NmLrG_A4`,
+            Authorization: `Bearer ${username}`,
+            credentials: "include",
+            accept: "application/json",
+            "Content-Type": "application/json"
+        }
+
+    };
+     const test = await fetch("http://localhost:8000/favorite", fetchConfig);
+     console.log(test)
+     let fetchConfigData = fetchConfig
+     console.log("***", {fetchConfigData} )
+} 
+
+    async function addOwned(bgaID, detailGameData, username) {
+    console.log("tokenData username", {username})
+    console.log("Game Name", {detailGameData}) 
+    const fetchConfig = {
+        method: 'POST',
+        body: JSON.stringify({ "bgaID": bgaID, "name": detailGameData, "username": username }),
+        headers: {
+            Authorization: `Bearer ${username}`,
             credentials: "include",
             accept: "application/json",
             "Content-Type": "application/json"
@@ -55,7 +89,10 @@ function DetailPage() {
     };
      const test = await fetch("http://localhost:8000/owned", fetchConfig);
      console.log(test)
-}
+     let fetchConfigData = fetchConfig
+     console.log("***", {fetchConfigData} )
+} 
+// csrftoken=PhrbCfLEBIpsqbH11dCo4MPfM2trZwBGQU5Y848njnRtyHjYXmPtKb6T5A0D0VUd; fastapi_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMThlODA1NC1kZmRlLTQwYTUtOGM0Yy0zMjljYjExYzJhZmQiLCJleHAiOjE2NzA1NTU1ODksInN1YiI6InVzZXJuYW1lIiwiYWNjb3VudCI6eyJpZCI6IjYzOTI1ODkyYjc2Mzg0YzNmMDlkZjM0ZSIsInVzZXJuYW1lIjoidXNlcm5hbWUifX0.N-eHUQJ62cv4BlP6n0508QvH88m21-1nE69NmLrG_A4`
 
    if (isLoading) {
     return null
@@ -64,8 +101,19 @@ function DetailPage() {
 
      const handleOwnedClick = e => {
       {data.games?.map( detailGame => {
-        const ownedData = {"bgaID": detailGame.id,  "name": detailGame.name}
-        return addOwned(ownedData)
+        const idData = detailGame.id 
+        const nameData = detailGame.name 
+        return addOwned(idData, nameData, tokenData.account.username)
+        // console.log(idName)
+        }) }
+
+          }
+
+      const handleFavoriteClick = e => {
+       {data.games?.map( detailGame => {
+        const idData = detailGame.id 
+        const nameData = detailGame.name 
+        return addOwned(idData, nameData, tokenData.account.username)
         // console.log(idName)
         }) }
 
@@ -90,17 +138,16 @@ function DetailPage() {
                 <h3 key={detailGame.games}>
                    {detailGame.name}</h3>)
                 ) }
-
                 <button onClick={handleOwnedClick}> Add to Owned List</button>
-
+                <button onClick={handleFavoriteClick}> Add to Favorite List</button>
               </div>
                   <div className="button">
-                {token ? <><button
+                {/* {token ? <><button
                     onClick={() => {
                         addFavorite(token);
                     }} type='submit' className='button23 mx-3 my-2'>Add to Favorites</button>
                     </> :
-                    <></>}
+                    <></>} */}
 
             </div>
 

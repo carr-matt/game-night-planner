@@ -80,7 +80,7 @@ function SearchForm() {
           <h5>Input your criteria below so we can generate a new game for your perfect game night</h5>
           <form id="search-form" onSubmit={handleSubmit}>
             <div className="mb-3">
-              <input type="number" className="form-input" placeholder="Minimum Age" value={minAge}
+              <input type="number" className="form-input" placeholder="Minimum Age"
                      onChange={(event) => setMinAge(event.target.value)} min={0}/>
             </div>
             <div className="mb-3">

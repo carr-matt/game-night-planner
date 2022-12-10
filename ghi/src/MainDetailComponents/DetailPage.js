@@ -41,7 +41,7 @@ function DetailPage() {
         }
 
     };
-     const test = await fetch("http://localhost:8000/favorite", fetchConfig);
+     const test = await fetch(`${process.env.REACT_APP_GAME_NIGHT_API_HOST}/favorite`, fetchConfig);
      console.log(test)
      let fetchConfigData = fetchConfig
      console.log("***", {fetchConfigData} )
@@ -61,12 +61,12 @@ function DetailPage() {
         }
 
     };
-     const test = await fetch("http://localhost:8000/owned", fetchConfig);
+     const test = await fetch(`${process.env.REACT_APP_GAME_NIGHT_API_HOST}/owned`, fetchConfig);
      console.log(test)
      let fetchConfigData = fetchConfig
      console.log("***", {fetchConfigData} )
 }
-// csrftoken=PhrbCfLEBIpsqbH11dCo4MPfM2trZwBGQU5Y848njnRtyHjYXmPtKb6T5A0D0VUd; fastapi_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMThlODA1NC1kZmRlLTQwYTUtOGM0Yy0zMjljYjExYzJhZmQiLCJleHAiOjE2NzA1NTU1ODksInN1YiI6InVzZXJuYW1lIiwiYWNjb3VudCI6eyJpZCI6IjYzOTI1ODkyYjc2Mzg0YzNmMDlkZjM0ZSIsInVzZXJuYW1lIjoidXNlcm5hbWUifX0.N-eHUQJ62cv4BlP6n0508QvH88m21-1nE69NmLrG_A4`
+
 
    if (isLoading) {
     return null

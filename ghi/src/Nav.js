@@ -41,7 +41,7 @@ function Nav() {
         <DropdownButton title={<img className='avatar' src={gon}/>} variant="dark" id="dropdown-button-image" menuVariant='dark'>
           <Dropdown.Item href='/Login/'>Login</Dropdown.Item>
           <Dropdown.Item href='/SignUp/'>SignUp</Dropdown.Item>
-        </DropdownButton>
+          </DropdownButton>
       </div>
     </nav>
   )

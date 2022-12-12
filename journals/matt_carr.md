@@ -1,6 +1,31 @@
+## December 11, 2022
+
+* Did a thorough update on our api-design.md.
+* Finally fixed the 2 unit tests that were failing when the database container wasn't running-- which meant I didn't write 'em correctly in the first place.
+* Pretty satisfying to see the pipeline make it all the way to the frontend build stage before failing lol.
+
+## December 10, 2022
+
+* Made all remaining changes needed on the backend to satisfy flake8.
+* Removed as many hardcoded localhost links from the ghi code as possible. Still a few 3000 links remaining.
+* Re-enabled the linting stage in the gitlab-ci.yml and updated env variables on gitlab.
+
+## December 9, 2022
+
+* Third straight day of trying to figure out the freaking favorite button behavior. We ended up drilling into the token to grab the username and add it to the body of the POST request on the frontend. I made changes to all the backend code to expect the new shape for both the "fav" and "owned" buttons so we could get it wired up quick.
+
+## December 8, 2022
+
+* The button to add a game to a user's list of favorites is... no friend of mine or Joe's.
+
+## December 7, 2022
+
+* More work on the like/fav button. Grrrrr.
+
 ## December 6, 2022
 
 * More work on detail page functionality with Joe. Not quite there with "like" or "owned" button functionality but very close.
+* Add more properties to the fields parameter of the game_detail request. Might end up grabbing the entire game object so we have as much info as possible to really fill out a game's detail card view.
 
 ## December 5, 2022
 
@@ -23,10 +48,12 @@
 
 * Broke all the tests and fixed them again lol.
 * Spent most of the afternoon investigating different front-end styling approaches we might take.
+* Late tonight it was discovered that our project is allowing creation of duplicate accounts. Been looking into why and how I can stop it. Not sure if it's a Mongo-specific thing or what just yet. There was code in the example repo we all used about DuplicateAccountErrors but clearly it doesn't trigger lol.
 
 ## December 1, 2022
 
 * Split favs & owned into their own collections within the Mongo DB.
+* Added MongoDB id to fav and owned GET requests, DELETE request working now.
 
 ## November 30, 2022
 

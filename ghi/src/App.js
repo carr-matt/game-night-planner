@@ -8,6 +8,7 @@ import Nav from './Nav';
 import MainPage from './MainDetailComponents/MainPage';
 import SearchForm from './MainDetailComponents/SearchForm';
 import DetailPage from './MainDetailComponents/DetailPage';
+import Trending from './MainDetailComponents/Trending';
 import { useParams } from "react-router-dom";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
         <Route path="/detail/:bgaID" element={<DetailPage />} />
+        <Route path="/trending/" element={<Trending />} />
       </Routes>
     </div>
     </BrowserRouter>

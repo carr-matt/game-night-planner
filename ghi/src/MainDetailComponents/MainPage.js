@@ -1,9 +1,6 @@
-//will need use effect to get the data for the filters
 import { useNavigate, Link } from 'react-router-dom'
 import { useGetRandomQuery } from '../app/randomApi';
 import React, { useEffect } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import { useGetCarouselQuery } from '../app/carouselApi';
 import "./MainPage.css";
 import Container from "react-bootstrap/esm/Container";
 
@@ -15,12 +12,9 @@ function MainPage() {
 
 
   const { data: randomData, isLoading: randomIsLoading} = useGetRandomQuery();
-  const { data: carouselData, isLoading: carouselIsLoading } = useGetCarouselQuery();
 
 
    if (randomIsLoading) {
-    return null}
-   if (carouselIsLoading) {
     return null}
 
 
@@ -68,30 +62,6 @@ function MainPage() {
           </Container>
       </div>
       <div>
-        <Container className="popular-game-carousel">
-          <div className='card bg-dark'>
-          <Carousel style={{width: "100%"}}>
-            {carouselData.games?.map(popularGames => (
-              <Carousel.Item key={popularGames.id}>
-                <div>
-                  <h4 className="game-title"> {popularGames.name} </h4>
-                    <div style={{display: "flex"}}>
-                      <span className='m-2' style={{width: '100%'}}>
-                        <img
-                          className="d-block"
-                          src={popularGames.image_url}
-                          alt="carousel-images"
-                          style={{width: '20%'}}
-                        />
-                      </span>
-                    </div>
-                </div>
-            </Carousel.Item>
-            )
-          )};
-          </Carousel>
-          </div>
-        </Container>
       </div>
       </div>
       </React.Fragment>

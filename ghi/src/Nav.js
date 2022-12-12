@@ -58,7 +58,7 @@ function Logout() {
           />
         </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Let's Pick a Game! </NavLink>
-        <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>
+        <NavLink className="nav-item" to="/Trending/"> Trending Games</NavLink>
         <NavLink className="nav-item" to="/UserDashboard/">My Dashboard</NavLink>
         <DropdownButton title={<img className='avatar' src={gon}/>} variant="dark" id="dropdown-button-image" menuVariant='dark'>
           <Dropdown.Item href='/Login/'>Login</Dropdown.Item>

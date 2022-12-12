@@ -17,16 +17,11 @@ export const detailApi = createApi({
     },
     reducerPath: "myDetailGames",
     baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_game_night_API_HOST,
+    baseUrl: process.env.REACT_APP_GAME_NIGHT_API_HOST,
   }),
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getDetail: builder.query({
-
-      // query: (ids) => ({
-      //   url: "/bga/game_detail/",
-
       query: (bgaID) => ({
         url: `/bga/game_detail?ids=${bgaID}`,
         credentials: "include",

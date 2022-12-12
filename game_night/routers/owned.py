@@ -6,6 +6,7 @@ from fastapi import (
 )
 from queries.owned import (
     OwnedIn,
+    Owned,
     OwnedList,
     OwnedQueries,
     DuplicateOwnedError,
@@ -54,3 +55,8 @@ async def get_owned(
     ),
 ):
     return repo.get_user_owned(account_data["username"])
+
+
+@router.get("/get_all_owned", response_model=list[Owned])
+async def get_all_owned(repo: OwnedQueries = Depends()):
+    return repo.get_all()

@@ -16,11 +16,10 @@ export const categorySlice = createApi({
     },
     reducerPath: "gameCategory",
     baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_game_night_API_HOST,
+    baseUrl: process.env.REACT_APP_GAME_NIGHT_API_HOST,
   }),
   tagTypes: ["CategoryList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getCategory: builder.query({
       query: () => ({
         url: "/bga/game_categories_list/",

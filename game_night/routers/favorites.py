@@ -6,6 +6,7 @@ from fastapi import (
 )
 from queries.favorites import (
     FavoriteIn,
+    Favorite,
     Favorites,
     FavoritesQueries,
     DuplicateFavoriteError,
@@ -54,3 +55,8 @@ async def get_favorites(
     ),
 ):
     return repo.get_user_favorites(account_data["username"])
+
+
+@router.get("/get_all_favs", response_model=list[Favorite])
+async def get_all_favs(repo: FavoritesQueries = Depends()):
+    return repo.get_all()

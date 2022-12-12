@@ -7,19 +7,19 @@ variables:
   DATABASE_URL: fake
 
 # Run flake8 to check for code quality
-# lint-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script:
-#     - pip install flake8
-#     - flake8 game_night
+lint-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 game_night
 
 # Run the unit tests
 api-unit-test-job:
   image: python:3-bullseye
   stage: test
-#   needs:
-#     - lint-test-job
+  needs:
+    - lint-test-job
   script:
     - cd game_night
     - pip install -r requirements.txt
@@ -33,11 +33,11 @@ build-front-end-job:
   stage: build
   image: node:lts-bullseye
   needs:
-    # - lint-test-job
+    - lint-test-job
     - api-unit-test-job
   variables:
     PUBLIC_URL: https://M2J3.gitlab.io/game-night-planner
-    REACT_APP_SAMPLE_SERVICE_API_HOST: https://game-night-planner.onrender.com
+    REACT_APP_GAME_NIGHT_API_HOST: https://game-night-planner.onrender.com
   script:
     - cd ghi
     - npm install

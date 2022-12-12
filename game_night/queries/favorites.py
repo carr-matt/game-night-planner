@@ -68,3 +68,11 @@ class FavoritesQueries(Queries):
         if len(props) == 0:
             print("Not a known username or no favorites for this user")
         return Favorites(favorites=props)
+
+    def get_all(self) -> list[Favorite]:
+        db = self.collection.find()
+        favorite_games = []
+        for document in db:
+            document["id"] = str(document["_id"])
+            favorite_games.append(Favorite(**document))
+        return favorite_games

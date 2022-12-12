@@ -17,9 +17,10 @@
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   grid-gap: 20px;
+
 }
 
 .card-img-top {
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
 }

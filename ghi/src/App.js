@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import ErrorNotification from './ErrorNotification';
 import './App.css';
 import Login from './Login';
 import Signup from './Signup';
@@ -15,40 +14,11 @@ function App() {
   const [launch_info, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
 
-// function DetailPage() {
-//   // Get the detailId param from the URL.
-//   let { detailId } = useParams();
-
-// }
-
-  // useEffect(() => {
-  //   async function getData() {
-  //     let url = `${process.env.REACT_APP_game_night_API_HOST}/api/money_maker/;
-  //     console.log('fastapi url: ', url);
-  //     let response = await fetch(url);
-  //     console.log("------- hello? -------");
-  //     let data = await response.json();
-
-  //     if (response.ok) {
-  //       console.log("got launch data!");
-  //       setLaunchInfo(data.launch_details);
-  //     } else {
-  //       console.log("drat! something happened");
-  //       setError(data.message);
-  //     }
-  //   }
-  //   getData();
-  // }, [])
-
-
   return (
 
     <BrowserRouter>
-    {/* <Link to={`/details/${props.game_detail.id}`}></Link> */}
     <Nav />
     <div>
-      {/* <ErrorNotification error={error} /> */}
-      {/* <Construct info={launch_info} /> */}
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/MainPage/" element={<MainPage />} />
@@ -57,8 +27,6 @@ function App() {
         <Route path="/login/" element={<Login />} />
         <Route path="/signup/" element={<Signup />} />
         <Route path="/detail/:bgaID" element={<DetailPage />} />
-        {/* <Route path="/detail/${e.target.value}" element={<DetailPage />} />
-        <Route path="/details/:detailId" element={<DetailPage />} /> */}
       </Routes>
     </div>
     </BrowserRouter>

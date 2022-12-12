@@ -16,11 +16,10 @@ export const gameSlice = createApi({
     },
     reducerPath: "myGames",
     baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_game_night_API_HOST,
+    baseUrl: process.env.REACT_APP_GAME_NIGHT_API_HOST,
   }),
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getOwned: builder.query({
       query: () => ({
         url: "/get_owned",

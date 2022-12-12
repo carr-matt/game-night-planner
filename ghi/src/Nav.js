@@ -8,7 +8,6 @@ import './nav.css';
 
 
 
-
 function Nav() {
   const [isVibrating, setIsVibrating] = useState(false);
 
@@ -35,7 +34,6 @@ function Nav() {
           onMouseLeave={handleMouseLeave}
           />
         </NavLink>
-        {/* <NavLink className="nav-item" to="/">Game Night Planner </NavLink> */}
         <NavLink className="nav-item" to="/SearchForm/"> Let's Pick a Game! </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>
         <NavLink className="nav-item" to="/UserDashboard/">My Dashboard</NavLink>
@@ -43,7 +41,6 @@ function Nav() {
           <Dropdown.Item href='/Login/'>Login</Dropdown.Item>
           <Dropdown.Item href='/SignUp/'>SignUp</Dropdown.Item>
         </DropdownButton>
-        {/* <NavLink className="nav-item" to="/Detail/">Detail</NavLink> */}
       </div>
     </nav>
   )

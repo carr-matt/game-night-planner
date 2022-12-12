@@ -1,35 +1,26 @@
 from fastapi.testclient import TestClient
 from main import app
 from queries.owned import OwnedQueries
-from routers.auth import authenticator
 
 client = TestClient(app)  # replacing swagger in code
 
-mockAccount = {"username": "username"}
 
-
-async def account_out_override():
-    return mockAccount
-
-
-class OwnedQueriesMock:
-    def get_user_owned(self):
+class MockOwnedRepository:
+    def get_all(self):
         return []
 
 
-def test_get_owned():
-    # arrange
-    app.dependency_overrides[OwnedQueriesMock] = OwnedQueries
-    app.dependency_overrides[
-        authenticator.try_get_current_account_data
-    ] = account_out_override
+def test_get_all_owned():
 
-    # act
-    response = client.get("/get_owned")
+    # Arrange
+    app.dependency_overrides[OwnedQueries] = MockOwnedRepository
 
-    # assert
+    # Act
+    response = client.get("/get_all_owned")
+
+    # Assert
     assert response.status_code == 200
-    assert response.json() == {"owned_list": []}
+    assert response.json() == []
 
-    # cleanup
+    # Clean up
     app.dependency_overrides = {}

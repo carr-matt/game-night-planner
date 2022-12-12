@@ -29,6 +29,10 @@ We seek to help board game enthusiasts find the perfect game for their next game
 - A user is able to access their user dashboard and view their favorite games and owned games
 - A user is able to log out of their account
 
+## Our GitLab pages URL
+
+- [https://m2j3.gitlab.io/game-night-planner/](https://m2j3.gitlab.io/game-night-planner/)
+
 ## Project Initialization
 
 Follow these steps to run this application on your local machine:
@@ -41,8 +45,6 @@ Follow these steps to run this application on your local machine:
 6. Run `docker compose up`
 7. Visit [localhost:3000](localhost:3000/) in your browser. Happy gaming, friends!
 
-
-
 ## Unit Tests
 
 - Get all accounts - Matt
@@ -50,51 +52,3 @@ Follow these steps to run this application on your local machine:
 - Get all owned games - Joshua
 - Add a game to favorites list - Joe
 - Add a game to owned list - Margaret
-
-
-
-
-
-
-#### Your GitLab pages URL
-
-You can't find this in GitLab until after you've done a deploy
-but you can figure it out yourself from your GitLab project URL.
-
-If this is your project URL
-
-https://gitlab.com/GROUP_NAME/PROJECT_NAME
-
-then your GitLab pages URL will be
-
-https://GROUP_NAME.gitlab.io/PROJECT_NAME
-
-### Create render.com account and application
-
-* create account on render.com
-* one person create a group and invite all other members
-* create a new "Web Service"
-  * authenticate with GitLab and choose your project
-  * Enter fields:
-    * Name: name of your service
-    * Root Directory: the directory of your service in your git repo.
-      For this example use "sample_service".
-    * Environment: Docker
-    * Plan Type: Free
-  * click the "Create Web Service" button to create it
-  * the build will succeed and it will look like the server is running,
-    most likely, in 6-10 minutes, it will fail.
-  * click "Manual Deploy" -> "Deploy latest commit" and the service
-    should deploy successfully.
-
-### Update GitLab CI/CD variables
-
-Copy the service URL for your new render.com service and then paste
-that into the value for the SAMPLE_SERVICE_API_HOST CI/CD variable
-in GitLab.
-
-### Deploy it
-
-Merge a change into main to kick off the initial deploy. Once the build pipeline
-finishes you should be able to see an "under construction" page on your GitLab
-pages site.

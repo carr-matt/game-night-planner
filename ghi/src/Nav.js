@@ -5,6 +5,9 @@ import gon from "./Images/gon.png";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import './nav.css';
+import { useGetTokenQuery, useLogOutMutation } from "./app/authApi";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 
@@ -24,6 +27,26 @@ function Nav() {
   }
 
 
+function Logout() {
+  const navigate = useNavigate();
+  const [logOut, { data }] = useLogOutMutation();
+
+  useEffect(() => {
+    if (data) {
+      navigate('/login/');
+    }
+  });
+
+  return (
+    <div>
+      <div onClick={logOut}>
+        Log out
+      </div>
+    </div>
+  );
+}
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
       <div className="container-fluid">
@@ -40,6 +63,7 @@ function Nav() {
         <DropdownButton title={<img className='avatar' src={gon}/>} variant="dark" id="dropdown-button-image" menuVariant='dark'>
           <Dropdown.Item href='/Login/'>Login</Dropdown.Item>
           <Dropdown.Item href='/SignUp/'>SignUp</Dropdown.Item>
+           <Dropdown.Item><Logout /></Dropdown.Item>
         </DropdownButton>
       </div>
     </nav>

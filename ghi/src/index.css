@@ -33,6 +33,7 @@ text-shadow: 2px 2px 4px #000000;
 h5{
 color: antiquewhite;
 text-align: center;
+text-shadow: 2px 2px 4px #000000;
 }
 h4{
   color: antiquewhite;
@@ -43,6 +44,7 @@ h3{
 color: antiquewhite;
 text-align: center;
 font-weight: bold;
+text-shadow: 2px 2px 4px #000000;
 }
 
 .textstyle {

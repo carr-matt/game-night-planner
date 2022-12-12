@@ -1,6 +1,5 @@
-import { useNavigate, Link } from 'react-router-dom'
 import { useGetRandomQuery } from '../app/randomApi';
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./MainPage.css";
 import Container from "react-bootstrap/esm/Container";
 

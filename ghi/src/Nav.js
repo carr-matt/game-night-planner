@@ -5,7 +5,7 @@ import gon from "./Images/gon.png";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import './nav.css';
-import { useGetTokenQuery, useLogOutMutation } from "./app/authApi";
+import { useLogOutMutation } from "./app/authApi";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 

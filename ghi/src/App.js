@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Login from './Login';
 import Signup from './Signup';
@@ -9,7 +9,7 @@ import MainPage from './MainDetailComponents/MainPage';
 import SearchForm from './MainDetailComponents/SearchForm';
 import DetailPage from './MainDetailComponents/DetailPage';
 import Trending from './MainDetailComponents/Trending';
-import { useParams } from "react-router-dom";
+
 
 function App() {
   const [launch_info, setLaunchInfo] = useState([]);

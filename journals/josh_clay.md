@@ -41,3 +41,23 @@ Worked exclusively on writing all of our unit tests. Successfully wrote 4 of the
 ## 12/1/22
 
 Finshed all of our unit test. Messed with incorporating more preferences into our OwnedIn, Owned model and our FavoriteIn, Favorite models. Worked with renaming some API paths to help with our frontend team.
+
+## 12/2/22
+
+Tinkered with some of the unit testing again and then moved forward to look at some of the front end design and see what Margaret and Joe were up to.
+
+## 12/5/22
+Decided I was going to focus on the main page design and implimentation of the carousel/random game.
+Renamed & organized all our collections into a single database. Removed lots of unused and unnecessary imports. General code cleanup.
+
+## 12/6/22
+Worked with Jazz on some of the styling aspects of each of the main page, login/sign-up, and working on making some of the pages more dynamic with CSS styling.
+
+## 12/7/22
+Finished with the carousel and random game design together on the main page.
+
+## 12/8/22
+Styling styling styling.
+
+## 12/9/22
+Going into the weekend with some goals of learning about deployment and fixing a lot of our CI/CD pipeline failures. We decided to take out a few things but for the most part our project is fully functional.

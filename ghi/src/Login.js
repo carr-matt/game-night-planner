@@ -15,18 +15,18 @@ function Login() {
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
   );
-  console.log(loginSuccessful)
+
   const navigate = useNavigate()
 
-  const handleLogin = async () => {
+  const handleLogin = useCallback(() => {
   if (loginSuccessful) {
     navigate('/')
   }
-}
+}, [navigate, loginSuccessful]);
 
 useEffect(() => {
   handleLogin();
-}, [loginSuccessful]);
+}, [handleLogin, loginSuccessful]);
 
 return (
     <div className="Auth-form-container">

@@ -9,7 +9,7 @@ import { detailApi } from './detailApi';
 import { carouselSlice } from './carouselApi';
 import { createSlice } from './createSlice';
 import { mechanicSlice } from './mechanics';
-import { categorySlice, useGetCategoryQuery } from './category';
+import { categorySlice } from './category';
 
 export const store = configureStore({
   reducer: {

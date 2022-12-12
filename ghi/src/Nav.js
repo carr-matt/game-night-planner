@@ -55,12 +55,13 @@ function Logout() {
           className={`logo ${isVibrating ? 'vibrate' : ''}`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          alt='logo'
           />
         </NavLink>
         <NavLink className="nav-item" to="/SearchForm/"> Let's Pick a Game! </NavLink>
         <NavLink className="nav-item" to="/Trending/"> Trending Games</NavLink>
         <NavLink className="nav-item" to="/UserDashboard/">My Dashboard</NavLink>
-        <DropdownButton title={<img className='avatar' src={gon}/>} variant="dark" id="dropdown-button-image" menuVariant='dark'>
+        <DropdownButton title={<img className='avatar' src={gon} alt='avatar' />} variant="dark" id="dropdown-button-image" menuVariant='dark'>
           <Dropdown.Item href='/Login/'>Login</Dropdown.Item>
           <Dropdown.Item href='/SignUp/'>SignUp</Dropdown.Item>
            <Dropdown.Item><Logout /></Dropdown.Item>

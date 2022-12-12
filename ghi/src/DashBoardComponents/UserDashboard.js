@@ -17,15 +17,15 @@ import { gameSlice } from "../app/gameApi";
 
 
 function UserDashboard(props) {
-    const {useGetOwnedQuery, useGetFavoriteQuery} = gameSlice 
-    const [collectionOfGames, setCollectionOfGames] = useState({}) 
+    const {useGetOwnedQuery, useGetFavoriteQuery} = gameSlice
+    const [collectionOfGames, setCollectionOfGames] = useState({})
     const [collectionOfFavGames, setCollectionOfFavGames] = useState({})
-    const {data, error: gameError, isLoading} = useGetOwnedQuery();
-    const {data: favData, error: favGameError, isLoading: isFavLoading} = useGetFavoriteQuery();
-    const [ownedGame, setOwnedGame ] = useState(null); 
-    const [favoriteGame, setFavoriteGame ] = useState(null); 
+    const {data, isLoading} = useGetOwnedQuery();
+    const {data: favData, isLoading: isFavLoading} = useGetFavoriteQuery();
+    const [ownedGame, setOwnedGame ] = useState(null);
+    const [favoriteGame, setFavoriteGame ] = useState(null);
 
-    
+
     useEffect(() => console.log(ownedGame), [ownedGame])
     useEffect(() =>  console.log(favoriteGame), [favoriteGame])
 
@@ -35,7 +35,7 @@ function UserDashboard(props) {
         const map = {}
         data.owned_list.forEach(game =>{
           map[game.bgaID] = game
-        }) 
+        })
         setCollectionOfGames(map)
       }
       if(favData){
@@ -53,11 +53,12 @@ function UserDashboard(props) {
       e.preventDefault();
       console.log('The link was clicked.');
   }
+    console.log(handleClick)
 
     const handleChange = e =>{
       console.log('event',e,  e.target.value, 'collectionOfGames', collectionOfGames)
 
-      window.location.href = `${window.location.origin}/detail/${e.target.value}` 
+      window.location.href = `${window.location.origin}/detail/${e.target.value}`
 
       const selectedGame = collectionOfGames[e.target.value]
       setOwnedGame(selectedGame)
@@ -78,7 +79,7 @@ function UserDashboard(props) {
       }
 
 
-    return (  
+    return (
     <div className="app-list" >
       <h1 className="Header">User Dashboard </h1>
         <Box sx={{ flexGrow: 1 }}>
@@ -92,19 +93,19 @@ function UserDashboard(props) {
                       <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
 
                     )
-                  })}  </select> </Item> 
+                  })}  </select> </Item>
             </Grid>
             <Grid item xs={6} md={5}>
-              <Item> Favorite Games </Item> 
-              <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>  
+              <Item> Favorite Games </Item>
+              <Item> <select id="owned-form1" className="form-control" onChange={handleChange}>
                       <option id="owned-form1" value="">Your Favorite Games</option>
                       {favData?.favorites.map( favGame => {
                       return (
                         <option key={`${favGame.name} ${favGame.bgaID}`} value={favGame.bgaID}>{favGame.name} </option>
-                        
+
                       )
-                    })}  </select> 
-                    </Item> 
+                    })}  </select>
+                    </Item>
             </Grid>
            </Grid>
           </Box>

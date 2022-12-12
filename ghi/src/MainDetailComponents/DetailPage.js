@@ -9,18 +9,16 @@ function DetailPage() {
 
    let { bgaID } = useParams();
    const { data, isLoading } = useGetDetailQuery(bgaID)
-   const { data: tokenData, isLoading: tokenLoading } = useGetTokenQuery();
-   console.log("OG token Data", {tokenData} )
-
+   const { data: tokenData } = useGetTokenQuery();
 
 
   let detailGameData = e => {
-      {data.games?.map( detailGames => {
+      data.games?.map( detailGames => {
         const nameData = [detailGames.name]
         return nameData
-        } );  }
+        } );
           }
-
+          console.log(detailGameData)
     async function addFavorite(bgaID, detailGameData, username) {
     console.log("tokenData username", {username})
     console.log("Game Name", {detailGameData})
@@ -42,8 +40,7 @@ function DetailPage() {
 }
 
     async function addOwned(bgaID, detailGameData, username) {
-    console.log("tokenData username", {username})
-    console.log("Game Name", {detailGameData})
+
     const fetchConfig = {
         method: 'POST',
         body: JSON.stringify({ "bgaID": bgaID, "name": detailGameData, "username": username }),
@@ -68,19 +65,19 @@ function DetailPage() {
 
 
      const handleOwnedClick = e => {
-      {data.games?.map( detailGame => {
+      data.games?.map( detailGame => {
         const idData = detailGame.id
         const nameData = detailGame.name
         return addOwned(idData, nameData, tokenData.account.username)
-        }) }
+        })
         }
 
       const handleFavoriteClick = e => {
-       {data.games?.map( detailGame => {
+       data.games?.map( detailGame => {
         const idData = detailGame.id
         const nameData = detailGame.name
         return addFavorite(idData, nameData, tokenData.account.username)
-        }) }
+        })
         }
 
   return (
@@ -108,7 +105,7 @@ function DetailPage() {
                     {data.games?.map(detailGame => (
                       <tr key={detailGame.games}>
                         <td>
-                          <tr> <img src={detailGame.image_url} /> </tr>
+                          <tr> <img src={detailGame.image_url} alt="..." /> </tr>
                         </td>
                         <td>
                           <tr> {detailGame.name} </tr>
@@ -138,6 +135,3 @@ function DetailPage() {
 )}
 
 export default DetailPage
-
-
- 

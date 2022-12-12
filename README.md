@@ -19,7 +19,15 @@ We seek to help board game enthusiasts find the perfect game for their next game
 
 ## Functionality
 
-
+- A user is able to sign up to create an account
+- A user is able to login to their account
+- A user is able to see a randomly generated game on the main page
+- A user is able to make a custom search for a game that fits their needs
+- A user is able to see the trending games of the week
+- A user is able to click any image of any game in the application and be brought to it's detail page
+- A user is able to add a game from the detail page to their owned games or favorite games
+- A user is able to access their user dashboard and view their favorite games and owned games
+- A user is able to log out of their account
 
 ## Project Initialization
 
@@ -37,11 +45,11 @@ Follow these steps to run this application on your local machine:
 
 ## Unit Tests
 
-- Get all accounts -
-- Get all favorite games -
-- Get all owned games -
-- Add a game to favorites list -
-- Add a game to owned list -
+- Get all accounts - Matt
+- Get all favorite games - Cedric
+- Get all owned games - Joshua
+- Add a game to favorites list - Joe
+- Add a game to owned list - Margaret
 
 
 

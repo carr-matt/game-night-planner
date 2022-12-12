@@ -1,3 +1,7 @@
+## December 12, 2022
+
+* Deployment day, yeehaw!
+
 ## December 11, 2022
 
 * Did a thorough update on our api-design.md.

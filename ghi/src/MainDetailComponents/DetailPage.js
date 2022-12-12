@@ -107,7 +107,7 @@ function DetailPage() {
         <div className="row mt-5">
           <div className="col">
             <div className="card">
-              <div className="card-header">
+              <div className="card-header bg-dark">
                 {data.games?.map(detailGame => (
                 <h3 key={detailGame.games}>
                    {detailGame.name}</h3>)
@@ -125,7 +125,7 @@ function DetailPage() {
 
             </div>
 
-              <div className="card-body">
+              <div className="card-body bg-light">
                 <table>
                   <tbody>
                     {data.games?.map(detailGame => (

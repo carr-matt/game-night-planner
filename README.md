@@ -45,6 +45,7 @@ Follow these steps to run this application on your local machine:
 6. Run `docker compose up`
 7. Visit [localhost:3000](localhost:3000/) in your browser. Happy gaming, friends!
 
+
 ## Unit Tests
 
 - Get all accounts - Matt

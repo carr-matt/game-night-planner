@@ -20,7 +20,6 @@ export const carouselSlice = createApi({
   }),
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getCarousel: builder.query({
       query: () => ({
         url: "/bga/popular_games/",

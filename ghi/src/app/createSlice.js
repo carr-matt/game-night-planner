@@ -12,7 +12,6 @@ export const createSlice = createApi({
           "Authorization",
           `${tokenData.token_type} ${tokenData.access_token}`
         );
-        // console.log({tokenData})
       }
       return headers;
     },
@@ -22,7 +21,6 @@ export const createSlice = createApi({
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getPosts: builder.query({
         query: () => '/owned',
         providesTags: ['Post'],
@@ -46,7 +44,3 @@ export const createSlice = createApi({
 
 
 export const { useGetPostsQuery, useAddNewPostMutation } = createSlice
-
-// console.log(payload)
-    // "bgaID": bgaID,
-//JSON.stringify({ "name": name }),

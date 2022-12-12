@@ -20,7 +20,6 @@ export const categorySlice = createApi({
   }),
   tagTypes: ["CategoryList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getCategory: builder.query({
       query: () => ({
         url: "/bga/game_categories_list/",

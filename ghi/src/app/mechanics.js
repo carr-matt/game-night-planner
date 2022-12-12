@@ -20,7 +20,6 @@ export const mechanicSlice = createApi({
   }),
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getMechanic: builder.query({
       query: () => ({
         url: "/bga/game_mechanics_list/",

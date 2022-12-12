@@ -20,7 +20,6 @@ export const randomSlice = createApi({
   }),
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getRandom: builder.query({
       query: () => ({
         url: "/bga/random_game/",

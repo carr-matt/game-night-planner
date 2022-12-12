@@ -68,3 +68,11 @@ class OwnedQueries(Queries):
         if len(props) == 0:
             print("Not a known username or no owned games")
         return OwnedList(owned_list=props)
+
+    def get_all(self) -> list[Owned]:
+        db = self.collection.find()
+        owned_games = []
+        for document in db:
+            document["id"] = str(document["_id"])
+            owned_games.append(Owned(**document))
+        return owned_games

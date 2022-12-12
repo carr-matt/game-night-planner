@@ -20,7 +20,7 @@ function UserDashboard(props) {
     const {useGetOwnedQuery, useGetFavoriteQuery} = gameSlice 
     const [collectionOfGames, setCollectionOfGames] = useState({}) 
     const [collectionOfFavGames, setCollectionOfFavGames] = useState({})
-    const {data, error: gameError, isLoading} = useGetOwnedQuery(); 
+    const {data, error: gameError, isLoading} = useGetOwnedQuery();
     const {data: favData, error: favGameError, isLoading: isFavLoading} = useGetFavoriteQuery();
     const [ownedGame, setOwnedGame ] = useState(null); 
     const [favoriteGame, setFavoriteGame ] = useState(null); 
@@ -30,25 +30,25 @@ function UserDashboard(props) {
     useEffect(() =>  console.log(favoriteGame), [favoriteGame])
 
     useEffect(() =>{
-      
+
       if(data){
         const map = {}
-        data.owned_list.forEach(game =>{ 
+        data.owned_list.forEach(game =>{
           map[game.bgaID] = game
         }) 
         setCollectionOfGames(map)
       }
       if(favData){
         const mapp = {}
-        favData.favorites.forEach(favGame =>{ 
+        favData.favorites.forEach(favGame =>{
           mapp[favGame.bgaID] = favGame
            })
           setCollectionOfFavGames(mapp)
           console.log(favData)
-      } 
+      }
     },[data, favData])
 
-    
+
     const handleClick = (e) => {
       e.preventDefault();
       console.log('The link was clicked.');
@@ -61,7 +61,7 @@ function UserDashboard(props) {
 
       const selectedGame = collectionOfGames[e.target.value]
       setOwnedGame(selectedGame)
-      
+
 
       console.log('event',e,  e.target.value, 'collectionOfFavGames', collectionOfFavGames)
       const selectedfavGame = collectionOfFavGames[e.target.value]
@@ -89,8 +89,8 @@ function UserDashboard(props) {
                     <option id="owned-form1" value="">Your Owned Games</option>
                     {data.owned_list?.map( game => {
                     return (
-                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option> 
-                      
+                      <option key={`${game.name} ${game.bgaID}`} value={game.bgaID}>{game.name} </option>
+
                     )
                   })}  </select> </Item> 
             </Grid>

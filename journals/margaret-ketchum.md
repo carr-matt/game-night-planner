@@ -54,3 +54,11 @@ got all the dropdowns to populate and all but the mechanics and categories to st
 got login and sign up functional again and made it so that login actually validates the token and only lets you login if you
 have proper credentials stored in the backend. had to fiddle a lot with use effect and making functions async so that the error
 message stopped popping up before the user even tried to login.
+
+12/8/2022
+
+now the search form works and brings back results with pictures and descriptions. want to add the category filter back, will work on that tomorrow. but basic functionality is complete.
+
+12/9/2022
+
+fixed some stuff on the search form. researched and made plans for a logout feature. researched to add back the category filter. worked with joe and matt on making the links to the detail page dynamic. walked through the project with riley.

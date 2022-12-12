@@ -8,7 +8,6 @@ import './nav.css';
 
 
 
-
 function Nav() {
   const [isVibrating, setIsVibrating] = useState(false);
 

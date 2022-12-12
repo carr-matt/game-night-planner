@@ -10,3 +10,10 @@ Worked on front end components. Started to explore grids and implementing it int
 
 11/30/22
 Today I worked with Cnadice and learned a lot about redux. It was a big deal because I finally connected backend to the front. (YESSS) Huge connect to the store.js 
+
+
+12/8/22 
+I worked on the button all day
+
+12/9/22 
+I worked on the button and finally figured it out with Matt. 

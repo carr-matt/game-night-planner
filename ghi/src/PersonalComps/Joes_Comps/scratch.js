@@ -286,3 +286,11 @@
 // }
 
 // export default UserDashboard
+
+
+//Search Form Code for detail link 
+
+//  const handleDetailChange = e =>{
+//     window.location.href = `${window.location.origin}/detail/${e.target.__reactProps$1fnzhplq8b6.value}`
+//     console.log("***", e)
+//   }

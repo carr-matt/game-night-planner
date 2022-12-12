@@ -49,7 +49,7 @@ function SearchForm() {
   setPlayTime(event.target.value)
 }
 
- 
+
   const fetchData = async () => {
     const response = await fetch(`${process.env.REACT_APP_GAME_NIGHT_API_HOST}/bga/money_maker?gt_min_players=${minimum}&lt_max_players=${maximum}&gt_min_age=${minAge}&lt_max_playtime=${playtime}`);
     const data = await response.json();
@@ -69,9 +69,9 @@ function SearchForm() {
     fetchData();
   }
 
-  console.log(minAge, minimum, maximum, playtime) 
+  console.log(minAge, minimum, maximum, playtime)
   console.log(searched)
-  
+
 
     return (
 
@@ -111,7 +111,7 @@ function SearchForm() {
                       <div key={game.id}>
                         <div className="card-body bg-dark rounded">
                           <Link>
-                        <img src={game.image_url} onClick={() => openInNewTab(`http://localhost:3000/detail/${game.id}`)} className="random-img" alt="..." />
+                        <img src={game.image_url} onClick={() => openInNewTab(`${process.env.PUBLIC_URL}/detail/${game.id}`)} className="random-img" alt="..." />
                           </Link>
                          <h3 className="card-title"> {game.name} </h3>
                          <h5> {game.description_preview.substring(0, game.description_preview.indexOf(".") +1)} </h5>
@@ -127,4 +127,4 @@ function SearchForm() {
 export default SearchForm
 
 
- 
+

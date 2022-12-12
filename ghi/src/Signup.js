@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Signup() {
   const dispatch = useDispatch();
   const { username, password } = useSelector(state => state.account);
-  const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
+  const [signUp, { isLoading: signUpLoading }] = useSignUpMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],

@@ -35,23 +35,3 @@ class Account(AccountIn):
 class AccountOut(BaseModel):
     id: str
     username: str
-
-
-class Game(BaseModel):
-    name: str
-    price: str
-    min_players: int
-    max_players: int
-    min_age: int
-    min_playtime: int
-    max_playtime: int
-    description: str
-    image_url: str
-    mechanics: list[str]
-    category: list[str]
-
-
-class GameOut(BaseModel):
-    name: str
-    image_url: str
-    description: str

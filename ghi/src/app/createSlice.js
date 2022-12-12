@@ -18,7 +18,7 @@ export const createSlice = createApi({
     },
     reducerPath: "postGames",
     baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_game_night_API_HOST,
+    baseUrl: process.env.REACT_APP_GAME_NIGHT_API_HOST,
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
@@ -28,7 +28,7 @@ export const createSlice = createApi({
         providesTags: ['Post'],
       }),
       addNewPost: builder.mutation({
-      
+
       query: () => ({
         url: '/owned',
         method: 'POST',
@@ -40,13 +40,13 @@ export const createSlice = createApi({
       invalidatesTags: ['Post'],
     }),
 
-    
+
   }),
 })
 
 
 export const { useGetPostsQuery, useAddNewPostMutation } = createSlice
-      
+
 // console.log(payload)
-    // "bgaID": bgaID, 
+    // "bgaID": bgaID,
 //JSON.stringify({ "name": name }),

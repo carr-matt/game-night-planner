@@ -51,7 +51,7 @@ function SearchForm() {
 
  
   const fetchData = async () => {
-    const response = await fetch(`http://localhost:8000/bga/money_maker?gt_min_players=${minimum}&lt_max_players=${maximum}&gt_min_age=${minAge}&lt_max_playtime=${playtime}`);
+    const response = await fetch(`${process.env.REACT_APP_GAME_NIGHT_API_HOST}/bga/money_maker?gt_min_players=${minimum}&lt_max_players=${maximum}&gt_min_age=${minAge}&lt_max_playtime=${playtime}`);
     const data = await response.json();
     setSearched(data);
     console.log(data)

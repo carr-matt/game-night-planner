@@ -7,6 +7,10 @@ BGA_ID = os.environ["BGA_ID"]
 
 router = APIRouter()
 
+mm_fields_1 = "name,id,url,min_players,max_players,min_age,min_playtime,"
+mm_fields_2 = "max_playtime,image_url,description,description_preview"
+mm_fields = mm_fields_1 + mm_fields_2
+
 
 class BgaApi:
     async def call_bga_api(self, params):
@@ -111,7 +115,6 @@ async def game_details(ids: str, bga_api: BgaApi = Depends()):
     params = {
         "ids": ids,
         "pretty": "true",
-        # "fields": "id,name,year_published,min_age,min_players,max_players,min_playtime,max_playtime,image_url,description,description_preview,mechanics,categories,reddit_day_count,reddit_week_count,reddit_all_time_count",
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)
@@ -166,7 +169,7 @@ async def money_maker(
         # "mechanics": mechanics,
         # "categories": categories,
         "order_by": "rank",
-        "fields": "name,id,url,min_players,max_players,min_age,min_playtime,max_playtime,image_url,description,description_preview",
+        "fields": mm_fields,
         "client_id": BGA_ID,
     }
     response = await bga_api.call_bga_api(params)

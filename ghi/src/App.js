@@ -23,7 +23,7 @@ function App() {
 
   // useEffect(() => {
   //   async function getData() {
-  //     let url = `${process.env.REACT_APP_game_night_API_HOST}/api/money_maker/;
+  //     let url = `${process.env.REACT_APP_GAME_NIGHT_API_HOST}/api/money_maker/;
   //     console.log('fastapi url: ', url);
   //     let response = await fetch(url);
   //     console.log("------- hello? -------");

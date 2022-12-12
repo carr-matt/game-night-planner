@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import './comp.css';
 import { gameSlice } from "../app/gameApi";
-import { deepOrange, orange } from '@mui/material/colors';
 
 
   const Item = styled(Paper)(({ theme }) => ({

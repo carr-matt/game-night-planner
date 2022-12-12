@@ -1,6 +1,4 @@
-//will need use effect to get the data for the filters
-import { useNavigate, Link } from 'react-router-dom'
-import React, { useEffect } from 'react';
+import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useGetCarouselQuery } from '../app/carouselApi';
 import "./MainPage.css";

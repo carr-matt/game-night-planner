@@ -1,8 +1,5 @@
-import React, {useState, useCallback} from 'react';
+import React, { useState } from 'react';
 import './SearchForm.css';
-import { useGetGamesQuery } from '../app/api';
-import { useGetMechanicQuery } from '../app/mechanics'
-import { useGetCategoryQuery } from '../app/category'
 import { Link } from 'react-router-dom'
 
 
@@ -125,6 +122,3 @@ function SearchForm() {
 }
 
 export default SearchForm
-
-
-

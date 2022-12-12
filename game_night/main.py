@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# import os
+import os
 
 
 from routers import auth
@@ -41,10 +41,10 @@ app = FastAPI(
 )
 
 origins = [
-    "*",  # Allow all origins
+    # "*",  # Allow all origins
     # "https://localhost:3000",
     # "http://localhost:3000",
-    # os.environ.get("CORS_HOST", None),
+    os.environ.get("CORS_HOST", None),
 ]
 
 app.add_middleware(

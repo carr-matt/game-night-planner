@@ -1,35 +1,26 @@
 from fastapi.testclient import TestClient
 from main import app
 from queries.favorites import FavoritesQueries
-from routers.auth import authenticator
 
 client = TestClient(app)  # replacing swagger in code
 
-mockAccount = {"username": "username"}
 
-
-async def account_out_override():
-    return mockAccount
-
-
-class PrefQueriesMock:
-    def get_user_favorites(self):
+class MockFavsRepository:
+    def get_all(self):
         return []
 
 
-def test_get_favs():
-    # arrange
-    app.dependency_overrides[PrefQueriesMock] = FavoritesQueries
-    app.dependency_overrides[
-        authenticator.try_get_current_account_data
-    ] = account_out_override
+def test_get_all_favs():
 
-    # act
-    response = client.get("/get_favorites")
+    # Arrange
+    app.dependency_overrides[FavoritesQueries] = MockFavsRepository
 
-    # assert
+    # Act
+    response = client.get("/get_all_favs")
+
+    # Assert
     assert response.status_code == 200
-    assert response.json() == {"favorites": []}
+    assert response.json() == []
 
-    # cleanup
+    # Clean up
     app.dependency_overrides = {}

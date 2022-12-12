@@ -20,7 +20,6 @@ export const gameSlice = createApi({
   }),
   tagTypes: ["GameList"],
   endpoints: (builder) => ({
-    // Get all the methods from preferences //
     getOwned: builder.query({
       query: () => ({
         url: "/get_owned",

@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { useGetCarouselQuery } from '../app/carouselApi';
 import "./MainPage.css";
 import Container from "react-bootstrap/esm/Container";
-// make the random game image clickable to bring us to the detail page for that game
+
 
 
 
@@ -15,9 +15,7 @@ function MainPage() {
 
 
   const { data: randomData, isLoading: randomIsLoading} = useGetRandomQuery();
-  //  console.log(data)
-
-  const {data: carouselData, isLoading: carouselIsLoading } = useGetCarouselQuery();
+  const { data: carouselData, isLoading: carouselIsLoading } = useGetCarouselQuery();
 
 
    if (randomIsLoading) {
@@ -35,7 +33,6 @@ function MainPage() {
     window.location.reload();
 
   }
-
 
 
   return (

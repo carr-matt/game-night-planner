@@ -579,3 +579,234 @@
 //     console.log("***", e)
 //   }
 // // export default DetailPage
+
+
+
+
+
+User Dashboard forEach function explanation
+if(data){
+        const map = {}
+        data.owned_list.forEach(game =>{ 
+          map[game.bgaID] = game
+        }) //go through the game data and (forEach) means to create a bucket
+        // for(let i = 0; i < data.games.length; i++){//same thing as above
+        //   const game = data.games[i]
+        //   collectionOfGames[game.id] = game
+        // } == what forEach does. 
+        setCollectionOfGames(map)// we are taking this temporay bucket of games (map) and setting it equal to our variable collection of games to persitst the data over reRenders
+      }
+
+
+
+      Search Form image to detail page attempt
+{/* <img src={game.image_url}  key={`${game.id}`} value={game.id} onClick = {handleDetailChange} /> */}
+
+
+Detail page button
+
+  {/* {token ? <><button
+                    onClick={() => {
+                        addFavorite(token);
+                    }} type='submit' className='button23 mx-3 my-2'>Add to Favorites</button>
+                    </> :
+                    <></>} */}
+
+
+//  const handleOwnedClick = (e) => {
+    //     addNewGame(bgaID.bgaId, bgaID.name)
+    //     }
+
+      // const handleOwnedClick = e => {
+      // data.games( detailGame => {
+      //   map[detailGame.id, detailGame.name] = detailGame
+      // addNewGame(detailGame) }
+
+
+
+
+// addNewPost()
+//         .unwrap()
+//         .then((res) => console.log(res))
+//         .then((error) => {
+//           console.log(error)
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import { Grid } from '@mui/material';
+// import { styled } from '@mui/material/styles';
+// import Paper from '@mui/material/Paper';
+// import Box from '@mui/material/Box';
+// import 'bootstrap/dist/css/bootstrap.css'
+// import './compy.css';
+// import { detailSlice } from "../app/detailApi";
+// import 'bootstrap/dist/css/bootstrap.css'
+
+
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: 'center',
+//   color: theme.palette.text.secondary,
+//   }));
+
+
+// function DetailPage (props) {s
+//   const {useGetDetailQuery} = detailSlice
+//   const {data, isLoading} = useGetDetailQuery();
+//   const [collectionOfDetails, setCollectionOfDetails] = useState({})
+
+//     useEffect(() =>{
+//        if(favData){
+//         const map = {}
+//         data.games.forEach(game =>{
+//           map[game.image_url] = game
+//         })
+//         setCollectionOfDetails(map)
+
+//     }
+
+//     const handleChange = e =>{
+//       console.log('event',e,  e.target.value, 'collectionOfDetails', collectionOfDetails)
+//       const selectedGame = collectionOfDetails[e.target.value]
+//       setDetailGame(selectedGame)
+
+//     if(isLoading) {
+//       return null
+//     }
+
+//   return (
+//     <Box sx={{ flexGrow: 1 }}>
+//          <Grid container spacing={5}> {/* space between Items in grid */}
+//           <Grid item xs={6} md={5}>
+//             <Item> Game Details </Item>
+
+
+
+
+//         </Grid>
+//         </Grid>
+//         </Box>
+//   )
+
+// }
+
+
+// export default DetailPage
+
+
+
+OG nav Page
+
+ return (
+    <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
+      <div className="container-fluid">
+        <NavLink className="navbar-brand jm-logo" onClick={refreshPage} to="/">
+          <img src={logo}
+          className={`logo ${isVibrating ? 'vibrate' : ''}`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          />
+        </NavLink>
+        {/* <NavLink className="nav-item" to="/">Game Night Planner </NavLink> */}
+        <NavLink className="nav-item" to="/SearchForm/"> Let's Pick a Game! </NavLink>
+        <NavLink className="nav-item" to="/SearchForm/"> Search All Games</NavLink>
+        <NavLink className="nav-item" to="/UserDashboard/">My Dashboard</NavLink>
+        <DropdownButton title={<img className='avatar' src={gon}/>} variant="dark" id="dropdown-button-image" menuVariant='dark'>
+          <Dropdown.Item href='/Login/'>Login</Dropdown.Item>
+          <Dropdown.Item href='/SignUp/'>SignUp</Dropdown.Item>
+        </DropdownButton>
+        {/* <NavLink className="nav-item" to="/Detail/">Detail</NavLink> */}
+      </div>
+    </nav>
+  )
+}
+
+export default Nav;
+
+User Dashboard For Each Explained
+
+ //react router on change to link
+    useEffect(() => console.log(ownedGame), [ownedGame])
+    useEffect(() =>  console.log(favoriteGame), [favoriteGame])
+
+    useEffect(() =>{
+      
+      if(data){
+        const map = {}
+        data.owned_list.forEach(game =>{ 
+          map[game.bgaID] = game
+        }) //go through the game data and (forEach) means to create a bucket
+        setCollectionOfGames(map)// we are taking this temporay bucket of games (map) and setting it equal to our variable collection of games to persitst the data over reRenders
+      }
+
+
+If loading with error 
+
+    // if(isLoading || gameError) {
+    //   return (<React.Fragment>Loading...</React.Fragment>)
+    // }
+
+    //  if(isFavLoading  || favGameError) {
+    //   return (<React.Fragment>Loading...</React.Fragment>)
+    // }
+
+
+
+App JS
+
+Attempt to link detail page
+
+// function DetailPage() {
+//   // Get the detailId param from the URL.
+//   let { detailId } = useParams();
+
+// }
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     let url = `${process.env.REACT_APP_GAME_NIGHT_API_HOST}/api/money_maker/;
+  //     console.log('fastapi url: ', url);
+  //     let response = await fetch(url);
+  //     console.log("------- hello? -------");
+  //     let data = await response.json();
+
+  //     if (response.ok) {
+  //       console.log("got launch data!");
+  //       setLaunchInfo(data.launch_details);
+  //     } else {
+  //       console.log("drat! something happened");
+  //       setError(data.message);
+  //     }
+  //   }
+  //   getData();
+  // }, [])
+
+ return (
+
+    <BrowserRouter>
+    {/* <Link to={`/details/${props.game_detail.id}`}></Link> */}
+    <Nav />
+    <div>
+      {/* <ErrorNotification error={error} /> */}
+      {/* <Construct info={launch_info} /> */}
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/MainPage/" element={<MainPage />} />
+        <Route path="/UserDashboard/" element={<UserDashboard />} />
+        <Route path="/SearchForm/" element={<SearchForm />} />
+        <Route path="/login/" element={<Login />} />
+        <Route path="/signup/" element={<Signup />} />
+        <Route path="/detail/:bgaID" element={<DetailPage />} />
+        {/* <Route path="/detail/${e.target.value}" element={<DetailPage />} />
+        <Route path="/details/:detailId" element={<DetailPage />} /> */}
+      </Routes>
+    </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;

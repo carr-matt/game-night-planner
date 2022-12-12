@@ -128,4 +128,3 @@ export default SearchForm
 
 
  
-{/* <img src={game.image_url}  key={`${game.id}`} value={game.id} onClick = {handleDetailChange} /> */}

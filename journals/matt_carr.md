@@ -1,6 +1,7 @@
 ## December 12, 2022
 
 * Deployment day, yeehaw!
+* Margaret is taking the lead to knock out remaining eslint errors.
 
 ## December 11, 2022
 
